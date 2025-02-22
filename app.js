@@ -11,6 +11,6 @@ app.use(adminRouter)
 app.use(shapRouter)
 
 app.use((req,res,next) => {
-res.status(404).sendFile(path.join(__dirname,"../","views","404.html"))
+res.status(404).sendFile(path.join(__dirname,"./","views","404.html"))
 })
 app.listen(5430)
