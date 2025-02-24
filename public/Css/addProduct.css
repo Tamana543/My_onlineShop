@@ -1,0 +1,41 @@
+main {
+     flex-direction: column;
+  
+   align-items: center !important;
+   justify-content: space-between !important;
+   gap: 10%;
+     
+}
+.container {
+     min-height: 100%;
+     width: 100%;
+}
+input ,button {
+     margin: 20% 0%;
+}
+input {
+     background: none;
+     border: 1px solid #ff2f5fa9;
+     font-family: "Lato",sans-serif;
+     font-weight: bold;
+     font-size: 18px;
+     padding: 1% 1%;
+     color: #fff;
+  outline: none;
+  margin-right: 5%;
+  width: 350px;
+  height: 30px;
+}
+button {
+     width: 300px;
+     height: 50px;
+     border-radius: 11px;
+     border: none;
+     background-color: #ff2f5fa9;
+     color: #ffff;
+     font-family: "Lato",sans-serif;
+     font-weight: bold;
+     font-size: 18px;
+     letter-spacing: 0%;
+
+}
