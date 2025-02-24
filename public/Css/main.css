@@ -46,3 +46,19 @@ color: #fff;
 border-bottom: 1px solid #fff;
 
 }
+footer {
+     position: absolute;
+     bottom: 0;
+     margin: 2% 0%;
+
+
+}
+footer a {
+     text-decoration: none;
+     color: #fff;
+  padding: 3% 0%;
+font-size: 1.2rem;
+}
+footer a:hover {
+     border-bottom: 2px solid #ff2f5fa9;
+}
