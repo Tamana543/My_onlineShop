@@ -1,0 +1,13 @@
+main {
+     min-height: 80vh;
+     min-width: 100vh;
+}
+.car {
+     min-width: 40%;
+     flex-direction: column;
+     background-color: #00000094;
+}    
+.car img {
+width: 80%;
+height: 60%;
+}
