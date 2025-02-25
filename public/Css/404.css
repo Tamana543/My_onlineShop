@@ -1,4 +1,7 @@
 
+:root {
+     --border-color : linear-gradient(to bottom left, #efbd9c 40%, #ffc39e 100%):
+}
 html {
 display: grid;
 min-height: 100%;
@@ -10,6 +13,7 @@ font-family: sans-serif;
 text-transform: uppercase;
 text-align: center;
 }
+
 #container {
 position: relative;
 margin: auto;
@@ -26,12 +30,8 @@ color: #fcfcfc;
 padding-bottom: 5px;
 text-transform: uppercase;
 }
-.green {
-color: #4ec07d;
-}
-.red {
-color: #e96075;
-}
+
+
 .alert {
 font-weight: 700;
 letter-spacing: 5px;
@@ -40,8 +40,9 @@ p {
 margin-top: -5px;
 font-size: 0.7em;
 font-weight: 100;
-color: #5e5e5e;
+/* color: #5e5e5e; */
 letter-spacing: 2px;
+color: #efefef;
 }
 button,
 .dot {
@@ -62,9 +63,13 @@ position: absolute;
 width: 35%;
 height: 60%;
 right: 30%;
-background: linear-gradient(to bottom left, #efbd9c 40%, #ffc39e 100%);
+border-width: 3px;
+  border-style: solid;
+  border-image-slice: 1;
+border-image: linear-gradient(to bottom , #FF2F61 40%, #ffc39e 100%)4 100%;
 border-radius: 20px;
 box-shadow: 5px 5px 20px rgba(203, 205, 211, 0.1);
+/* box-shadow: 5px 5px 20px var(--border-color); */
 }
 .dot {
 width: 8px;
@@ -147,6 +152,7 @@ top: 47%;
 .button-box {
 position: absolute;
 background: #fcfcfc;
+color: #000;
 width: 50%;
 height: 15%;
 border-radius: 20px;
