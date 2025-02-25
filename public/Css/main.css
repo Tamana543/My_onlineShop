@@ -9,7 +9,7 @@
      align-items: center;
 }
 body {
-     color: #fff;
+     color: #ffffffc9;
     
      background-color: #000;
 }
@@ -41,9 +41,9 @@ text-decoration: none;
 color: #ffffffb4;
 }
 .link a:hover {
-transition: 2s cubic-bezier(0.42, 0, 0.99, 0.24) all;
-color: #fff;
-border-bottom: 1px solid #fff;
+transition: 0.1s cubic-bezier(0.42, 0, 0.99, 0.24) all;
+color: #DDB321;
+border-bottom: 1px solid #f0d77e;
 
 }
 footer {
@@ -55,10 +55,10 @@ footer {
 }
 footer a {
      text-decoration: none;
-     color: #fff;
+     color: #ffffffc4;
   padding: 3% 0%;
 font-size: 1.2rem;
 }
 footer a:hover {
-     border-bottom: 2px solid #ff2f5fa9;
+     border-bottom: 2px solid #DDB321;
 }
