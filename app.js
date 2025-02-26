@@ -9,6 +9,8 @@ const path = require("path")
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
+app.set('view engine' , 'pug') // to tell the express go and ramder the pug dinamic data ( compile it )
+app.set('views','views') // find the dinamic data from here (vidit expres.set fot more )
 app.use(adminData.routs)
 app.use(shapRouter)
 app.use(homeRouter)
