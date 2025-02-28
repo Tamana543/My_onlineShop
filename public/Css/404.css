@@ -59,7 +59,7 @@ padding-bottom: 5px;
 text-transform: uppercase;
 }
 
-#error-box {
+.error-box {
 position: absolute;
 width: 35%;
 height: 60%;
@@ -231,7 +231,7 @@ flex-direction: column;
 width: 700px;
 height: 400px;
 }
-#error-box {
+.error-box {
   right: 33%;
   margin-top: 0%;
 }
