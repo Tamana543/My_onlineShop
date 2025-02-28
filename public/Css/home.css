@@ -1,13 +1,27 @@
 main {
+     background-image: url(./img_src/mainBackground_Img.jpg);
+     background-repeat: no-repeat;
+     /* background-position: center; */
+     background-size: contain;
      min-height: 80vh;
      min-width: 100vh;
+     position: relative;
 }
-.car {
-     min-width: 40%;
+.body_head {
+flex-direction: column;
+}
+.data {
      flex-direction: column;
-     background-color: #00000094;
-}    
-.car img {
+     width: 80%;
+  
+     
+}
+.car_details {
+     position: absolute;
+ bottom: 0;
+}
+  
+/* .car img {
 width: 80%;
 height: 60%;
-}
+} */
