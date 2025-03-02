@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+     head
+          meta(charset="UTF-8")
+          meta(name="viewport", content="width=device-width, initial-scale=1.0")
+          title #{pageTitle}
+          link(rel="stylesheet", href="/Css/main.css")
+          block styleLinks
+     body 
+          .container 
+               header.header.flex
+                    .logo
+                              img(src="../img_src/lamborghini-car-logo.jpg",alt="Logo Image ")
+                    nav.navbar.flex
+                         ul.links_bar.flex
+                              li.link
+
+                                   a(href="/home") Home 
+                              li.link
+                                   a(href="/app.product", class=(path ? 'active':'')) Add Product
+                              li.link
+
+                                    a(href="/") My Product
+               block contains 

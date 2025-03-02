@@ -5,7 +5,7 @@ const rootPath = require("../utill/path");
 const { title } = require("process");
 const products =[];
 router.get("/app.product",(req,res,next)=> {
- res.render("addProduct",{pageTitle: "Add Product",path: '/admin/app.product'})
+ res.render("addProduct",{pageTitle: "Add Product",path: '/app.product'})
 })
 router.post("/product",(req,res,next)=> {
      products.push({title : req.body.title})

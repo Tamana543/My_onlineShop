@@ -1,35 +1,16 @@
-doctype html
-html(lang="en")
-     head
-          meta(charset="UTF-8")
-          meta(name="viewport", content="width=device-width, initial-scale=1.0")
-          title #{pageTitle}
-          link(rel="stylesheet", href="/Css/main.css")
-          link(rel="stylesheet", href="/Css/addProduct.css")
-     body 
-          .container 
-               header.header.flex
-                    .logo
-                              img(src="../img_src/lamborghini-car-logo.jpg",alt="Logo Image ")
-                    nav.navbar.flex
-                         ul.links_bar.flex
-                              li.link
+extends layouts/main.pug
 
-                                   a(href="/home") Home 
-                              li.link
-                                   a.active(href="/app.product") Add Product
-                              li.link
+block styleLinks
+     link(rel="stylesheet", href="/Css/addProduct.css")
 
-                                    a(href="/") My Product
-               main.flex 
+block contains 
+     main.flex 
                     
-                    form.form.flex(method="post" action="/product")
-                         input(type="text" name="title")
-                         button(type="submit") Add Product
-                    footer.flex
-                         class.logo
-                              img(src="../img_src/lamborghini-car-logo.jpg" alt="Logo Iamge")
-               
-                         p Cooded by
-                              a.footer__link(target="_blank", href=" https://github.com/Tamana543" ,title="contact me 👩‍💻 ") Tamana Farzami
-          
+               form.form.flex(method="post" action="/product")
+                    input(type="text" name="title")
+                    button(type="submit") Add Product
+               footer.flex
+                     class.logo
+                         img(src="../img_src/lamborghini-car-logo.jpg" alt="Logo Iamge")
+                     p Cooded by
+                         a.footer__link(target="_blank", href=" https://github.com/Tamana543" ,title="contact me 👩‍💻 ") Tamana Farzami
