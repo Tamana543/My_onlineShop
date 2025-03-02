@@ -17,8 +17,8 @@ html(lang="en")
 
                                    a(href="/home") Home 
                               li.link
-                                   a(href="/app.product", class=(path ? 'active':'')) Add Product
+                                   a(href="/app.product", class=(path === '/app.product' ? 'active':'')) Add Product
                               li.link
 
-                                    a(href="/") My Product
+                                    a(href="/",class=(path === '/shop' ? 'active':'')) My Product
                block contains 

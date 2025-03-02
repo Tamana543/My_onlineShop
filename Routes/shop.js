@@ -8,6 +8,6 @@ router.get("/",(req,res,next)=> {
      // res.sendFile(path.join(rootPath,"views","shop.html")) // To connect your HTML, path creates a path the join make the url, the __dirname go through all dirictoryies in your PC , ../ goes one level up .
      const products = adminData.products;
 //   console.log(products);
-     res.render("shop",{prods : products, PageTitle : "shop"}) // express for more information 
+     res.render("shop",{prods : products, PageTitle : "shop",path:"/shop"}) // express for more information 
 })
 module.exports = router
