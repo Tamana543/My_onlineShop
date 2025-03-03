@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{{PageTitle}}/title>
+     <link rel="stylesheet" href="/Css/main.css">
+     <link rel="stylesheet" href="/Css/shop.css">
+     <!-- Add more meta tags Dont forget -->
+      <!-- Find a way to add two classes at the pug by node js -->
+</head>
+
+<body>
+     <div class="container">
+          <header class="header flex">
+               <div class="logo">
+                    <img src="../img_src/lamborghini-car-logo.jpg" alt="">
+               </div>
+
+     <nav class="navbar flex">
+         
+
+          <ul class="links_bar flex">
+               <li class="link">
+
+                    <a href="/home">Home</a>
+               </li>
+             
+               <li class="link">
+
+                    <a href="/app.product">Add Product</a>
+               </li>
+               <li class="link">
+
+                    <a href="/">My Product</a>
+               </li>
+          </ul>
+     </nav>
+     </header>
+     
+     <main>
+          {{#if hasProducts}}
+          <div class="body_head flex">
+
+                <div class="grid">
+                    {{#each prods}}
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title">{{this.title}}</h1>
+                </header>
+                <div class="card__image">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
+                </div>
+                <div class="card__content">
+                    <h2 class="product__price">$19.99</h2>
+                    <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                </div>
+                <div class="card__actions">
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </article>
+            {{/each}}
+        </div>
+        {{else }}
+        <h1>Mo Product Found</h1>
+        {{/if}}
+          </div>
+          <footer class="flex">
+               <div class="logo">
+                    <img src="../img_src/lamborghini-car-logo.jpg" alt="">
+               </div>
+               <p>
+                 Cooded by
+                 <a
+                   class="footer__link"
+                   target="_blank"
+                   href=" https://github.com/Tamana543"
+                   title="contact me 👩‍💻 "
+                   >Tamana Farzami</a
+                 >
+               </p>
+             </footer>
+     </main>
+</div>
+</body>
+</html>
