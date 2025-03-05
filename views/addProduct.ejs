@@ -10,51 +10,10 @@
 
 <body>
      <div class="container">
-          <header class= " header flex">
-               <div class="logo">
-                    <img src="../img_src/lamborghini-car-logo.jpg" alt="">
-               </div>
-     <nav class="navbar flex">
-
-          <ul class="links_bar flex">
-               <li class="link">
-
-                    <a href="/home">Home</a>
-               </li>
-             
-               <li class="link">
-
-                    <a href="/app.product">Add Product</a>
-               </li>
-               <li class="link">
-
-                    <a href="/">My Product</a>
-               </li>
-          </ul>
-     </nav>
-</header>
+          <%- include('layouts/navigation.ejs') %>
      <main class="flex">
           <form method="post" action="/product" class="form flex">
                <input type="text" name="title">
                <button type="submit">Add Product</button>
           </form>
-          <footer class="flex" >
-               <div class="logo">
-                    <img src="../img_src/lamborghini-car-logo.jpg" alt="">
-               </div>
-           <p>
-             Cooded by
-             <a
-               class="footer__link"
-               target="_blank"
-               href=" https://github.com/Tamana543"
-               title="contact me 👩‍💻 "
-               >Tamana Farzami</a
-             >
-           </p>
-         </footer>
-     </main>
-     
-</div>
-</body>
-</html>
+          <%- include('layouts/start.ejs') %>
