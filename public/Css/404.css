@@ -18,9 +18,8 @@ text-align: center;
 position: relative;
 margin: auto;
 overflow: hidden;
-
-width: 100%;
-height: 100%;
+width: 30%;
+    height: 55%;
 }
 h1 {
 font-size: 1.9em;
@@ -143,11 +142,12 @@ animation: scale 1s ease-in infinite;
 animation: move 3s ease-in-out infinite;
 }
 .message {
+  flex-direction: column;
 position: absolute;
 width: 100%;
 text-align: center;
 height: 40%;
-top: 64%;
+top: 54%;
 }
 .button-box {
 position: absolute;
@@ -228,13 +228,23 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 700px;
-height: 400px;
+width: 277px;
+height: 340px;
 }
-.error-box {
-  right: 33%;
+#error-box {
+
   margin-top: 0%;
+  margin-right: 120px;
 }
+.message {
+ 
+  width: 48%;
+  
+  height: 40%;
+ 
+  top: 48%;
+  
+  }
 .mouth {
   width: 8px;
   height: 8px;
@@ -256,7 +266,7 @@ button p {
   font-size: 0.9em;
 }
 .face2 {
-  width: 23%;
+  width: 28%;
   height: 24%;
 }
 /* #success-box,
