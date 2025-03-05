@@ -7,16 +7,16 @@
 <ul class="links_bar flex">
      <li class="link">
 
-          <a href="/home">Home</a>
+          <a href="/home" class="<%= path === '/home' ? 'active' : '' %>">Home</a>
      </li>
    
      <li class="link">
 
-          <a href="/app.product">Add Product</a>
+          <a href="/app.product" class="<%= path === '/app.product' ? 'active' : ''%>" >Add Product</a>
      </li>
      <li class="link">
 
-          <a href="/">My Product</a>
+          <a href="/" class="<%= path === '/shop' ? 'active' : ''%>">My Product</a>
      </li>
 </ul>
 </nav>
