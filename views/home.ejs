@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="/Css/main.css">
-     <link rel="stylesheet" href="/Css/home.css">
-     <title><%= pageTitle %></title>
+<%- include('layouts/start.ejs') %>
 </head>
 <body>
      <div class="container">
-          <header class="header flex">
-               <div class="logo">
-                    <img src="../img_src/lamborghini-car-logo.jpg" alt="">
-               </div>
-
-     <nav class="navbar flex">
-          <ul class="links_bar flex">
-               <li class="link">
-
-                    <a href="/home" class="active">Home</a>
-               </li>
-             
-               <li class="link">
-
-                    <a href="/app.product">Add Product</a>
-               </li>
-               <li class="link">
-
-                    <a href="/">My Product</a>
-               </li>
-          </ul>
-     </nav>
-     </header>
+         <%- include('layouts/navigation.ejs') %>
      
      <main class="flex">
           <div class="body_head flex">
@@ -66,22 +37,4 @@
                     </div>
               
           </div>
-     </main>
-     <footer class="flex">
-          <div class="logo">
-               <img src="../img_src/lamborghini-car-logo.jpg" alt="">
-          </div>
-          <p>
-            Cooded by
-            <a
-              class="footer__link"
-              target="_blank"
-              href=" https://github.com/Tamana543"
-              title="contact me 👩‍💻 "
-              >Tamana Farzami</a
-            >
-          </p>
-        </footer>
-</div>
-</body>
-</html>
+     <%- include('layouts/end.ejs') %>
