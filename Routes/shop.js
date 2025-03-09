@@ -1,7 +1,6 @@
 const path = require("path")
 const express = require("express")
 const router = express.Router()
-const rootPath = require("../utill/path")
 const adminData = require("./admin")
 
 // router.get("/",rootPath)

@@ -1,7 +1,7 @@
 const path = require("path")
 const express = require("express")
 const router = express.Router();
-const rootPath = require("../utill/path");
+
 const { title } = require("process");
 const products =[];
 router.get("/app.product",(req,res,next)=> {
