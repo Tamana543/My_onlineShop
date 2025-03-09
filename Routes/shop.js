@@ -1,14 +1,8 @@
 const path = require("path")
 const express = require("express")
 const router = express.Router()
-const adminData = require("./admin")
+const shopProduct = require("../controller/products")
 
 // router.get("/",rootPath)
-router.get("/",(req,res,next)=> {
-     // console.log(adminData.products);
-     // res.sendFile(path.join(rootPath,"views","shop.html")) // To connect your HTML, path creates a path the join make the url, the __dirname go through all dirictoryies in your PC , ../ goes one level up .
-     const products = adminData.products;
-//   console.log(products);
-     res.render("shop",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) // express for more information 
-})
+router.get("/",shopProduct.productsShop)
 module.exports = router
