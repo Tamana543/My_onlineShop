@@ -4,8 +4,8 @@ exports.postproducts = (req,res,next)=> {
      res.redirect('/')
 }
 exports.getAddProducts = (req,res,next)=> {
-res.render("app.product",{pageTitle: "Add Product",
-     path: '/app.product',
+res.render("add-product",{pageTitle: "Add Product",
+     path: '/admin/add-product',
      formsCSS: true,
                productCSS: true,
                activeAddProduct: true}) 
