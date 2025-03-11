@@ -1,10 +1,13 @@
 const products =[];
 exports.getAddProducts = (req,res,next)=> {
+   
      (req,res,next)=> {
-          res.render("addProduct",{pageTitle: "Add Product",path: '/app.product'}) 
+          res.render("addProduct",{pageTitle: "Add Product",path: '/app.product',formsCSS: true,
+               productCSS: true,
+               activeAddProduct: true}) 
          }
 }
-exports.postAddproducts = (req,res,next)=> {
+exports.postproducts = (req,res,next)=> {
      products.push({title : req.body.title})
      res.redirect('/')
 }
