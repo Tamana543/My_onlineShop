@@ -18,6 +18,8 @@ exports.productsShop = (req,res,next)=> {
      // res.sendFile(path.join(rootPath,"views","shop.html")) // To connect your HTML, path creates a path the join make the url, the __dirname go through all dirictoryies in your PC , ../ goes one level up .
      // const products = adminData.products;
 //   console.log(products);
-    const products = Products.fetchAll()
-     res.render("shop",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) // express for more information 
+ Products.fetchAll((products)=> {
+
+      res.render("shop",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) // express for more information 
+ })
 }

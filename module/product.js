@@ -20,13 +20,16 @@ module.exports =class Products {
           })
        })
      }
-     static fetchAll() {
+     static fetchAll(cb) {
           const p = path.join(path.dirname(process.mainModule.filename), 'data','products.json')
           fs.readFile(p,(err,fileContent)=>{
                if(err){
-                    return [];
+                    // return [];
+                    cb([]);
                }
-               return JSON.parse(fileContent)
+               // return JSON.parse(fileContent)
+               cb(JSON.parse(fileContent))
+               // rememeber it is a synchrouus function and the fetchAll function returns undifined. solution : rgive the function an parameter and call the function just by the parameter .
           })
      }
 }
