@@ -5,22 +5,21 @@ main {
      position: relative;
 }
 .body_head {
-
+width: 100%;
 display: grid;
 grid-template-columns: 1fr 1fr;
 grid-template-rows: 1fr;
 
 }
 .body_head div {
-
-     padding: 5%;
+margin-top: 14%;
 }
 .sub_head {
      font-size: 2.3rem;
      margin-bottom: 5%;
      color: #fff;
      position: absolute;
-     top: 15%;
+     top: 10%;
 }
 .highlight {
      font-style: italic;
@@ -32,8 +31,9 @@ grid-template-rows: 1fr;
 .data {
      flex-direction: column;
      width: 80%;
-  
-     
+  /* height: 100%; */
+  text-align: center;
+  gap:3%;
 }
 .car_details {
    gap: 10%;
@@ -47,20 +47,42 @@ grid-template-rows: 1fr;
  /* background-blend-mode: hard-light; */
  background-blend-mode: normal;
  transition:all 0.6s ease;
+
 }
-.car_details span  {
-     position: relative ;
-     height: 65%;
-     width: 90%;
+.engine  {
+     /* position: relative ; */
+     /* height: 65%;
+     width: 90%; */
+     width: 100%;
+     gap: 3%;
+     padding: 0 !important;
 }
-.car_details span p {
-     width: 90% !important;
-     position: absolute;
+.engine span {
+     margin: 2%;
 }
-.data {
-     bottom: 30%;
-font-weight: bold;
+.engine span p {
+     width: 100% !important;
+     /* position: absolute; */
 }
-.data_sub {
-     bottom: 25%;
+.btns {
+     width: 100%;
+     margin: 0% 1%;
+}
+.btn {
+     color: #fff;
+     text-decoration: none;
+     font-size: 1rem;
+     padding: 3%;
+}
+.btn:hover {
+     box-shadow: -1px 0px 6px 1px #fff;
+}
+.main_btn {
+     background-color: #f0d77e;
+     color: black;
+     margin-left:2% ;
+}
+.sub_btn {
+     border:1px solid  #f0d77e;
+     
 }
