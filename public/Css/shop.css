@@ -33,7 +33,7 @@
  }
  .grid {
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     justify-content:center;
     align-items: stretch;
   }
@@ -93,5 +93,5 @@
   }
   
 footer {
-     margin-left: 20% !important;
+     margin-left: 5% !important;
 }

@@ -64,21 +64,18 @@ transition: transform 0.2s linear;
 .link a.active {
      color: #ffeb3b;
    }
-footer {
-     position: absolute;
-     bottom: 0;
-     margin: 2% 0%;
 
-
-}
 footer a {
      text-decoration: none;
      color: #ffffffc4;
   padding: 3% 0%;
 font-size: 1.2rem;
+transform: scaleX(0);
 }
 footer a:hover {
      border-bottom: 2px solid #DDB321;
+     transition: transform 0.2s linear;
+     transform: scaleX(1);
 }
 
 @keyframes line {

@@ -12,7 +12,7 @@ grid-template-rows: 1fr;
 
 }
 .body_head div {
-margin-top: 14%;
+margin-top: 5%;
 }
 .sub_head {
      font-size: 2.3rem;
@@ -33,7 +33,7 @@ margin-top: 14%;
      width: 80%;
   /* height: 100%; */
   text-align: center;
-  gap:3%;
+  gap:5%;
 }
 .car_details {
    gap: 10%;
@@ -43,7 +43,7 @@ margin-top: 14%;
  background-image: url(../img_src/Lamborghini-Huracan-Lp-Black-Dark-iphone-8.jpg);
  background-repeat: no-repeat;
  background-position:center;
-  background-size:auto;
+  background-size:cover;
  /* background-blend-mode: hard-light; */
  background-blend-mode: normal;
  transition:all 0.6s ease;
