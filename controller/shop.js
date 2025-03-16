@@ -7,6 +7,24 @@ exports.productsShop = (req,res,next)=> {
 //   console.log(products);
  Products.fetchAll((products)=> {
 
-      res.render("shop/product_list",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0,activeShop:true , productCSS : true}) // express for more information 
+      res.render("shop/product_list",{prods : products, pageTitle : "Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
  })
+}
+exports.cartProducts = (res,req,next)=>{
+     Products.fetchAll((products)=> {
+
+          res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) // express for more information 
+     })
+}
+exports.indexProducts = (res,req,next)=>{
+     Products.fetchAll((products)=> {
+
+          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) // express for more information 
+     })  
+}
+exports.checkoutProducts = (res,req,next)=>{
+     Products.fetchAll((products)=> {
+
+          res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",hasProducts:products.length > 0}) // express for more information 
+     })  
 }
