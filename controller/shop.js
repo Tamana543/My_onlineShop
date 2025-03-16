@@ -7,7 +7,7 @@ exports.productsShop = (req,res,next)=> {
 //   console.log(products);
  Products.fetchAll((products)=> {
 
-      res.render("shop/product_list",{prods : products, pageTitle : "Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
+      res.render("shop/product_list",{prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
  })
 }
 exports.cartProducts = (res,req,next)=>{
