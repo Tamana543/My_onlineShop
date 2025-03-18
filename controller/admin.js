@@ -7,7 +7,7 @@ exports.postproducts = (req,res,next)=> {
      const description = req.body.description;
   const product = new Products()
   product.save()
-     res.redirect('/shop/product_list')
+     res.redirect('admin/add-product')
 }
 exports.getAddProducts = (req,res,next)=> {
 res.render("admin/add-product",{
