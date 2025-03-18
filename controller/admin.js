@@ -5,7 +5,8 @@ exports.postproducts = (req,res,next)=> {
      res.redirect('/shop/product_list')
 }
 exports.getAddProducts = (req,res,next)=> {
-res.render("admin/add-product",{pageTitle: "Add Product",
+res.render("admin/add-product",{
+     pageTitle: "Add Product",
      path: '/admin/add-product',
      formsCSS: true,
                productCSS: true,
@@ -14,7 +15,7 @@ res.render("admin/add-product",{pageTitle: "Add Product",
           }) 
          
 }
-exports.adminProducts = (res,req,next)=>{
+exports.adminProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
           res.render("admin/products",{prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 

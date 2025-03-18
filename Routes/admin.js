@@ -1,7 +1,7 @@
 const path = require("path")
 const express = require("express")
-const router = express.Router();
 const addminController = require('../controller/admin')
+const router = express.Router();
 const { title } = require("process");
 router.get("/add-product", addminController.getAddProducts);
 
