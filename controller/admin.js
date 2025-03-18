@@ -1,6 +1,11 @@
 const Products = require("../module/product.js")
 exports.postproducts = (req,res,next)=> {
-  const product = new Products(req.body.title)
+     // getting data from form add product page 
+     const title = req.body.title; 
+     const pageURL = req.body.imageUrl;
+     const price = req.body.price;
+     const description = req.body.description;
+  const product = new Products()
   product.save()
      res.redirect('/shop/product_list')
 }
