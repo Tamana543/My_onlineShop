@@ -84,6 +84,7 @@
     background: #f0d77e;
     border-radius: 3px;
     cursor: pointer;
+    text-decoration: none !important;
   }
   
   .btn:hover,
