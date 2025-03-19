@@ -14,14 +14,14 @@ body {
      background-color: #000;
 }
 .logo {
-     width: 50%;
+     width: 30%;
 }
 .logo img{
-     width: 20%;
-     height: 20%;
+     width: 30%;
+     height: 22%;
 }
 .navbar {
-     width: 50%;
+     width: 60%;
 
 }
 .links_bar {
@@ -50,7 +50,7 @@ transition: line 0.1s ; */
  .link a::before {
 content: "";
 position: absolute;
-top: 63px;
+top: 72px;
 height: 4px;
 width: 80px;
 background-color:#f0d77e ;

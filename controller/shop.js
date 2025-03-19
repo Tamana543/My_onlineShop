@@ -13,18 +13,24 @@ exports.productsShop = (req,res,next)=> {
 exports.cartProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
-          res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) // express for more information 
+          res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
+     })
+}
+exports.orderProducts = (req,res,next)=>{
+     Products.fetchAll((products)=> {
+
+          res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders",hasProducts:products.length > 0}) 
      })
 }
 exports.indexProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
-          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) // express for more information 
+          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) 
      })  
 }
 exports.checkoutProducts = (req,res,next)=>{
    
 
-          res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",hasProducts:products.length > 0}) // express for more information 
+          res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",hasProducts:products.length > 0}) 
       
 }
