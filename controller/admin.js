@@ -5,7 +5,7 @@ exports.postproducts = (req,res,next)=> {
      const pageURL = req.body.imageUrl;
      const price = req.body.price;
      const description = req.body.description;
-  const product = new Products()
+  const product = new Products(title,pageURL,price,description)
   product.save()
      res.redirect('admin/add-product')
 }
