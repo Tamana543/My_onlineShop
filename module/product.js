@@ -19,8 +19,8 @@ module.exports =class Products {
      constructor(title,imageURL,description , price, ) {
           this.title = title,
           this.imageURL = imageURL,
-          this.description = description,
-          this.price = price
+          this.price = price,
+          this.description = description
      }
      save() {
        getProductsFromFile(product => {
