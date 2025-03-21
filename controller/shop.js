@@ -22,6 +22,11 @@ exports.orderProducts = (req,res,next)=>{
           res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders",hasProducts:products.length > 0}) 
      })
 }
+exports.getidProduct = (req,res,next)=> {
+     const prodId = req.params.productId;
+     console.log(prodId);
+     res.redirect("/")
+}
 exports.indexProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
