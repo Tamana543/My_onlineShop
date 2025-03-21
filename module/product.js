@@ -23,6 +23,7 @@ module.exports =class Products {
           this.description = description
      }
      save() {
+          this.id = Math.random().toString();
        getProductsFromFile(product => {
 
             product.push(this)

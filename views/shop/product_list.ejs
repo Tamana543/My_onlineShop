@@ -24,7 +24,8 @@
                               <p class="product__description"><%=product.description%></p>
                               <h2 class="product__price">$<%=product.price%></h2>
                          </div>
-                         <div class="card__actions">
+                         <div class="card__actions flex">
+                              <a href="/products/<%= product.id %>" class="btn"> Detail</a>
                               <form action="/add-to-cart" method="post">
                               <button class="btn">Add to Cart</button>
                          </form>
