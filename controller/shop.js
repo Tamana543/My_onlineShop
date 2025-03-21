@@ -24,8 +24,10 @@ exports.orderProducts = (req,res,next)=>{
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
-     console.log(prodId);
-     res.redirect("/")
+     Products.findById(prodId,product => {
+          console.log(product);
+     })
+     res.redirect("/shop/product_list")
 }
 exports.indexProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
