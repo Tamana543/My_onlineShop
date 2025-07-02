@@ -12,6 +12,7 @@ body {
      color: #ffffffc9;
     
      background-color: #000;
+     position: relative;
 }
 .logo {
      width: 30%;
@@ -66,6 +67,7 @@ transition: transform 0.2s linear;
    }
 
 footer a {
+     
      text-decoration: none;
      color: #ffffffc4;
   padding: 3% 0%;
