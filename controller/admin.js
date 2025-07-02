@@ -11,12 +11,13 @@ exports.getAddProducts = (req,res,next)=> {
               
      }
 exports.postproducts = (req,res,next)=> {
+     console.log( req.body.imageUrl);
      // getting data from form add product page 
      const title = req.body.title; 
-     const pageURL = req.body.imageUrl;
+     const imageUrl = req.body.imageUrl;
      const price = req.body.price;
      const description = req.body.description;
-  const product = new Products(title,pageURL,description,price)
+  const product = new Products(title,imageUrl,description,price)
   product.save()
      res.redirect('/shop/product_list')
 }
