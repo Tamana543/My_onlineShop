@@ -2,18 +2,13 @@ const { json } = require("body-parser");
 const fs = require("fs");
 const path = require('path')
 const p = path.join(path.dirname(process.mainModule.filename), 'data','products.json')
-const getProductsFromFile =(cb) => {
-     fs.readFile(p,(err,fileContent)=>{
-          if(err){
-               // return [];
-               cb([]);
-          }else {
-
-               cb(JSON.parse(fileContent))
+const getProductsFromFile =cb => {
+    fs.readFile(p,(err,fileContent)=>{
+          if (err) {
+              return cb([]);
           }
-          // return JSON.parse(fileContent)
-          // rememeber it is a synchrouus function and the fetchAll function returns undifined. solution : rgive the function an parameter and call the function just by the parameter .
-     })
+          cb(JSON.parse(fileContent));
+    })
 }
 module.exports =class Products {
      constructor(title,imageURL,description , price, ) {

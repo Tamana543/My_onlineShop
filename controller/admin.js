@@ -14,10 +14,10 @@ exports.postproducts = (req,res,next)=> {
      console.log( req.body.imageUrl);
      // getting data from form add product page 
      const title = req.body.title; 
-     const imageUrl = req.body.imageUrl;
+     const imageURL = req.body.imageURL;
      const price = req.body.price;
      const description = req.body.description;
-  const product = new Products(title,imageUrl,description,price)
+  const product = new Products(title,imageURL,description,price)
   product.save()
      res.redirect('/shop/product_list')
 }

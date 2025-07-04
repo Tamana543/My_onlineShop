@@ -19,7 +19,7 @@ exports.cartProducts = (req,res,next)=>{
 exports.orderProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
-          res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders",hasProducts:products.length > 0}) 
+          res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders"}) 
      })
 }
 exports.getidProduct = (req,res,next)=> {
@@ -32,12 +32,14 @@ exports.getidProduct = (req,res,next)=> {
 exports.indexProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
-          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop",hasProducts:products.length > 0}) 
+          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop"}) 
      })  
 }
 exports.checkoutProducts = (req,res,next)=>{
    
+  Products.fetchAll((products)=> {
 
-          res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",hasProducts:products.length > 0}) 
+       res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",}) 
+  })
       
 }
