@@ -7,7 +7,13 @@ const getProductsFromFile =cb => {
           if (err) {
               return cb([]);
           }
-          cb(JSON.parse(fileContent));
+          try {
+               
+               cb(JSON.parse(fileContent));
+          } catch (error) {
+               console.log("Error Here :", error);
+               cb([])
+          }
     })
 }
 module.exports =class Products {
