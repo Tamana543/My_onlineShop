@@ -8,9 +8,6 @@ exports.getAddProducts = (req,res,next)=> {
           res.render("admin/add-product",{
                pageTitle: "Add Product",
                path: '/admin/add-product',
-               formsCSS: true,
-                         productCSS: true,
-                         activeAddProduct: true
                      
                     }) 
           
@@ -27,6 +24,7 @@ exports.postproducts = (req,res,next)=> {
      const imageURL = req.body.imageURL;
      const price = req.body.price;
      const description = req.body.description;
+
   const product = new Products({
      title : title,
      imageURL : imageURL,
@@ -35,7 +33,8 @@ exports.postproducts = (req,res,next)=> {
 })
   product.save().then(result=>{
       res.redirect('/shop/product_list')
-  }).catch(err=>{
+  })
+  .catch(err=>{
      console.log(err);
   })
     
@@ -44,6 +43,8 @@ exports.postproducts = (req,res,next)=> {
 exports.adminProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
-          res.render("admin/products",{prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
+          res.render("admin/products",{
+               prods : products,
+                pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
      })  
 }
