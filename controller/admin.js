@@ -25,13 +25,14 @@ exports.postproducts = (req,res,next)=> {
      const price = req.body.price;
      const description = req.body.description;
 
-  const product = new Products({
-     title : title,
-     imageURL : imageURL,
-     description : description,
-     price : price
-})
-  product.save().then(result=>{
+  const productData = new Products(
+     title,
+     imageURL,
+     description,
+     price
+)
+console.log(productData);
+  productData.save().then(result=>{
       res.redirect('/shop/product_list')
   })
   .catch(err=>{
@@ -44,7 +45,6 @@ exports.adminProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
           res.render("admin/products",{
-               prods : products,
-                pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
+               prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
      })  
 }
