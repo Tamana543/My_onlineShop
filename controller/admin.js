@@ -1,25 +1,44 @@
+const path = require('path')
+
 const Products = require("../module/product.js")
+
+
 exports.getAddProducts = (req,res,next)=> {
-     res.render("admin/add-product",{
-          pageTitle: "Add Product",
-          path: '/admin/add-product',
-          formsCSS: true,
-                    productCSS: true,
-                    activeAddProduct: true
-               
-               }) 
+     try {
+          res.render("admin/add-product",{
+               pageTitle: "Add Product",
+               path: '/admin/add-product',
+               formsCSS: true,
+                         productCSS: true,
+                         activeAddProduct: true
+                     
+                    }) 
+          
+     } catch (error) {
+          console.log(error);
+     }
+          
               
      }
 exports.postproducts = (req,res,next)=> {
-     console.log( req.body.imageUrl);
+     // console.log( req.body.imageUrl);
      // getting data from form add product page 
      const title = req.body.title; 
      const imageURL = req.body.imageURL;
      const price = req.body.price;
      const description = req.body.description;
-  const product = new Products(title,imageURL,description,price)
-  product.save()
-     res.redirect('/shop/product_list')
+  const product = new Products({
+     title : title,
+     imageURL : imageURL,
+     description : description,
+     price : price
+})
+  product.save().then(result=>{
+      res.redirect('/shop/product_list')
+  }).catch(err=>{
+     console.log(err);
+  })
+    
 }
 
 exports.adminProducts = (req,res,next)=>{
