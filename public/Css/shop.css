@@ -31,13 +31,15 @@
  .product__description {
      text-align: center;
  }
- .grid {
-    display: flex;
-    /* flex-wrap: wrap; */
-    justify-content:center;
-    align-items: stretch;
-  }
-  
+ .flex_able {
+
+   display: flex;
+   flex-wrap: wrap;
+   justify-content:center;
+   align-items: stretch;
+   width: 100%;
+ }
+ 
   .card {
     box-shadow: 1px 0px 12px 3px #f0d77e7d;
     margin: 2%;

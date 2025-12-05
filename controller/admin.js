@@ -32,12 +32,8 @@ exports.postproducts = (req,res,next)=> {
      price
 )
 console.log(productData);
-  productData.save().then(result=>{
-      res.redirect('/shop/product_list')
-  })
-  .catch(err=>{
-     console.log(err);
-  })
+  productData.save()
+res.redirect('/shop/product_list')
     
 }
 
