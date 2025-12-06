@@ -7,10 +7,12 @@ exports.productsShop = (req,res,next)=> {
 //   console.log(products);
  Products.fetchAll(products=> {
 
-      res.render("shop/product_list",{prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
+      res.render("shop/product_list",{
+          prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
  })
 }
 exports.cartProducts = (req,res,next)=>{
+     const carts = UserActivation.cart.items
      Products.fetchAll((products)=> {
 
           res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
