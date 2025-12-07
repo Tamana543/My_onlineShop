@@ -12,7 +12,8 @@ exports.productsShop = (req,res,next)=> {
  })
 }
 exports.cartProducts = (req,res,next)=>{
-     const carts = UserActivation.cart.items
+     console.log(req.user);
+     // const carts = UserActivation.cart.items
      Products.fetchAll((products)=> {
 
           res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
