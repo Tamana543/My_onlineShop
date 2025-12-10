@@ -1,12 +1,14 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const app = express()
+const session = require('express-session')
+const mongostoreSession = require('connect-mongodb-session')(session)
+
 const adminRoute = require("./Routes/admin")
 const shapRouter = require("./Routes/shop")
 const homeRouter = require("./Routes/home");
 const path = require("path")
-const mongostoreSession = require('connect-mongodb-session')(session)
 const { Collection } = require("mongodb")
+const app = express()
 // const expressHandlebar = require('express-handlebars'); un commit this if you like to use handlebar
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
