@@ -34,9 +34,12 @@ res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
 mongoose.connect(MONGOD_URL).then(result=>{
 
+
      app.listen(3000)
 }
 ).catch(err=> console.log(err))
+
+
 
 // mangoCreateDb(()=>{
 //      app.listen(3000)
