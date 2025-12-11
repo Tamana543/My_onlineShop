@@ -28,8 +28,16 @@ const store = new mongostoreSession({
      uri : MONGOD_URL,
      Collection : 'sessions'
 })
+
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
+mongoose.connect(MONGOD_URL).then(result=>{
 
-app.listen(3000)
+     app.listen(3000)
+}
+).catch(err=> console.log(err))
+
+// mangoCreateDb(()=>{
+//      app.listen(3000)
+// })
