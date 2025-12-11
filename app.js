@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const session = require('express-session')
 const mongostoreSession = require('connect-mongodb-session')(session)
+const mongoose = require('mongoose')
 
 const adminRoute = require("./Routes/admin")
 const shapRouter = require("./Routes/shop")
@@ -21,8 +22,8 @@ app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dina
 // app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
 app.use(shapRouter)
 app.use(homeRouter)
-// database : Mongoo
-const MONGOD_URL  =  '';
+// database : Mongoo : VpUGVuzoovqhnuRo
+const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
 const store = new mongostoreSession({
      uri : MONGOD_URL,
      Collection : 'sessions'
@@ -30,4 +31,5 @@ const store = new mongostoreSession({
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
+
 app.listen(3000)
