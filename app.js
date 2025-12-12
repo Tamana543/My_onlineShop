@@ -28,6 +28,12 @@ const store = new mongostoreSession({
      uri : MONGOD_URL,
      Collection : 'sessions'
 })
+app.use(session({
+     secret : 'My first Car Online Shop',
+     resave : false, 
+     saveUninitialized : false,
+     store : store
+}))
 
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
