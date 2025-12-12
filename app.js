@@ -35,6 +35,12 @@ app.use(session({
      store : store
 }))
 
+app.use((req,res,next)=>{
+     if(!req.session.user){
+          return next()
+     }
+     
+})
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
