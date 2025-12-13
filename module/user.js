@@ -14,7 +14,21 @@ const UserSchema = new schema({
           type : String,
           require : true
      }, 
-     cart : []
+     cart : {
+          items : [
+               {
+                    productId : {
+                         type : schema.Types.ObjectId,
+                         require: true,
+                         ref : 'Product'
+                    },
+                    quantity : {
+                         type : Number,
+                         require : true
+                    }
+               }
+          ]
+     }
 })
 
 // const User =  sequalizer.define('userProduct',{
