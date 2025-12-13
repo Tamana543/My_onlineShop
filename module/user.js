@@ -1,7 +1,21 @@
 // const data = require('../data/products.json')
 // const sequalizer  = require('sequelize')
 
-const mongoDB = require("mongodb");
+const mongoose = require('mongoose');
+const schema = mongoose.Schema;
+
+const UserSchema = new schema({
+     email: {
+          type : String,
+          require: true
+     }
+     ,
+     password : {
+          type : String,
+          require : true
+     }, 
+     cart : []
+})
 
 // const User =  sequalizer.define('userProduct',{
 //      id : {
