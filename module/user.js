@@ -2,6 +2,7 @@
 // const sequalizer  = require('sequelize')
 
 const mongoose = require('mongoose');
+const { RelationshipType } = require('sequelize/lib/errors/database/foreign-key-constraint-error');
 const schema = mongoose.Schema;
 
 const UserSchema = new schema({
@@ -50,8 +51,18 @@ if(cartProductIndex >= 0) {
           }
      )
 }
+const updatedCart ={
+     items :updatedCartItem
+ } ;
+ this.cart = updatedCart 
+ return this.save()
 
 }
+UserSchema .methods.clearCart = function(){
+     this.cart = {items : []}
+     return this.save()
+}
+module.exports = mongoose.model('User',UserSchema)
 
 // const User =  sequalizer.define('userProduct',{
 //      id : {
