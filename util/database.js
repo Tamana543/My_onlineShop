@@ -29,5 +29,5 @@ const getDb = (test)=>{
      throw "database not found "
 } ;
 
-exports.mangoCreateDb = mangoCreateDb
+exports.mangoCreateDb = mangoCreateDB
 exports.getDb = getDb
