@@ -14,14 +14,7 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
 app.set('views','views') // find the dinamic data from here (vidit expres.set fot more )
-// debugger;
-app.use("/admin",adminRoute)
 
-// app.engine('hbs',expressHandlebar())
-app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dinamic data ( compile it )
-// app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
-app.use(shapRouter)
-app.use(homeRouter)
 // database : Mongoo : VpUGVuzoovqhnuRo
 const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
 const store = new mongostoreSession({
@@ -34,6 +27,14 @@ app.use(session({
      saveUninitialized : false,
      store : store
 }))
+// debugger;
+app.use("/admin",adminRoute)
+
+// app.engine('hbs',expressHandlebar())
+app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dinamic data ( compile it )
+// app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
+app.use(shapRouter)
+app.use(homeRouter)
 
 app.use((req,res,next)=>{
      if(!req.session.user){
