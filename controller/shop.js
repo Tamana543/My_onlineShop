@@ -20,7 +20,8 @@ exports.cartProducts = (req,res,next)=>{
      })
 }
 exports.postCardShop = (req,res,next)=>{
-     
+     console.log(req.body);
+     res.redirect('/cart')
 }
 exports.orderProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
