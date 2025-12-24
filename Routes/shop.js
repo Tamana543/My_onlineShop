@@ -10,6 +10,7 @@ router.get("/products/:productId",shopController.getidProduct)
 router.get("/products",shopController.productsShop)
 
 router.get("/cart",shopController.cartProducts)
+router.post("/add-to-cart",shopController.postCardShop)
 
 router.get("/orders",shopController.orderProducts)
 

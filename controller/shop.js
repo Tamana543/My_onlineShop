@@ -19,6 +19,9 @@ exports.cartProducts = (req,res,next)=>{
           res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
      })
 }
+exports.postCardShop = (req,res,next)=>{
+     
+}
 exports.orderProducts = (req,res,next)=>{
      Products.fetchAll((products)=> {
 
