@@ -4,30 +4,31 @@ const Scheme = mongoose.Schema;
 const SchemaFirstProduct = new Scheme({
      title : {
           type: String,
-          require : true
+          required : true
      },
      price : {
           type: Number,
-          require : true
+          required : true
      },
      description : {
           type : String,
-          require : true
+          required : true
      },
      imageUrl : {
           type : String,
-          require : true
-     },
-     productId : {
-          type : Scheme.Types.ObjectId,
-          ref : 'User',
-          require: true
+          required : true 
      }
-});
-module.exports = mongoose.model('Product',SchemaFirstProduct)
-
-
-/**
+     });
+     module.exports = mongoose.model('Product',SchemaFirstProduct)
+     
+     
+     /**
+ },
+ productId : {
+      type : Scheme.Types.ObjectId,
+      ref : 'User',
+      required: true
+ }
  
 const { json } = require("body-parser");
 const fs = require("fs");
