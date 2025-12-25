@@ -1,6 +1,6 @@
 const path = require('path')
 
-const Products = require("../module/product.js")
+const Products = require("../module/product")
 
 
 exports.getAddProducts = (req,res,next)=> {

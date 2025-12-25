@@ -37,10 +37,18 @@ exports.getidProduct = (req,res,next)=> {
      res.redirect("/shop/product_list")
 }
 exports.indexProducts = (req,res,next)=>{
-     Products.fetchAll((products)=> {
+     Products.find().then(result=>{
+          res.render("shop/index",
+               {prods : result, pageTitle : "shop",path:"/shop"}
+          ) 
 
-          res.render("shop/index",{prods : products, pageTitle : "shop",path:"/shop"}) 
-     })  
+     }).catch(err=> {
+          console.error(err);
+          
+     })
+     // Products.fetchAll((products)=> {
+
+     // })  
 }
 exports.checkoutProducts = (req,res,next)=>{
    

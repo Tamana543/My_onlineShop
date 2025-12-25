@@ -18,8 +18,9 @@ const SchemaFirstProduct = new Scheme({
           type : String,
           required : true 
      }
-     });
-     module.exports = mongoose.model('Product',SchemaFirstProduct)
+});
+
+module.exports = mongoose.model('Product',SchemaFirstProduct)
      
      
      /**
