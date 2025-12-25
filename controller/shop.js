@@ -1,15 +1,24 @@
-const Products = require("../module/product.js")
+const Products = require("../module/product")
 
 exports.productsShop = (req,res,next)=> {
      // console.log(adminData.products);
      // res.sendFile(path.join(rootPath,"views","shop.html")) // To connect your HTML, path creates a path the join make the url, the __dirname go through all dirictoryies in your PC , ../ goes one level up .
      // const products = adminData.products;
 //   console.log(products);
- Products.fetchAll(products=> {
+//  Products.fetchAll(products=> {
 
-      res.render("shop/product_list",{
-          prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
- })
+//       res.render("shop/product_list",{
+//           prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
+//  })
+Products.find().then(respond=>{
+res.render("shop/product_list",{
+pageTitle : "All Products List",
+path:"/products",
+prods : respond
+})
+}).catch(err=>{
+     console.error(err)
+})
 }
 exports.cartProducts = (req,res,next)=>{
      console.log(req.user);
