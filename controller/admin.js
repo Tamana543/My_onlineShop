@@ -10,6 +10,7 @@ exports.getAddProducts = (req,res,next)=> {
                path: '/admin/add-product',
                      
                     }) 
+                    
           
      } catch (error) {
           console.log(error);
@@ -21,16 +22,19 @@ exports.postproducts = (req,res,next)=> {
      // console.log( req.body.imageUrl);
      // getting data from form add product page 
      const title = req.body.title; 
-     const imageURL = req.body.imageURL;
+     const imageUrl = req.body.imageUrl;
      const price = req.body.price;
      const description = req.body.description;
 
   const productData = new Products(
-     title,
-     imageURL,
-     description,
-     price
+    { title :  title,
+     imageUrl : imageUrl,
+     description : description,
+     price : price,
+   
+     }
 )
+
 console.log(productData);
   productData.save()
 res.redirect('/shop/product_list')
