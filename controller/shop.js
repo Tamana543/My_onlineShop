@@ -61,9 +61,9 @@ exports.indexProducts = (req,res,next)=>{
 }
 exports.checkoutProducts = (req,res,next)=>{
    
-  Products.fetchAll((products)=> {
+  Products.find().this(products=>{
 
        res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",}) 
   })
-      
+    
 }
