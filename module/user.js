@@ -50,7 +50,7 @@ userMainSchema.methods.addToCart = function(product){
      
      //updateing cart
      const userUpdatedCart = {
-          item : userUpdatedCartItems
+          items : userUpdatedCartItems
      };
      
      // assigning the updated cart to the care 
