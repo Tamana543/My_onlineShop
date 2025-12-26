@@ -48,7 +48,7 @@ productData.save().then(reult=>{
 }
 
 exports.adminProducts = (req,res,next)=>{
-     Products.fetchAll((products)=> {
+     Products.find().then((products)=> {
 
           res.render("admin/products",{
                prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 

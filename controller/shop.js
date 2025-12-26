@@ -23,7 +23,7 @@ prods : respond
 exports.cartProducts = (req,res,next)=>{
      console.log(req.user);
      // const carts = UserActivation.cart.items
-     Products.fetchAll((products)=> {
+     Products.find().then(products=> {
 
           res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
      })
@@ -33,7 +33,7 @@ exports.postCardShop = (req,res,next)=>{
      res.redirect('/cart')
 }
 exports.orderProducts = (req,res,next)=>{
-     Products.fetchAll((products)=> {
+     Products.find().then(products=> {
 
           res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders"}) 
      })
