@@ -16,7 +16,9 @@ app.use(express.static(path.join(__dirname,'public')))
 app.set('views','views') // find the dinamic data from here (vidit expres.set fot more )
 
 // database : Mongoo : VpUGVuzoovqhnuRo
-const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
+// const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
+const MONGOD_URL = 'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/online_shop?retryWrites=true&w=majority';
+
 const store = new mongostoreSession({
      uri : MONGOD_URL,
      Collection : 'sessions'

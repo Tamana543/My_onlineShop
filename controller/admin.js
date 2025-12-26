@@ -36,8 +36,14 @@ exports.postproducts = (req,res,next)=> {
 )
 
 console.log(productData);
-  productData.save()
-res.redirect('/shop/product_list')
+
+productData.save().then(reult=>{
+     console.log('Done');
+
+     res.redirect('/shop/product_list')
+}).catch(err=>{
+     console.log(err);
+})
     
 }
 
