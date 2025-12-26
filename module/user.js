@@ -5,26 +5,27 @@ const Schema = mongoose.Schema;
 const userMainSchema = new Schema({
      email : {
           type: String,
-          require : true
+          required : true
      },
      password : {
           type: String,
-          require : true
+          required : true
      },
      cart : {
-          items : {
-                    type : Array,
+          items : [
+               {
                     productId : {
                          ref : 'Product',
-                         require : true,
+                         required : true,
                          type : Schema.Types.ObjectId
                     },
                     quantity : {
                          type : Number,
-                         require : true
+                         required : true
                     }
 
-          }
+               }
+          ]
      }
 })
 

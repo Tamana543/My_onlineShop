@@ -4,6 +4,7 @@ const session = require('express-session')
 const mongostoreSession = require('connect-mongodb-session')(session)
 const mongoose = require('mongoose')
 
+const User = require("./module/user")
 const adminRoute = require("./Routes/admin")
 const shapRouter = require("./Routes/shop")
 const homeRouter = require("./Routes/home");
@@ -29,6 +30,16 @@ app.use(session({
      saveUninitialized : false,
      store : store
 }))
+
+app.use((req,res,next)=>{
+     User.findOne().then(user=>{
+          console.log(user);
+          req.user = user
+          next()
+     }).catch(err=>{
+          console.log(err);
+     })
+});
 // debugger;
 app.use("/admin",adminRoute)
 
