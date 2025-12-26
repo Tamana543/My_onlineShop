@@ -35,17 +35,27 @@ userMainSchema.methods.addToCart = function(product){
           return cb.productId.toString()== product._id.toString()
      }) ;
      let productNewQuantity = 1 
-     const userUpdatedCart = [...this.cart.items]
+     const userUpdatedCartItems = [...this.cart.items]
      
      // check if product already exist or not 
      if(productIndex >= 0) {
          productNewQuantity = this.cart.items[productIndex].quantity + 1;
-         userUpdatedCart[productIndex].quantity = productNewQuantity
+         userUpdatedCartItems[productIndex].quantity = productNewQuantity
      }else {
-          userUpdatedCart.push({
+          userUpdatedCartItems.push({
                productId : product._id,
                quantity : productNewQuantity
           })
      }
+     
+     //updateing cart
+     const userUpdatedCart = {
+          item : userUpdatedCartItems
+     };
+     
+     // assigning the updated cart to the care 
+     this.cart = userUpdatedCart;
+
+     return this.save()
 }
 module.exports = mongoose.model('User',userMainSchema)
