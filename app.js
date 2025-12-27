@@ -14,6 +14,7 @@ const app = express()
 // const expressHandlebar = require('express-handlebars'); un commit this if you like to use handlebar
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap')))
 app.set('views','views') // find the dinamic data from here (vidit expres.set fot more )
 
 // database : Mongoo : VpUGVuzoovqhnuRo
