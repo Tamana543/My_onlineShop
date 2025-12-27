@@ -23,7 +23,12 @@ prods : respond
 }
 exports.cartProducts = (req,res,next)=>{
      console.log(req.user);
-     // const carts = UserActivation.cart.items
+     // getting the card items to show 
+     req.user.populate('cart.items.productId').then(user=>{
+
+     }).catch(err=>{
+          console.error(err)
+     })
      Products.find().then(products=> {
 
           res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
@@ -31,7 +36,8 @@ exports.cartProducts = (req,res,next)=>{
 }
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
-     const productId =req.body.prodId ;
+     const productId =req.body.productId ;
+ console.log(productId);
      Products.findById(productId)
      .then((respond)=>{
           return req.user.addToCart(respond)

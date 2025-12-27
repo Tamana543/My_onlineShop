@@ -27,6 +27,7 @@
                          <div class="card__actions flex">
                               <a href="/products/<%= product.id %>" class="btn"> Detail</a>
                               <form action="/add-to-cart" method="post">
+                                   <input type="hidden" name="productId" value="<%= product._id%>">
                               <button class="btn" >Add to Cart</button>
                          </form>
                          </div>
