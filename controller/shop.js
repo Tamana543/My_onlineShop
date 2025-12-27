@@ -25,14 +25,17 @@ exports.cartProducts = (req,res,next)=>{
      console.log(req.user);
      // getting the card items to show 
      req.user.populate('cart.items.productId').then(user=>{
-
+          const cart = user.cart.items;
+          res.render("shop/cart",
+               {prods : cart,
+                pageTitle : "Your Cart",
+                path:"/cart",
+                hasProducts:cart.length > 0}) 
+          
      }).catch(err=>{
           console.error(err)
      })
-     Products.find().then(products=> {
-
-          res.render("shop/cart",{prods : products, pageTitle : "Your Cart",path:"/cart",hasProducts:products.length > 0}) 
-     })
+   
 }
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
