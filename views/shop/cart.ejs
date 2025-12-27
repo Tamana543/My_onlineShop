@@ -7,17 +7,22 @@
 <body>
      <div class="Container">
           <%- include('../layouts/navigation.ejs') %>
+           <% console.log("Here",prods) %>
      <main class="flex_1">
           <% if(prods.length > 0) { %>
 
-         <h1>cart shop</h1>
          <% prods.forEach(prod=> { %>
          <div class="card text-bg-dark">
-               <img src="..." class="card-img" alt="...">
+               <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
                <div class="card-img-overlay">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-               <p class="card-text"><small>Last updated 3 mins ago</small></p>
+               <h5 class="card-title text-black text-center"><%= prod.productId.title %></h5>
+               <p class="card-text text-black text-center"> <%= prod.productId.description %></p>
+               <p class="card-text text-black text-center"><small>You have <%= prod.quantity %> of this car in your card..</small></p>
+                  <form action="/cart-delete-item" method="POST" class="flex_1">
+                                <input type="hidden" value="<%= prod.productId._id %>" name="productId">
+                            
+                                <button class="btn danger btn-outline-light" type="submit">Delete</button>
+                            </form>
           </div>
           <% }) %>
           <% } %>

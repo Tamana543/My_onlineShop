@@ -26,6 +26,7 @@ body {
      width: 60% !important;
      --bs-navbar-padding-x: 1 !important; 
 }
+
 .links_bar {
 list-style-type: none;
 width: 100%;
@@ -67,6 +68,16 @@ transition: transform 0.2s linear;
      color: #ffeb3b;
    }
 
+.card-img {
+filter: opacity(0.2);   
+}
+.card-img-overlay{
+  background-color: rgb(241 243 204 / 33%) !important;
+}
+.btn-outline-light {
+    --bs-btn-color: #000000 !important;
+    --bs-btn-border-color: #f8f9fa54 !important;
+}
 footer a {
      
      text-decoration: none;
