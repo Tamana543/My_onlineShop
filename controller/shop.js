@@ -1,3 +1,4 @@
+const product = require("../module/product")
 const Products = require("../module/product")
 
 exports.productsShop = (req,res,next)=> {
@@ -29,8 +30,16 @@ exports.cartProducts = (req,res,next)=>{
      })
 }
 exports.postCardShop = (req,res,next)=>{
-     console.log(req.body);
-     res.redirect('/cart')
+     // console.log(req.body.items.productId);
+     const productId =req.body.prodId ;
+     Products.findById(productId)
+     .then((respond)=>{
+          return req.user.addToCart(respond)
+     }).then(ans=>{
+          res.redirect('/cart')
+
+     })
+     .catch(err=>console.error(err))
 }
 exports.orderProducts = (req,res,next)=>{
      Products.find().then(products=> {

@@ -1,0 +1,11 @@
+
+ apply the app.js functionality 
+ create the mongoose, session in app 
+  create the product with mongoose
+  connect the product with controllers
+  creat the user 
+  connect a demo user in database(Atlas)
+  add the user in app js 
+  add the at the cart method to the user 
+  connect the add to cart 
+  
