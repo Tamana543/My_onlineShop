@@ -40,7 +40,8 @@ exports.cartProducts = (req,res,next)=>{
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
      const productId =req.body.productId ;
- console.log(productId);
+     console.log(req.body)
+     
      Products.findById(productId)
      .then((respond)=>{
           return req.user.addToCart(respond)
