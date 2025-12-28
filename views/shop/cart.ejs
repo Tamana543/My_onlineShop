@@ -7,24 +7,27 @@
 <body>
      <div class="Container">
           <%- include('../layouts/navigation.ejs') %>
-           <% console.log("Here",prods) %>
-     <main class="flex_1">
-          <% if(prods.length > 0) { %>
+           <main class="flex_1">
+           <% if(prods.length > 0) { %>
+               <ul>
 
-         <% prods.forEach(prod=> { %>
-         <div class="card text-bg-dark">
-               <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
-               <div class="card-img-overlay">
-               <h5 class="card-title text-black text-center"><%= prod.productId.title %></h5>
-               <p class="card-text text-black text-center"> <%= prod.productId.description %></p>
-               <p class="card-text text-black text-center"><small>You have <%= prod.quantity %> of this car in your card..</small></p>
-                  <form action="/cart-delete-item" method="POST" class="flex_1">
-                                <input type="hidden" value="<%= prod.productId._id %>" name="productId">
-                            
-                                <button class="btn danger btn-outline-light" type="submit">Delete</button>
-                            </form>
-          </div>
-          <% }) %>
+                    <% prods.forEach(prod=> { %>
+                         <li>
+                         <div class="card text-bg-dark">
+                              <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
+                              <div class="card-img-overlay">
+                                   <h5 class="card-title text-black text-center"><%= prod.productId.title %></h5>
+                                   <p class="card-text text-black text-center"> <%= prod.productId.description %></p>
+                                   <p class="card-text text-black text-center"><small>You have <%= prod.quantity %> of this car in your card..</small></p>
+                                   <form action="/cart-delete-item" method="POST" class="flex_1">
+                                        <input type="hidden" value="<%= prod.productId._id %>" name="productId">
+                                        
+                                        <button class="btn danger btn-outline-light" type="submit">Delete</button>
+                                   </form>
+                              </div>
+                              </li>
+                              <% }) %>
+                         </ul>
           <% } %>
 </div>
           <%- include('../layouts/end.ejs') %>
