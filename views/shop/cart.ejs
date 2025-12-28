@@ -9,10 +9,10 @@
           <%- include('../layouts/navigation.ejs') %>
            <main class="flex_1">
            <% if(prods.length > 0) { %>
-               <ul>
+               <ul class="card_continer">
 
                     <% prods.forEach(prod=> { %>
-                         <li>
+                         <li class="card_item">
                          <div class="card text-bg-dark">
                               <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
                               <div class="card-img-overlay">

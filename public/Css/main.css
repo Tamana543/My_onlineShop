@@ -78,6 +78,19 @@ filter: opacity(0.2);
     --bs-btn-color: #000000 !important;
     --bs-btn-border-color: #f8f9fa54 !important;
 }
+.card_continer {
+ list-style-type: none;
+     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+
+}
+.card_item {
+margin: 1%;
+width: 25%;
+}
 footer a {
      
      text-decoration: none;
