@@ -61,9 +61,15 @@ exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
      console.log(prodId);
      Products.findById(prodId).then(product => {
+          res.render("shop/product_list",{
+               product : product,
+               pageTitle : "Product detail",
+               path : "/products"
+          })
           
+     }).catch(err=>{
+          console.error(err)
      })
-     res.redirect("/shop/product_list")
 }
 exports.indexProducts = (req,res,next)=>{
      Products.find().then(result=>{

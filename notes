@@ -13,3 +13,4 @@
 
   Details : 
   add the route based the products Id ( params) 
+  fix the controller( get the params,find the product , send the details to the front)
