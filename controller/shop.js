@@ -59,8 +59,9 @@ exports.orderProducts = (req,res,next)=>{
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
-     Products.findById(prodId,product => {
-          console.log(product);
+     console.log(prodId);
+     Products.findById(prodId).then(product => {
+          
      })
      res.redirect("/shop/product_list")
 }
