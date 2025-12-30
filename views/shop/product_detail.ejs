@@ -5,39 +5,33 @@
 </head>
 
 <body>
+     <%- include('../layouts/navigation.ejs') %>
      <div class="container">
-          <%- include('../layouts/navigation.ejs') %>
-     <main class="flex">
-        <h1></h1>
-            <hr>
+     <main class="flex flex-column">
             <div>
-                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="img-fluid">
+                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="img-thumbnail">
             </div>
-            <h2></h2>
-            <p></p>
-            
-
-              <div class="col-md-7">
-                <div class="main-description px-2">
-               
-                    <div class="product-title text-bold my-3">
-                        <%= product.title %>
-                    </div>
+               <div class="col-md-7">
+                    <div class="main-description px-2">
+                    
+                         <div class="product-title text-bold my-3">
+                         <%= product.title %>
+                         </div>
 
 
-                    <div class="price-area my-4">
-                        <p class="old-price mb-1"><%= product.price %></p>
-                        <p class="text-secondary mb-1"><%= product.description %></p>
+                         <div class="price-area my-4">
+                              <p class="old-price mb-1"><%= product.price %></p>
+                              <p class="text-secondary mb-1"><%= product.description %></p>
 
-                    </div>
+                         </div>
 
 
-                    <div class="buttons d-flex my-5">
-                        <form action="/add-to-cart" method="post">
-                              <input type="hidden" name="productId" value="<%= product._id%>">
-                              <button class="btn btn-dark" >Add to Cart</button>
-                         </form>
-                    </div>
+                         <div class="buttons d-flex my-5">
+                              <form action="/add-to-cart" method="post">
+                                   <input type="hidden" name="productId" value="<%= product._id%>">
+                                   <button class="btn btn-dark" >Add to Cart</button>
+                              </form>
+                         </div>
 
 
 
