@@ -8,25 +8,25 @@
      <%- include('../layouts/navigation.ejs') %>
      <div class="container">
      <main class="flex flex-column">
-            <div>
-                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="img-thumbnail">
+            <div class="flex">
+                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="z-1 img-fluid rounded w-50 border-bottom border-top border-light-subtle p-1">
             </div>
-               <div class="col-md-7">
-                    <div class="main-description px-2">
+               <div class="col-md-7 flex m-3">
+                    <div class="main-description px-10 border-bottom border-light-subtle  text-center">
                     
-                         <div class="product-title text-bold my-3">
+                         <div class="fs-3 text-bold my-3 z-3">
                          <%= product.title %>
                          </div>
 
 
                          <div class="price-area my-4">
-                              <p class="old-price mb-1"><%= product.price %></p>
-                              <p class="text-secondary mb-1"><%= product.description %></p>
+                              <p class="old-price mb-1 fs-5"><%= product.price %></p>
+                              <p class="text-secondary mb-1 mt-2 fs-6"><%= product.description %></p>
 
                          </div>
 
 
-                         <div class="buttons d-flex my-5">
+                         <div class="buttons d-flex my-5 flex">
                               <form action="/add-to-cart" method="post">
                                    <input type="hidden" name="productId" value="<%= product._id%>">
                                    <button class="btn btn-dark" >Add to Cart</button>
