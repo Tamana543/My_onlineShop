@@ -11,7 +11,7 @@
         <h1><%= product.title %></h1>
             <hr>
             <div>
-                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="img-thumbnail">
+                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="img-fluid">
             </div>
             <h2><%= product.price %></h2>
             <p><%= product.description %></p>
@@ -19,4 +19,41 @@
                               <input type="hidden" name="productId" value="<%= product._id%>">
                               <button class="btn" >Add to Cart</button>
              </form>
+
+              <div class="col-md-7">
+                <div class="main-description px-2">
+                    <div class="category text-bold">
+                        Category: Women
+                    </div>
+                    <div class="product-title text-bold my-3">
+                        Black dress for Women
+                    </div>
+
+
+                    <div class="price-area my-4">
+                        <p class="old-price mb-1"><del>$100</del>
+                            <span class="old-price-discount text-danger">(20% off)</span></p>
+                        <p class="new-price text-bold mb-1">$80</p>
+                        <p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>
+
+                    </div>
+
+
+                    <div class="buttons d-flex my-5">
+                        <div class="block">
+                            <a href="#" class="shadow btn custom-btn ">Wishlist</a>
+                        </div>
+                        <div class="block">
+                            <button class="shadow btn custom-btn">Add to cart</button>
+                        </div>
+
+                        <div class="block quantity">
+                            <input type="number" class="form-control" id="cart_quantity" value="1" min="0" max="5" placeholder="Enter email" name="cart_quantity">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
           <%- include('../layouts/end.ejs') %>
