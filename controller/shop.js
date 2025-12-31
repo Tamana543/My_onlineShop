@@ -54,11 +54,19 @@ exports.postCardShop = (req,res,next)=>{
 exports.orderProducts = (req,res,next)=>{
      Products.find().then(products=> {
 
-          res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders"}) 
+          res.render("shop/orders",
+               {
+                    prods : products,
+                     pageTitle : "Your Orders",
+                     path:"/orders"
+               }) 
      })
 }
 exports.orderPostProducts = (req,res,next)=>{
-     
+     res.render("shop/orders",{
+      pageTitle : "Your Orders",
+      path:"/orders"
+     })
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
