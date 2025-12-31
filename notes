@@ -11,6 +11,11 @@
   fix the ejs 
   add the ejs (bootstrap here)
 
-  Details : 
+  For Details : 
   add the route based the products Id ( params) 
   fix the controller( get the params,find the product , send the details to the front)
+
+  For Orders: 
+  fix the UI 
+  add the route 
+  add cotroller, Order the product show it in order page, fix the delete method on the user, delete it from the card , 
