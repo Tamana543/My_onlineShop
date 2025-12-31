@@ -13,6 +13,6 @@ router.get("/cart",shopController.cartProducts)
 router.post("/add-to-cart",shopController.postCardShop)
 
 router.get("/orders",shopController.orderProducts)
-
+router.post("/order_Item",shopController.orderPostProducts)
 router.get("/checkout",shopController.checkoutProducts)
 module.exports = router

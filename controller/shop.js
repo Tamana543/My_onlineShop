@@ -57,6 +57,9 @@ exports.orderProducts = (req,res,next)=>{
           res.render("shop/orders",{prods : products, pageTitle : "Your Orders",path:"/orders"}) 
      })
 }
+exports.orderPostProducts = (req,res,next)=>{
+     
+}
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
      console.log(prodId);
