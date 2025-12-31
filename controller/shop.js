@@ -52,7 +52,8 @@ exports.postCardShop = (req,res,next)=>{
      .catch(err=>console.error(err))
 }
 exports.orderProducts = (req,res,next)=>{
-     Products.find().then(products=> {
+     Products.find({'user.userId': req.user._id})
+     .then(products=> {
 
           res.render("shop/orders",
                {
@@ -63,10 +64,17 @@ exports.orderProducts = (req,res,next)=>{
      })
 }
 exports.orderPostProducts = (req,res,next)=>{
-     res.render("shop/orders",{
-      pageTitle : "Your Orders",
-      path:"/orders"
-     })
+     const prodId =req.body.productId.trim();
+
+     // console.log(prodId);
+     // uncommit this
+     // req.user.deleteItemCard(prodId)
+     // .then(cart=>{
+     //      res.redirect("shop/orders")
+     // })
+     // .catch(err=>
+     //      console.log(err)
+     // )
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
