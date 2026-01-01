@@ -1,5 +1,6 @@
 const product = require("../module/product")
 const Products = require("../module/product")
+const Order = require('../module/order')
 
 exports.productsShop = (req,res,next)=> {
      // console.log(adminData.products);
@@ -52,12 +53,12 @@ exports.postCardShop = (req,res,next)=>{
      .catch(err=>console.error(err))
 }
 exports.orderProducts = (req,res,next)=>{
-     Products.find({'user.userId': req.user._id})
+     Order.find({'user.userId': req.user._id})
      .then(products=> {
 
           res.render("shop/orders",
                {
-                    prods : products,
+                    order : products,
                      pageTitle : "Your Orders",
                      path:"/orders"
                }) 
@@ -66,15 +67,30 @@ exports.orderProducts = (req,res,next)=>{
 exports.orderPostProducts = (req,res,next)=>{
      const prodId =req.body.productId.trim();
 
-     // console.log(prodId);
-     // uncommit this
-     // req.user.deleteItemCard(prodId)
-     // .then(cart=>{
-     //      res.redirect("shop/orders")
-     // })
-     // .catch(err=>
-     //      console.log(err)
-     // )
+     req.user.populate(cart.items.productId).then(user=>{
+          const product = user.cart.items.map(i =>{
+               return {quantity : i.quantity, product : {...i.productId._doc}}
+          })
+
+          const order = new Order({
+               use : {
+                    email : req.user.email,
+                    userId : req.user
+               },
+               products : product
+          })
+          return order.save()
+     }).then(result=>{
+           return req.user.deleteItemCard(prodId)
+     }).then( ()=>{
+
+               res.redirect("shop/orders")
+     })
+     .catch(err=>{
+          console.log(err)
+     })
+
+
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
