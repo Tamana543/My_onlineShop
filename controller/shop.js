@@ -67,24 +67,25 @@ exports.orderProducts = (req,res,next)=>{
 exports.orderPostProducts = (req,res,next)=>{
      const prodId =req.body.productId.trim();
 
-     req.user.populate(cart.items.productId).then(user=>{
+     req.user.populate('cart.items.productId').then(user=>{
           const product = user.cart.items.map(i =>{
                return {quantity : i.quantity, product : {...i.productId._doc}}
           })
-
+// console.log("DDDDDDDDD",req.user);
           const order = new Order({
-               use : {
-                    email : req.user.email,
+               user : {
+                    name : req.user.email,
                     userId : req.user
                },
                products : product
           })
+
           return order.save()
      }).then(result=>{
+          console.log("Done 2nd", prodId);
            return req.user.deleteItemCard(prodId)
-     }).then( ()=>{
-
-               res.redirect("shop/orders")
+     }).then((result)=>{
+           res.redirect("/orders")
      })
      .catch(err=>{
           console.log(err)
