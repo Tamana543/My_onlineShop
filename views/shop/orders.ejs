@@ -8,9 +8,9 @@
           <%- include('../layouts/navigation.ejs') %>
      <main class="flex">
           <div class="body_head flex">
-               <% if (prods.length > 0) { %>
+               <% if (order.length > 0) { %>
                <div class="flex_able">
-                    <% for(let product of prods){%>
+                    <% for(let product of order){%>
                     <article class="card product-item">
                          <header class="card__header">
                               <h1 class="product__title"><%=product.title%></h1>
@@ -23,10 +23,7 @@
                               <h2 class="product__price">$<%=product.price%></h2>
                          </div>
                          <div class="card__actions flex">
-                              <a href="/products/<%=product.id%>" class="btn"> Detail</a>
-                              <form action="/add-to-cart" method="post">
-                                   <input type="hidden" name="productId" value="<%= product._id%>">
-                              <button class="btn" >Add to Cart</button>
+                                  <a class="btn" href="/order/<%= product._id %>">Invoice</a>
                          </form>
                          </div>
                     </article>
