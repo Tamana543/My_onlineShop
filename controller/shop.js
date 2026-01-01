@@ -129,3 +129,7 @@ exports.checkoutProducts = (req,res,next)=>{
   })
     
 }
+
+exports.deletePostProduct = (req,res,next)=>{
+     
+}

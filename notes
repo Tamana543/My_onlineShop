@@ -19,3 +19,8 @@
   fix the UI 
   add the route 
   add cotroller, Order the product show it in order page(create schema load it,), fix the delete method on the user, delete it from the card , 
+
+
+Deleting item from card : 
+create root 
+use the delete function from user schema 

@@ -15,4 +15,7 @@ router.post("/add-to-cart",shopController.postCardShop)
 router.get("/orders",shopController.orderProducts)
 router.post("/order_Item",shopController.orderPostProducts)
 router.get("/checkout",shopController.checkoutProducts)
+
+
+router.post('/cart-delete-item',shopController.deletePostProduct)
 module.exports = router
