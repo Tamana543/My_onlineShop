@@ -131,5 +131,10 @@ exports.checkoutProducts = (req,res,next)=>{
 }
 
 exports.deletePostProduct = (req,res,next)=>{
-     
+     const prodId = req.body.productId.trim()
+     req.user.deleteItemCard(prodId).then(result =>{
+          res.redirect("shop/cart")
+     }).catch(err=>{
+          console.log(err)
+})
 }
