@@ -68,22 +68,29 @@ exports.orderPostProducts = (req,res,next)=>{
      const prodId =req.body.productId.trim();
 
      req.user.populate('cart.items.productId').then(user=>{
-          const product = user.cart.items.map(i =>{
-               return {quantity : i.quantity, product : {...i.productId._doc}}
-          })
+          const product = user.cart.items.find(item =>{
+               // return {quantity : i.quantity, product : {...i.productId._doc}}
+               return  item.productId._id.toString() === prodId.toString()
+               })
+        if(!product){
+return res.redirect('/cart')
+        }
 // console.log("DDDDDDDDD",req.user);
           const order = new Order({
                user : {
                     name : req.user.email,
-                    userId : req.user
+                    userId : req.user._id
                },
-               products : product
+              products: [{
+          quantity: product.quantity,
+          product: { ...product.productId._doc }
+        }]
           })
 
           return order.save()
      }).then(result=>{
           console.log("Done 2nd", prodId);
-           return req.user.deleteItemCard(prodId)
+              return req.user.deleteItemCard(prodId);
      }).then((result)=>{
            res.redirect("/orders")
      })
