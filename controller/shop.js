@@ -66,6 +66,7 @@ exports.orderProducts = (req,res,next)=>{
 }
 exports.orderPostProducts = (req,res,next)=>{
      const prodId =req.body.productId.trim();
+   
 
      req.user.populate('cart.items.productId').then(user=>{
           const product = user.cart.items.find(item =>{
@@ -87,10 +88,10 @@ return res.redirect('/cart')
         }]
           })
 
-          return order.save()
-     }).then(result=>{
-          console.log("Done 2nd", prodId);
-              return req.user.deleteItemCard(prodId);
+          return order.save().then(() => {
+               console.log("Here", req.user);
+               return  user.deleteItemCard(prodId);
+          });
      }).then((result)=>{
            res.redirect("/orders")
      })
