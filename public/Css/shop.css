@@ -88,8 +88,14 @@
     border-radius: 3px;
     cursor: pointer;
     text-decoration: none !important;
+  }
+  .order_invoice-container {
+    flex-direction: column !important;
+    margin: 1%;
     
-   
+  }
+  .order_invoice-container a {
+    margin-top: 5% !important ;
   }
   .p-1 {
      padding: 0.5% 1.5% !important;

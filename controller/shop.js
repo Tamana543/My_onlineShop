@@ -101,6 +101,9 @@ return res.redirect('/cart')
 
 
 }
+exports.invoiceFunction = (req,res,next)=>{
+     
+}
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
      console.log(prodId);
@@ -146,3 +149,4 @@ exports.deletePostProduct = (req,res,next)=>{
           console.log(err)
 })
 }
+

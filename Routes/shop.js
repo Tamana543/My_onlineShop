@@ -11,11 +11,13 @@ router.get("/products",shopController.productsShop)
 
 router.get("/cart",shopController.cartProducts)
 router.post("/add-to-cart",shopController.postCardShop)
+router.post('/cart-delete-item',shopController.deletePostProduct)
 
 router.get("/orders",shopController.orderProducts)
 router.post("/order_Item",shopController.orderPostProducts)
+
 router.get("/checkout",shopController.checkoutProducts)
 
 
-router.post('/cart-delete-item',shopController.deletePostProduct)
+router.get("/order/:item._id", shopController.invoiceFunction)
 module.exports = router
