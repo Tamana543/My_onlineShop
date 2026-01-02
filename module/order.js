@@ -14,7 +14,7 @@ const mainOrderSchema = new Schema({
                required: true
           }
      }],
-     user : [{
+     user : {
           name : {
                type : String,
                required :true
@@ -24,7 +24,7 @@ const mainOrderSchema = new Schema({
                require : true,
                ref :'User'
           }
-     }]
+     }
 })
 
 module.exports = mongoose.model('Order',mainOrderSchema)
