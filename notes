@@ -23,4 +23,14 @@
 
 Deleting item from card : 
 create root 
+get the id
 use the delete function from user schema 
+
+Invoice functionality : 
+add the link
+create the route with proms functionality 
+get the id from url
+check the orders
+creat the controller 
+use pdfKit (documentation)
+
