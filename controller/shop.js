@@ -102,7 +102,18 @@ return res.redirect('/cart')
 
 }
 exports.invoiceFunction = (req,res,next)=>{
-     
+     const orderId = req.params.orderId;
+     // console.log(orderId);
+     Order.findById(orderId).then(order=>{
+          if(!order){
+               return next(new Error("No order Found"))
+          }
+          if(order.user.userId.toString()!== req.user._id.toString()){
+               return next(new Error("Unauthorized"))
+          }
+     })
+
+      res.redirect("/orders")
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;

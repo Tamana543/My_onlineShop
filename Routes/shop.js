@@ -19,5 +19,5 @@ router.post("/order_Item",shopController.orderPostProducts)
 router.get("/checkout",shopController.checkoutProducts)
 
 
-router.get("/order/:item._id", shopController.invoiceFunction)
+router.get("/order/:orderId", shopController.invoiceFunction)
 module.exports = router
