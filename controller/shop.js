@@ -1,6 +1,7 @@
 const product = require("../module/product")
 const Products = require("../module/product")
 const Order = require('../module/order')
+const path = require('path')
 
 exports.productsShop = (req,res,next)=> {
      // console.log(adminData.products);
@@ -113,6 +114,11 @@ exports.invoiceFunction = (req,res,next)=>{
           }
      })
 
+     const invouceName = 'invoice-'+orderId+'.pdf'
+     const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
+
+     //PdfKit
+     //https://github.com/PSPDFKit-labs/pdfkit-invoice/blob/master/createInvoice.js (visite here )
       res.redirect("/orders")
 }
 exports.getidProduct = (req,res,next)=> {
