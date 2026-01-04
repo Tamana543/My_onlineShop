@@ -113,7 +113,7 @@ exports.invoiceFunction = (req,res,next)=>{
           if(order.user.userId.toString()!== req.user._id.toString()){
                return next(new Error("Unauthorized"))
           }
-     })
+   
 
      const invouceName = 'invoice-'+orderId+'.pdf'
      const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
@@ -141,9 +141,22 @@ exports.invoiceFunction = (req,res,next)=>{
                return sum + p.product.price * p.quantity * 100
           }, 0),
           paid: 0
-     }
+     };
+     // create PDF
+     invoice.createInvoice(invoiceData,invoicePath)
 
-      res.redirect("/orders")
+     // send to browser
+     res.setHeader("Content-Type","application/pdf");
+     res.setHeader(
+          "Content-Disposition",
+          'inline; filename = "' + invouceName +'"'
+     );
+     const fileStream = fs.createReadStream(invoicePath)
+     fileStream.pipe(res);
+}).catch(err=>{
+     next(err)
+})
+     
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
