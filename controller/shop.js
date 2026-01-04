@@ -2,6 +2,7 @@ const product = require("../module/product")
 const Products = require("../module/product")
 const Order = require('../module/order')
 const path = require('path')
+const invoice = require("../module/invooiceTemp")
 
 exports.productsShop = (req,res,next)=> {
      // console.log(adminData.products);
@@ -118,6 +119,7 @@ exports.invoiceFunction = (req,res,next)=>{
      const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
 
      //PdfKit
+      invoice(invouceName,invoicePath)
       res.redirect("/orders")
 }
 exports.getidProduct = (req,res,next)=> {
