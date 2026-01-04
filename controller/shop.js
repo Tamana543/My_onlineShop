@@ -105,7 +105,7 @@ return res.redirect('/cart')
 }
 exports.invoiceFunction = (req,res,next)=>{
      const orderId = req.params.orderId;
-     console.log(orderId);
+     // console.log(orderId);
      Order.findById(orderId).then(order=>{
           if(!order){
                return next(new Error("No order Found"))

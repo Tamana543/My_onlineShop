@@ -32,5 +32,5 @@ create the route with proms functionality
 get the id from url
 check the orders
 creat the controller 
-use pdfKit (documentation)
+use pdfKit (documentation) (work on the controller fix the buge)
 
