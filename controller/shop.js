@@ -118,7 +118,6 @@ exports.invoiceFunction = (req,res,next)=>{
      const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
 
      //PdfKit
-     //https://github.com/PSPDFKit-labs/pdfkit-invoice/blob/master/createInvoice.js (visite here )
       res.redirect("/orders")
 }
 exports.getidProduct = (req,res,next)=> {
