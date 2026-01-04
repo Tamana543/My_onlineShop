@@ -119,7 +119,30 @@ exports.invoiceFunction = (req,res,next)=>{
      const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
 
      //PdfKit
-      invoice(invouceName,invoicePath)
+     // invoice data 
+     const invoiceData = {
+          invoice_nr : orderId,
+          shipping :{
+               name : req.user.email, 
+               address : "Online Shop",
+               city : "Remote",
+               state : "",
+               country : ""
+          },
+          items : order.products.map(p=>{
+               return {
+                    item : p.product.title,
+                    description : p.product.description,
+                    quantity : p.quantity,
+                    amount : p.product.price * p.quantity * 100
+               };
+          }),
+          subtotal : order.products.reduce((sum,p)=>{
+               return sum + p.product.price * p.quantity * 100
+          }, 0),
+          paid: 0
+     }
+
       res.redirect("/orders")
 }
 exports.getidProduct = (req,res,next)=> {
