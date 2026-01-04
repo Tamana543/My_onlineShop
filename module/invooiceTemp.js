@@ -1,6 +1,19 @@
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
 
+function createInvoice(invoice, path) {
+  let doc = new PDFDocument({ size: "A4", margin: 50 });
+
+  generateHeader(doc);
+  generateCustomerInformation(doc, invoice);
+  generateInvoiceTable(doc, invoice);
+  generateFooter(doc);
+
+  doc.end();
+  doc.pipe(fs.createWriteStream(path));
+}
+
+
 function generateHeader(doc) {
   doc
     .image("lamborghini-car-logo.jpg", 50, 45, { width: 50 })
