@@ -1,6 +1,7 @@
 const product = require("../module/product")
 const Products = require("../module/product")
 const Order = require('../module/order')
+const fs = require("fs")
 const path = require('path')
 const invoice = require("../module/invooiceTemp")
 
@@ -117,8 +118,10 @@ exports.invoiceFunction = (req,res,next)=>{
    
 
      const invouceName = 'invoice-'+orderId+'.pdf'
-     const invoicePath = path.join(__dirname, '..' , 'data', 'invoice', invouceName)
-
+     const invoicePath = path.join(__dirname, '..' , 'data', 'invoice')
+          if (!fs.existsSync(invoicePath)) {
+  fs.mkdirSync(invoicePath, { recursive: true });
+}
      //PdfKit
      // invoice data 
      const invoiceData = {

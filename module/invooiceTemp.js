@@ -16,7 +16,7 @@ function createInvoice(invoice, path) {
 
 function generateHeader(doc) {
   doc
-    .image("lamborghini-car-logo.jpg", 50, 45, { width: 50 })
+    .image("public/img_src/lamborghini-car-logo.jpg", 50, 45, { width: 50 })
     .fillColor("#444444")
     .fontSize(20)
     .text("Online", 110, 57)
