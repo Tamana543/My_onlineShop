@@ -1,8 +1,6 @@
 const product = require("../module/product")
 const Products = require("../module/product")
 const Order = require('../module/order')
-const fs = require("fs")
-const path = require('path')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 
@@ -118,14 +116,7 @@ exports.invoiceFunction = (req,res,next)=>{
                return next(new Error("Unauthorized"))
           }
    
-//           const invoiceDir = path.join(__dirname, '..', 'data', 'invoice');
-          
-//           if (!fs.existsSync(invoiceDir)) {
-//                fs.mkdirSync(invoiceDir, { recursive: true });
-//           }
 
-//    const invoiceName = 'invoice-' + orderId + '.pdf';
-//      const invoicePath = path.join(invoiceDir, invoiceName);
 
      //PdfKit
      // invoice data 
@@ -150,8 +141,7 @@ exports.invoiceFunction = (req,res,next)=>{
         ),
         paid: 0
       };
-     // create PDF
-//    invoice.createInvoice(invoiceData, invoicePath);
+
 
      // send to browser
      res.setHeader("Content-Type","application/pdf");

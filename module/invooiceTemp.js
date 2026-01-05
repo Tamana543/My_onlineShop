@@ -2,18 +2,7 @@ const fs = require("fs");
 const PDFDocument = require("pdfkit");
 const  path = require('path')
 
-function createInvoice(invoice, filePath) {
-  const doc = new PDFDocument({ size: "A4", margin: 50 });
 
-  doc.pipe(fs.createWriteStream(filePath));
-
-  generateHeader(doc);
-  generateCustomerInformation(doc, invoice);
-  generateInvoiceTable(doc, invoice);
-  generateFooter(doc);
-
-  doc.end();
-}
 
 function generateHeader(doc) {
   doc
@@ -194,9 +183,6 @@ function formatDate(date) {
   return year + "/" + month + "/" + day;
 }
 
-// module.exports = {
-//   createInvoice
-// };
 
 module.exports = {
   generateHeader,
