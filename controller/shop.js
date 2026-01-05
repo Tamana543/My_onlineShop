@@ -107,6 +107,7 @@ exports.invoiceFunction = (req,res,next)=>{
      const orderId = req.params.orderId;
      // console.log(orderId);
      Order.findById(orderId).then(order=>{
+          console.log(order)
           if(!order){
                return next(new Error("No order Found"))
           }
