@@ -33,4 +33,6 @@ get the id from url
 check the orders
 creat the controller 
 use pdfKit (documentation) 
+add the download invoice feature => use the download true querry feature like edit one 
+
 

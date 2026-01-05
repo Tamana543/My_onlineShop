@@ -38,8 +38,11 @@
                     </h2>
                     <div class="flex order_invoice-container">
                     <p>Quantity: <%= item.quantity %></p>
-                    <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
+                    <a href="/order/<%=singleOrder._id%>" class="btn">View Invoice</a>
+                    <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download Invoice</a>
                     </div>
+                    
+
                   </div>
 
                 </article>

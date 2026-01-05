@@ -105,6 +105,7 @@ return res.redirect('/cart')
 
 }
 exports.invoiceFunction = (req,res,next)=>{
+     const shouldDownload = req.query.download === "true";
      const orderId = req.params.orderId;
      // console.log(orderId);
      Order.findById(orderId).then(order=>{
@@ -155,9 +156,12 @@ exports.invoiceFunction = (req,res,next)=>{
      res.setHeader("Content-Type","application/pdf");
      res.setHeader(
           "Content-Disposition",
-           `inline; filename="${invoiceName}"`
+          shouldDownload
+          ? 'attachment; filename="invoice-' + orderId + '.pdf"'
+          : 'inline; filename="invoice-' + orderId + '.pdf"'
      );
-        fs.createReadStream(invoicePath).pipe(res);
+
+     fs.createReadStream(invoicePath).pipe(res);
 }).catch(err=>{
      next(err)
 })
