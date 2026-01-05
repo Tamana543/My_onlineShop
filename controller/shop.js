@@ -4,6 +4,7 @@ const Order = require('../module/order')
 const fs = require("fs")
 const path = require('path')
 const invoice = require("../module/invooiceTemp")
+const PDFDocument = require('pdfkit')
 
 exports.productsShop = (req,res,next)=> {
      // console.log(adminData.products);
@@ -117,14 +118,14 @@ exports.invoiceFunction = (req,res,next)=>{
                return next(new Error("Unauthorized"))
           }
    
-          const invoiceDir = path.join(__dirname, '..', 'data', 'invoice');
+//           const invoiceDir = path.join(__dirname, '..', 'data', 'invoice');
           
-          if (!fs.existsSync(invoiceDir)) {
-               fs.mkdirSync(invoiceDir, { recursive: true });
-          }
+//           if (!fs.existsSync(invoiceDir)) {
+//                fs.mkdirSync(invoiceDir, { recursive: true });
+//           }
 
-   const invoiceName = 'invoice-' + orderId + '.pdf';
-     const invoicePath = path.join(invoiceDir, invoiceName);
+//    const invoiceName = 'invoice-' + orderId + '.pdf';
+//      const invoicePath = path.join(invoiceDir, invoiceName);
 
      //PdfKit
      // invoice data 
@@ -150,7 +151,7 @@ exports.invoiceFunction = (req,res,next)=>{
         paid: 0
       };
      // create PDF
-   invoice.createInvoice(invoiceData, invoicePath);
+//    invoice.createInvoice(invoiceData, invoicePath);
 
      // send to browser
      res.setHeader("Content-Type","application/pdf");
@@ -161,7 +162,17 @@ exports.invoiceFunction = (req,res,next)=>{
           : 'inline; filename="invoice-' + orderId + '.pdf"'
      );
 
-     fs.createReadStream(invoicePath).pipe(res);
+
+
+        const doc = new PDFDocument({ size: "A4", margin: 50 });
+      doc.pipe(res);
+
+      invoice.generateHeader(doc);
+      invoice.generateCustomerInformation(doc, invoiceData);
+      invoice.generateInvoiceTable(doc, invoiceData);
+      invoice.generateFooter(doc);
+
+      doc.end();
 }).catch(err=>{
      next(err)
 })
