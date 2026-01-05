@@ -116,47 +116,48 @@ exports.invoiceFunction = (req,res,next)=>{
                return next(new Error("Unauthorized"))
           }
    
+          const invoiceDir = path.join(__dirname, '..', 'data', 'invoice');
+          
+          if (!fs.existsSync(invoiceDir)) {
+               fs.mkdirSync(invoiceDir, { recursive: true });
+          }
 
-     const invouceName = 'invoice-'+orderId+'.pdf'
-     const invoicePath = path.join(__dirname, '..' , 'data', 'invoice')
-          if (!fs.existsSync(invoicePath)) {
-  fs.mkdirSync(invoicePath, { recursive: true });
-}
+   const invoiceName = 'invoice-' + orderId + '.pdf';
+     const invoicePath = path.join(invoiceDir, invoiceName);
+
      //PdfKit
      // invoice data 
-     const invoiceData = {
-          invoice_nr : orderId,
-          shipping :{
-               name : req.user.email, 
-               address : "Online Shop",
-               city : "Remote",
-               state : "",
-               country : ""
-          },
-          items : order.products.map(p=>{
-               return {
-                    item : p.product.title,
-                    description : p.product.description,
-                    quantity : p.quantity,
-                    amount : p.product.price * p.quantity * 100
-               };
-          }),
-          subtotal : order.products.reduce((sum,p)=>{
-               return sum + p.product.price * p.quantity * 100
-          }, 0),
-          paid: 0
-     };
+    const invoiceData = {
+        invoice_nr: orderId,
+        shipping: {
+          name: req.user.email,
+          address: 'Online Shop',
+          city: 'Remote',
+          state: '',
+          country: ''
+        },
+        items: order.products.map(p => ({
+          item: p.product.title,
+          description: p.product.description,
+          quantity: p.quantity,
+          amount: p.product.price * p.quantity * 100
+        })),
+        subtotal: order.products.reduce(
+          (sum, p) => sum + p.product.price * p.quantity * 100,
+          0
+        ),
+        paid: 0
+      };
      // create PDF
-     invoice.createInvoice(invoiceData,invoicePath)
+   invoice.createInvoice(invoiceData, invoicePath);
 
      // send to browser
      res.setHeader("Content-Type","application/pdf");
      res.setHeader(
           "Content-Disposition",
-          'inline; filename = "' + invouceName +'"'
+           `inline; filename="${invoiceName}"`
      );
-     const fileStream = fs.createReadStream(invoicePath)
-     fileStream.pipe(res);
+        fs.createReadStream(invoicePath).pipe(res);
 }).catch(err=>{
      next(err)
 })
