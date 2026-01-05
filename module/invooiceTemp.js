@@ -1,8 +1,11 @@
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
+const  path = require('path')
 
-function createInvoice(invoice, path) {
-  let doc = new PDFDocument({ size: "A4", margin: 50 });
+function createInvoice(invoice, filePath) {
+  const doc = new PDFDocument({ size: "A4", margin: 50 });
+
+  doc.pipe(fs.createWriteStream(filePath));
 
   generateHeader(doc);
   generateCustomerInformation(doc, invoice);
@@ -10,13 +13,16 @@ function createInvoice(invoice, path) {
   generateFooter(doc);
 
   doc.end();
-  doc.pipe(fs.createWriteStream(path));
 }
-
 
 function generateHeader(doc) {
   doc
-    .image("public/img_src/lamborghini-car-logo.jpg", 50, 45, { width: 50 })
+   .image(
+  path.join(__dirname, "../public/img_src/lamborghini-car-logo.jpg"),
+  50,
+  45,
+  { width: 50 }
+)
     .fillColor("#444444")
     .fontSize(20)
     .text("Online", 110, 57)
