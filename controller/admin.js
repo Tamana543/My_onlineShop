@@ -54,3 +54,6 @@ exports.adminProducts = (req,res,next)=>{
                prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
      })  
 }
+exports.deleteProduct =(req,res,next)=>{
+     
+}
