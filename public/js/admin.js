@@ -1,6 +1,6 @@
-console.log("First");
+
 const deleteProduct = (btn)=>{
-     console.log("Second");
+
 const productId = btn.parentNode.querySelector('[name=productId]').value
 const btnParent = btn.closest('article')
 

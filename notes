@@ -38,5 +38,7 @@ add the download invoice feature => use the download true querry feature like ed
 
 Admin Products page:-
 delete functionality -> outside js inside public folder 
+root with delete functionality from node 
+controller added
 
 

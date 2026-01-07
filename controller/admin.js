@@ -55,5 +55,6 @@ exports.adminProducts = (req,res,next)=>{
      })  
 }
 exports.deleteProduct =(req,res,next)=>{
-     
+     const prodId = req.params.productId.trim()
+     console.log(prodId);
 }

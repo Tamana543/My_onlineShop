@@ -9,7 +9,7 @@ router.get("/products", addminController.adminProducts);
 
 router.post("/add-product",addminController.postproducts)
 
-router.delete('/product/:productId',productController.deleteProduct)
+router.delete('/product/:productId',addminController.deleteProduct)
 module.exports = router;
 // exports.routs = router;
 // exports.products = products;
