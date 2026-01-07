@@ -36,3 +36,7 @@ use pdfKit (documentation)
 add the download invoice feature => use the download true querry feature like edit one 
 
 
+Admin Products page:-
+delete functionality -> outside js inside public folder 
+
+
