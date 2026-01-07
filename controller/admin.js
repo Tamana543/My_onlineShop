@@ -1,7 +1,7 @@
 const path = require('path')
 
 const Products = require("../module/product")
-
+const deleteHelper = require("../util/file")
 
 exports.getAddProducts = (req,res,next)=> {
      try {
@@ -63,4 +63,27 @@ exports.deleteProduct =(req,res,next)=>{
           }
           
      })
+     deleteHelper.deleteFile(Products.imageUrl);
+     return Products.deleteOne(
+          {
+               _id : prodId, 
+               productId : req.user._id
+          }).then(()=>{
+               res.status(200).json(
+                    {
+                         message: "Product Deleted"
+                    }
+               )
+          }).catch(err=> {
+               res.status(500).json(
+                    {
+                         message : "Product does not deleted"
+                    }
+               )
+          }).catch(err=>{
+               console.log(err)
+               next(err)
+          })
+
+
 }
