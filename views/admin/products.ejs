@@ -27,7 +27,7 @@
                          <div class="card__actions flex">
                               <a href="/admin/edit_products" class="btn">Edit</a>
 
-                              <input type="hidden" name="productId" value="<%= product._id%>">
+                              <input type="hidden" name="productId" value="<%=product._id%>">
                                    
                                    <button class="btn" type="button" onclick="deleteProduct(this)">Delete</button>
                          
@@ -40,4 +40,4 @@
                <% }%>
           </div>
          <%- include('../layouts/end.ejs') %>
-         <script src="/public/js/admin.js"></script>
+         <script src="/js/admin.js"></script>
