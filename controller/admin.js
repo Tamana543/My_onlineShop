@@ -54,37 +54,19 @@ exports.adminProducts = (req,res,next)=>{
                prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
      })  
 }
-exports.deleteProduct =(req,res,next)=>{
-     const prodId = req.params.productId.trim()
-     // console.log(prodId);
-     Products.findById(prodId).then(product=>{
-          if(!product){
-               return next(new Error("Product Not found"))
-          }
-          
-     })
+exports.deleteProduct = (req,res,next)=>{
+  const prodId = req.params.productId.trim();
 
-    
-     return Products.deleteOne(
-          {
-               _id : prodId, 
-               productId : req.user._id
-          }).then(()=>{
-               res.status(200).json(
-                    {
-                         message: "Product Deleted"
-                    }
-               )
-          }).catch(err=> {
-               res.status(500).json(
-                    {
-                         message : "Product does not deleted"
-                    }
-               )
-          }).catch(err=>{
-               console.log(err)
-               next(err)
-          })
+  Products.findByIdAndDelete(prodId)
+  .then(result => {
+    if(!result){
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-
-}
+    res.status(200).json({ message: "Product deleted" });
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({ message: "Deleting failed" });
+  });
+};
