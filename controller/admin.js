@@ -63,7 +63,8 @@ exports.deleteProduct =(req,res,next)=>{
           }
           
      })
-     deleteHelper.deleteFile(Products.imageUrl);
+
+    
      return Products.deleteOne(
           {
                _id : prodId, 
