@@ -70,3 +70,7 @@ exports.deleteProduct = (req,res,next)=>{
     res.status(500).json({ message: "Deleting failed" });
   });
 };
+
+exports.editGitProduct = (req,res,next)=>{
+     res.render("admin/edit_products")
+}
