@@ -25,7 +25,10 @@
                               <h2 class="product__price">$<%=product.price%></h2>
                          </div>
                          <div class="card__actions flex">
-                              <a href="/admin/edit_products" class="btn">Edit</a>
+                              <form action="/admin/edit_products" method="post">
+                                   <button type="submit" class="btn">Edit</button>
+                              </form>
+                             
 
                               <input type="hidden" name="productId" value="<%=product._id%>">
                               
