@@ -51,7 +51,10 @@ exports.adminProducts = (req,res,next)=>{
      Products.find().then((products)=> {
 
           res.render("admin/products",{
-               prods : products, pageTitle : "Admins Products",path:"/admin/products",hasProducts:products.length > 0}) // express for more information 
+               prods : products, 
+               pageTitle : "Admins Products",
+               path:"/admin/products",
+               hasProducts:products.length > 0}) // express for more information 
      })  
 }
 exports.deleteProduct = (req,res,next)=>{
@@ -72,10 +75,10 @@ exports.deleteProduct = (req,res,next)=>{
 };
 
 exports.editGitProduct = (req,res,next)=>{
-     console.log("Here");
+ 
      res.render("admin/edit_products",{
                pageTitle: "Add Product",
-               path: '/admin/add-product',
+               path: '/admin/products',
                      
                     })
 }
