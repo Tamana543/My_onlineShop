@@ -26,6 +26,7 @@
                          </div>
                          <div class="card__actions flex">
                               <form action="/admin/edit_products" method="get">
+                                   <input type="hidden" name="productId" value="<%=product._id%>">
                                    <button type="submit" class="btn">Edit</button>
                               </form>
                              

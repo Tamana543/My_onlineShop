@@ -82,3 +82,7 @@ exports.editGitProduct = (req,res,next)=>{
                      
                     })
 }
+exports.editPostProduct = (req,res,next) =>{
+     console.log("Posted");
+     res.redirect('/products')
+}
