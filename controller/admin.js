@@ -72,5 +72,10 @@ exports.deleteProduct = (req,res,next)=>{
 };
 
 exports.editGitProduct = (req,res,next)=>{
-     res.render("admin/edit_products")
+     console.log("Here");
+     res.render("admin/edit_products",{
+               pageTitle: "Add Product",
+               path: '/admin/add-product',
+                     
+                    })
 }
