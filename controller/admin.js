@@ -76,13 +76,15 @@ exports.deleteProduct = (req,res,next)=>{
 
 exports.editGitProduct = (req,res,next)=>{
  
+     
      res.render("admin/edit_products",{
-               pageTitle: "Add Product",
-               path: '/admin/products',
-                     
-                    })
+          pageTitle: "Add Product",
+          path: '/admin/products',
+          
+     })
 }
 exports.editPostProduct = (req,res,next) =>{
-     console.log("Posted");
+     const prodID = req.body.productId ;
+     console.log(prodID);
      res.redirect('/products')
 }
