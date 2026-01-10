@@ -26,7 +26,7 @@
                     <textarea name="description" id="description" rows="5"></textarea>
                    
                </div>
-              
+                  <input type="hidden" name="prodId"  value="<%= product._id %>">
                <button type="submit">Edit Product</button>
           </form>
           <%- include('../layouts/end.ejs') %>

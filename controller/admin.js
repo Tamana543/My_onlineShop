@@ -86,13 +86,30 @@ exports.editGitProduct = (req,res,next)=>{
                pageTitle: "Edit Product",
                path: '/admin/products',
                product : product,
-               
+
                
           })
 
+     }).catch(err=>{
+          console.log(err);
      })
 }
 exports.editPostProduct = (req,res,next) =>{
-    
-     res.redirect('/products')
+    const prodId = req.body.prodId
+    const updatedTitle = req.body.title;
+    const updatedPrice = req.body.price;
+    const updatedImage = req.body.imageUrl
+    const updatedDescription = req.body.description;
+
+    Products.findById(prodId)
+    .then(product=>{
+     //     console.log(product);
+     if(product.productId.toString() !== req.user._id.toString()){
+          return res.redirect('/products')
+     }
+     product.title = updatedTitle;
+     
+         res.redirect('/products')
+    }).catch(err=>console.log("Error here",err))
+
 }
