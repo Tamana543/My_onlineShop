@@ -101,15 +101,17 @@ exports.editPostProduct = (req,res,next) =>{
     const updatedImage = req.body.imageUrl
     const updatedDescription = req.body.description;
 
-    Products.findById(prodId)
-    .then(product=>{
+    Products.findById(prodId) .then(product=>{
      //     console.log(product);
-     if(product.productId.toString() !== req.user._id.toString()){
-          return res.redirect('/products')
-     }
-     product.title = updatedTitle;
      
-         res.redirect('/products')
-    }).catch(err=>console.log("Error here",err))
+     product.title = updatedTitle;
+     product.price = updatedPrice;
+     product.description = updatedDescription;
+     product.imageUrl = updatedImage;
+     return product.save().then(result=>{
+          res.redirect('/products')
+     }).catch(err=>console.log("Error here",err))
+
+    })
 
 }
