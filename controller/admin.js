@@ -75,16 +75,24 @@ exports.deleteProduct = (req,res,next)=>{
 };
 
 exports.editGitProduct = (req,res,next)=>{
- 
-     
-     res.render("admin/edit_products",{
-          pageTitle: "Add Product",
-          path: '/admin/products',
-          
+     const prodID = req.params.productID ;
+     // console.log(prodID);
+
+     Products.findById(prodID).then(product=>{
+          if(!product){
+               return res.redirect('/products')
+          }
+          res.render("admin/edit_products",{
+               pageTitle: "Edit Product",
+               path: '/admin/products',
+               product : product,
+               
+               
+          })
+
      })
 }
 exports.editPostProduct = (req,res,next) =>{
-     const prodID = req.body.productId ;
-     console.log(prodID);
+    
      res.redirect('/products')
 }

@@ -9,7 +9,7 @@ router.get("/products", addminController.adminProducts);
 
 router.post("/add-product",addminController.postproducts)
 
-router.get("/edit_products",addminController.editGitProduct)
+router.get("/edit_products/:productID",addminController.editGitProduct)
 
 router.post("/edit_products",addminController.editPostProduct)
 
