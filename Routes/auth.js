@@ -5,3 +5,5 @@ const User = require('../module/user')
 
 
 router.get('/login')
+
+module.exports = router

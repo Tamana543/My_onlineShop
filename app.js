@@ -51,6 +51,8 @@ app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dina
 app.use(shapRouter)
 app.use(homeRouter)
 
+app.use(authRoutes)
+
 app.use((req,res,next)=>{
      if(!req.session.user){
           return next()
