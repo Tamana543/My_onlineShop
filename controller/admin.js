@@ -8,6 +8,7 @@ exports.getAddProducts = (req,res,next)=> {
           res.render("admin/add-product",{
                pageTitle: "Add Product",
                path: '/admin/add-product',
+isAuthCorrect : false
                      
                     }) 
                     
@@ -31,6 +32,7 @@ exports.postproducts = (req,res,next)=> {
      imageUrl : imageUrl,
      description : description,
      price : price,
+isAuthCorrect : false
    
      }
 )
@@ -54,7 +56,8 @@ exports.adminProducts = (req,res,next)=>{
                prods : products, 
                pageTitle : "Admins Products",
                path:"/admin/products",
-               hasProducts:products.length > 0}) // express for more information 
+               hasProducts:products.length > 0,
+isAuthCorrect : false}) // express for more information 
      })  
 }
 exports.deleteProduct = (req,res,next)=>{
@@ -86,6 +89,7 @@ exports.editGitProduct = (req,res,next)=>{
                pageTitle: "Edit Product",
                path: '/admin/products',
                product : product,
+isAuthCorrect : false
 
                
           })

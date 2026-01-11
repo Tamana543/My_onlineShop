@@ -8,6 +8,7 @@ const User = require("./module/user")
 const adminRoute = require("./Routes/admin")
 const shapRouter = require("./Routes/shop")
 const homeRouter = require("./Routes/home");
+const authRoutes = require("./Routes/auth")
 const path = require("path")
 const { Collection } = require("mongodb")
 const app = express()

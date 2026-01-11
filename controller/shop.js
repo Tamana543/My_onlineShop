@@ -18,7 +18,8 @@ Products.find().then(respond=>{
 res.render("shop/product_list",{
 pageTitle : "All Products List",
 path:"/products",
-prods : respond
+prods : respond,
+isAuthCorrect : false
 })
 }).catch(err=>{
      console.error(err)
@@ -33,7 +34,8 @@ exports.cartProducts = (req,res,next)=>{
                {prods : cart,
                 pageTitle : "Your Cart",
                 path:"/cart",
-                hasProducts:cart.length > 0}) 
+                hasProducts:cart.length > 0,
+isAuthCorrect : false}) 
           
      }).catch(err=>{
           console.error(err)
@@ -62,7 +64,8 @@ exports.orderProducts = (req,res,next)=>{
                {
                     order : products,
                      pageTitle : "Your Orders",
-                     path:"/orders"
+                     path:"/orders",
+                    isAuthCorrect : false
                }) 
      })
 }
@@ -175,7 +178,8 @@ exports.getidProduct = (req,res,next)=> {
           res.render("shop/product_detail",{
                product : product,
                pageTitle : "Product detail",
-               path : "/products"
+               path : "/products",
+               isAuthCorrect : false
           })
           
      }).catch(err=>{
@@ -185,7 +189,8 @@ exports.getidProduct = (req,res,next)=> {
 exports.indexProducts = (req,res,next)=>{
      Products.find().then(result=>{
           res.render("shop/index",
-               {prods : result, pageTitle : "shop",path:"/shop"}
+               {prods : result, pageTitle : "shop",path:"/shop",
+               isAuthCorrect : false}
           ) 
 
      }).catch(err=> {
@@ -200,7 +205,8 @@ exports.checkoutProducts = (req,res,next)=>{
    
   Products.find().this(products=>{
 
-       res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",}) 
+       res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",
+isAuthCorrect : false}) 
   })
     
 }
