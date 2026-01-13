@@ -8,4 +8,5 @@ router.get('/login',authController.getLogIn)
 router.get('/signup',authController.getSignUp)
 router.get('/reset',authController.getSignUp)
 
+
 module.exports = router
