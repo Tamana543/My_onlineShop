@@ -7,3 +7,11 @@ exports.getLogIn = (req,res,next)=>{
            isAuthCorrect : false
      })
 }
+
+exports.getSignUp = (req,res,next)=>{
+      res.render('auth/signup',{
+          pageTitle :"Login page",
+          path : '/signup',
+           isAuthCorrect : false
+     })
+}
