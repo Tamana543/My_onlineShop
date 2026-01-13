@@ -10,8 +10,16 @@ exports.getLogIn = (req,res,next)=>{
 
 exports.getSignUp = (req,res,next)=>{
       res.render('auth/signup',{
-          pageTitle :"Login page",
+          pageTitle :"signup page",
           path : '/signup',
+           isAuthCorrect : false
+     })
+}
+
+exports.getReset = (req,res,next)=>{
+         res.render('auth/resetPassword',{
+          pageTitle :"Reset Password page",
+          path : '/login',
            isAuthCorrect : false
      })
 }
