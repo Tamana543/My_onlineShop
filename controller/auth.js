@@ -1,5 +1,7 @@
 const user = require('../module/user')
 const validationResult = require("express-validator")
+const bcrypt= require('bcrypt')
+
 exports.getLogIn = (req,res,next)=>{
      res.render('auth/login',{
           pageTitle :"Login page",
@@ -42,7 +44,7 @@ exports.postSignup = (req,res,next)=>{
 
      })
      }
-     
+
 
 }
 
