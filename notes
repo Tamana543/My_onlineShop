@@ -46,3 +46,5 @@ edit functionality -> work with link base  fix the routes , update the ejs
 
 authontication -> update the navbar, create the route seperate file 
 
+signup : add the validation , install the bcrypt error sucrity, 
+

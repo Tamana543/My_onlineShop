@@ -45,7 +45,9 @@ exports.postSignup = (req,res,next)=>{
      })
      }
 
-
+     bcrypt.hash(password,12).then((hashedPassword)=>{
+          
+     })
 }
 
 exports.postLogIn = (req,res,next)=>{
