@@ -1,5 +1,5 @@
 const user = require('../module/user')
-const validationResult = require("express-validator")
+const {validationResult} = require("express-validator")
 const bcrypt= require('bcrypt')
 
 exports.getLogIn = (req,res,next)=>{
@@ -29,6 +29,8 @@ exports.getReset = (req,res,next)=>{
 exports.postSignup = (req,res,next)=>{
      const email = req.body.email ;
      const password = req.body.password;
+     // console.log("Password : ",password);
+     // console.log("Email : ",email);
      const validated = validationResult(req)
 
      if(!validated.isEmpty()){
@@ -59,16 +61,16 @@ exports.postSignup = (req,res,next)=>{
                name : "Tamana Farzami "
           }
          const recipients = email
-    transport.sendMail({
-      from: sender,
-      to:recipients,
-      subject: "SIGN UP Completed Successfully :)",
-      text : "Congratulation, your account has been successfully authorized!",
-        category: "Integration Test",
-    }).then((respond)=>console.log(respond))
-    .catch(err=>{
-      next(new Error(err))
-    })
+//     transport.sendMail({
+//       from: sender,
+//       to:recipients,
+//       subject: "SIGN UP Completed Successfully :)",
+//       text : "Congratulation, your account has been successfully authorized!",
+//         category: "Integration Test",
+//     }).then((respond)=>console.log(respond))
+//     .catch(err=>{
+//       next(new Error(err))
+//     })
     res.redirect('/login')
      })
 }
