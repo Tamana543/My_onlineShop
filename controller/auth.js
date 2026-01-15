@@ -1,7 +1,20 @@
 const user = require('../module/user')
 const {validationResult} = require("express-validator")
 const bcrypt= require('bcrypt')
+const nodemailer = require("nodemailer")
 
+
+// gmail SMTP 
+
+const transport = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+  port: 465, 
+  secure : true,
+  auth : {
+     user : "tamanafarzami33@gmail.com",
+    pass: "hyrf bbal uqjk qyjg"
+  }
+})
 exports.getLogIn = (req,res,next)=>{
      res.render('auth/login',{
           pageTitle :"Login page",
@@ -61,16 +74,16 @@ exports.postSignup = (req,res,next)=>{
                name : "Tamana Farzami "
           }
          const recipients = email
-//     transport.sendMail({
-//       from: sender,
-//       to:recipients,
-//       subject: "SIGN UP Completed Successfully :)",
-//       text : "Congratulation, your account has been successfully authorized!",
-//         category: "Integration Test",
-//     }).then((respond)=>console.log(respond))
-//     .catch(err=>{
-//       next(new Error(err))
-//     })
+    transport.sendMail({
+      from: sender,
+      to:recipients,
+      subject: "SIGN UP Completed Successfully :)",
+      text : "Congratulation, your account has been successfully authorized!",
+        category: "Integration Test",
+    }).then((respond)=>console.log(respond))
+    .catch(err=>{
+      next(new Error(err))
+    })
     res.redirect('/login')
      })
 }
