@@ -46,7 +46,30 @@ exports.postSignup = (req,res,next)=>{
      }
 
      bcrypt.hash(password,12).then((hashedPassword)=>{
-          
+          req.session.isLoggedin = true 
+          const newUser = new user({
+               email : email,
+               password : hashedPassword,
+               card : {item :[]}
+          })
+          return newUser.save()
+     }).then(result=>{
+          const sender = {
+               address : "Tamanafarzami33@gmail.com",
+               name : "Tamana Farzami "
+          }
+         const recipients = email
+    transport.sendMail({
+      from: sender,
+      to:recipients,
+      subject: "SIGN UP Completed Successfully :)",
+      text : "Congratulation, your account has been successfully authorized!",
+        category: "Integration Test",
+    }).then((respond)=>console.log(respond))
+    .catch(err=>{
+      next(new Error(err))
+    })
+    res.redirect('/login')
      })
 }
 
