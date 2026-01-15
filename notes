@@ -46,5 +46,7 @@ edit functionality -> work with link base  fix the routes , update the ejs
 
 authontication -> update the navbar, create the route seperate file 
 
-signup : add the validation , install the bcrypt error sucrity, 
+signup : add the validation , install the bcrypt error sucrity, hundle the bcrypt, send email with email sender SMTP 
+
+to do tommorrow with login :  take a look to the email template in Shop now get the token from change password
 
