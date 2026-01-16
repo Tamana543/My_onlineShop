@@ -52,8 +52,12 @@
             </div>
         </div>
 
+<% if(errorMessage){ %> 
+    <div class="oaerror warning">
+          <strong>Error</strong> - <% errorMessage %>
+        </div>
 
 </main>
 
-
+<% } %>
 <%- include('../layouts/end.ejs') %>
