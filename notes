@@ -48,5 +48,6 @@ authontication -> update the navbar, create the route seperate file
 
 signup : add the validation , install the bcrypt error sucrity, hundle the bcrypt, send email with email sender SMTP , validate the sign up given data from user in get with node-validation , create the error message box in ejs 
 
-to do tommorrow with login :  take a look to the email template in Shop now get the token from change password
+to do :  take a look to the email template in Shop now get the token from change password,
+take a look to create user session 
 
