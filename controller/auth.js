@@ -3,6 +3,7 @@ const emailTemplateEng = require('../module/emailTemp')
 const {validationResult} = require("express-validator")
 const bcrypt= require('bcrypt')
 const nodemailer = require("nodemailer")
+const { ValidationError } = require('sequelize')
 
 // gmail SMTP 
 
@@ -24,10 +25,21 @@ exports.getLogIn = (req,res,next)=>{
 }
 
 exports.getSignUp = (req,res,next)=>{
+     let errorMessage = req.flash('userError'); //store temporary messages  in the session and display them after a redirect.
+
+     if(errorMessage.length > 0) {
+          errorMessage = errorMessage
+     }else {
+          errorMessage = null
+     }
+
       res.render('auth/signup',{
           pageTitle :"signup page",
           path : '/signup',
-           isAuthCorrect : false
+          isAuthCorrect : false,
+          errorMessage : errorMessage,
+          ValidationError : []
+          
      })
 }
 
@@ -54,8 +66,10 @@ exports.postSignup = (req,res,next)=>{
 
      return res.status(422).render("auth/signup",{
           path: '/signup',
-          pageTitle : "User not found",
+          pageTitle : "Signup",
           isAuthCorrect : false,
+          errorMessage : error,
+          ValidationError : validated.array()
 
      })
      }
