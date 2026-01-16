@@ -1,11 +1,11 @@
 const user = require('../module/user')
+const emailTemplate = require('../module/emailTemp')
 const {validationResult} = require("express-validator")
 const bcrypt= require('bcrypt')
 const nodemailer = require("nodemailer")
 
-
 // gmail SMTP 
-const emailTemplate = `
+const emailTemplate2 = `
 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; overflow: hidden;">
     <div style="background-color: #af8931; padding: 20px; text-align: center;">
         <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to Our Shop!</h1>
