@@ -140,6 +140,8 @@ return res.satatus(422).render('auth/login',{
 })
 }else {
      req.session.isLoggedin = true
+//     res.locals.isAuthCorrect = true
+console.log(res.locals.isAuthCorrect);
      req.session.user = user 
      return req.session.save((err)=>{
           res.redirect('/')

@@ -12,16 +12,17 @@
      </li>
    
      <li class="link flex">
+          
+          <a href="/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
+     </li>
+     <% if (isAuthCorrect) { %> 
+     <li class="link flex">
 
           <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : ''%>" >Add Product</a>
      </li>
      <li class="link flex">
      
           <a href="/shop/product_list" class="<%= path === '/shop' ? 'active' : ''%>">Shop</a>
-     </li>
-     <li class="link flex">
-     
-          <a href="/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
      </li>
      <li class="link flex">
      
@@ -35,6 +36,7 @@
 
           <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>" >Admin Products</a>
      </li>
+     <% } %> 
      <% if (!isAuthCorrect) { %>
      <li class="link flex">
           <a href="/login" class="<%= path === '/login' ? 'active' : ''%>">Login</a>

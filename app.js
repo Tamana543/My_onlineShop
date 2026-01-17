@@ -54,6 +54,13 @@ app.use(homeRouter)
 
 app.use(authRoutes)
 
+// storing through all the program, running one only during the each server run 
+
+app.use((req,res,next)=>{
+     res.locals.isAuthCorrect = req.session.isLoggedin;
+     next()
+})
+
 app.use((req,res,next)=>{
      if(!req.session.user){
           return next()

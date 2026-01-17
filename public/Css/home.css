@@ -73,6 +73,7 @@ margin-top: 5%;
      text-decoration: none;
      font-size: 1rem;
      padding: 3%;
+     margin: 1%;
 }
 .btn:hover {
      box-shadow: -1px 0px 6px 1px #fff;
