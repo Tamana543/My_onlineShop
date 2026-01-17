@@ -1,9 +1,10 @@
 const user = require('../module/user')
 const emailTemplateEng = require('../module/emailTemp')
 const {validationResult} = require("express-validator")
-const bcrypt= require('bcrypt')
+const bcreypt= require('bcrypt')
 const nodemailer = require("nodemailer")
 const { ValidationError } = require('sequelize')
+
 
 // gmail SMTP 
 
@@ -83,7 +84,7 @@ exports.postSignup = (req,res,next)=>{
      }
      const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.', email, 'Start Shopping'); 
 
-     bcrypt.hash(password,12).then((hashedPassword)=>{
+     bcreypt.hash(password,12).then((hashedPassword)=>{
           req.session.isLoggedin = true 
           const newUser = new user({
                email : email,
@@ -114,17 +115,39 @@ exports.postSignup = (req,res,next)=>{
 exports.postLogIn = (req,res,next)=>{
     const email = req.body.email
     const password = req.body.password
-    
+
     user.findOne({email: email})
     .then((user)=>{
      if(!user){
-          return res.render('auth/signup',{
-               path : "/signup",
-               pageTitle : "User not found",
+          return res.render('auth/login',{
+               path : "/login",
+               pageTitle : "Login",
                 isAuthCorrect : false,
+                errorMessage : "Incorrect Password or Email Try again",
+                ValidationError : [{path : 'email', path : 'Password'}]
 
           })
      }
+bcreypt.compare(password, user.password).then(isMatching=>{
+if(!isMatching){
+return res.satatus(422).render('auth/login',{
+      path : "/login",
+               pageTitle : "Login",
+                isAuthCorrect : false,
+                errorMessage : "Incorrect Password Try again",
+                ValidationError : [{path : 'email', path : 'Password'}]
+
+})
+}else {
+     req.session.isLoggedin = true
+     req.session.user = user 
+     return req.session.save((err)=>{
+          res.redirect('/')
+     })
+}
+}).catch(err=>{
+     console.log(err);
+})
     })
     .catch(err=>{
      console.log(err);
