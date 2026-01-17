@@ -17,10 +17,18 @@ const transport = nodemailer.createTransport({
   }
 })
 exports.getLogIn = (req,res,next)=>{
+     let errorMessage = req.flash('userError')
+     if(errorMessage.length > 0 ){
+          errorMessage = errorMessage
+     }else {
+          errorMessage = null
+     }
      res.render('auth/login',{
           pageTitle :"Login page",
           path : '/login',
-           isAuthCorrect : false
+           isAuthCorrect : false,
+           errorMessage : errorMessage,
+           ValidationError : []
      })
 }
 
