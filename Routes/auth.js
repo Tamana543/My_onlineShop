@@ -16,7 +16,7 @@ router.post('/login',[
 router.post('/signup',[
    check('email')
    .isEmail().withMessage("Please enter a valid email address ! ").normalizeEmail().custom((email,{req})=>{
-   User.findOne({email: email}).then(userDoc =>{
+   return User.findOne({email: email}).then(userDoc =>{
      if(userDoc){
           return Promise.reject("User already exist, try login ! ")
      }

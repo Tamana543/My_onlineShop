@@ -8,6 +8,11 @@
 </head>
 <main>
     <%- include('../layouts/navigation.ejs') %>
+    <% if(errorMessage){ %> 
+    <div class="oaerror warning">
+          <strong>Error</strong> - <%=errorMessage %>
+        </div>
+        <% } %>
  <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
@@ -52,12 +57,8 @@
             </div>
         </div>
 
-<% if(errorMessage){ %> 
-    <div class="oaerror warning">
-          <strong>Error</strong> - <% errorMessage %>
-        </div>
+
 
 </main>
 
-<% } %>
 <%- include('../layouts/end.ejs') %>
