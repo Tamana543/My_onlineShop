@@ -35,6 +35,11 @@ app.use(session({
 app.use(flash())
 
 app.use((req,res,next)=>{
+     res.locals.isAuthCorrect = req.session.isLoggedin;
+     res.locals.path = req.path
+     next()
+})
+app.use((req,res,next)=>{
      User.findOne().then(user=>{
           console.log(user);
           req.user = user
@@ -43,6 +48,7 @@ app.use((req,res,next)=>{
           console.log(err);
      })
 });
+
 // debugger;
 app.use("/admin",adminRoute)
 
@@ -56,20 +62,20 @@ app.use(authRoutes)
 
 // storing through all the program, running one only during the each server run 
 
-app.use((req,res,next)=>{
-     res.locals.isAuthCorrect = req.session.isLoggedin;
-     next()
-})
+
 
 app.use((req,res,next)=>{
      if(!req.session.user){
           return next()
      }
-     
+
 })
+
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
+
+
 mongoose.connect(MONGOD_URL).then(result=>{
 
 

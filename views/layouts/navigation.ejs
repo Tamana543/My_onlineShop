@@ -36,21 +36,21 @@
 
           <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>" >Admin Products</a>
      </li>
-     <% } %> 
-     <% if (!isAuthCorrect) { %>
+         <li class="link flex">
+               <form action="/logout" method="post">
+ 
+           <button type="submit">Logout</button>
+               </form>
+          </li>
+     
+     <% }else{ %>
      <li class="link flex">
           <a href="/login" class="<%= path === '/login' ? 'active' : ''%>">Login</a>
      </li>
      <li class="link flex">
           <a href="/signup" class="<%= path === '/signup' ? 'active' : '' %>">Signup</a>
      </li>
-     <% } else { %> 
-          <li class="link flex">
-               <form action="/logout" method="post">
- 
-           <button type="submit">Logout</button>
-               </form>
-          </li>
+      
 <% } %>
 </ul>
 </nav>

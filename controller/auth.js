@@ -27,7 +27,7 @@ exports.getLogIn = (req,res,next)=>{
      res.render('auth/login',{
           pageTitle :"Login page",
           path : '/login',
-           isAuthCorrect : false,
+           
            errorMessage : errorMessage,
            ValidationError : []
      })
@@ -45,7 +45,7 @@ exports.getSignUp = (req,res,next)=>{
       res.render('auth/signup',{
           pageTitle :"signup page",
           path : '/signup',
-          isAuthCorrect : false,
+          
           errorMessage : errorMessage,
           ValidationError : []
           
@@ -56,8 +56,7 @@ exports.getReset = (req,res,next)=>{
          res.render('auth/resetPassword',{
           pageTitle :"Reset Password page",
           path : '/login',
-           isAuthCorrect : false
-     })
+                })
 }
 
 exports.postSignup = (req,res,next)=>{
@@ -76,7 +75,7 @@ exports.postSignup = (req,res,next)=>{
      return res.status(422).render("auth/signup",{
           path: '/signup',
           pageTitle : "Signup",
-          isAuthCorrect : false,
+          
           errorMessage : error,
           ValidationError : validated.array()
 
@@ -122,7 +121,7 @@ exports.postLogIn = (req,res,next)=>{
           return res.render('auth/login',{
                path : "/login",
                pageTitle : "Login",
-                isAuthCorrect : false,
+                
                 errorMessage : "Incorrect Password or Email Try again",
                 ValidationError : [{path : 'email', path : 'Password'}]
 
@@ -143,7 +142,7 @@ if(isMatching){
      return res.satatus(422).render('auth/login',{
       path : "/login",
                pageTitle : "Login",
-                isAuthCorrect : false,
+                
                 errorMessage : "Incorrect Password Try again",
                 ValidationError : [{path : 'email', path : 'Password'}]
 })
