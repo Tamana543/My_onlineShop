@@ -39,17 +39,40 @@ app.use((req,res,next)=>{
      res.locals.path = req.path
      next()
 })
-app.use((req,res,next)=>{
-     User.findOne().then(user=>{
-          console.log(user);
-          req.user = user
-          next()
-     }).catch(err=>{
-          console.log(err);
-     })
+// app.use((req,res,next)=>{
+//      User.findOne().then(user=>{
+//           console.log(user);
+//           req.user = user
+//           next()
+//      }).catch(err=>{
+//           console.log(err);
+//      })
+// });
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+
+  User.findById(req.session.user._id)
+    .then(user => {
+      if (!user) {
+        return next();
+      }
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+      next();
+    });
+});
+// debugger;
+app.use((req, res, next) => {
+  console.log('SESSION:', req.session);
+  next();
 });
 
-// debugger;
+
 app.use("/admin",adminRoute)
 
 // app.engine('hbs',expressHandlebar())

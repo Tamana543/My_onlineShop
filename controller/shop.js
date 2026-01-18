@@ -19,7 +19,7 @@ res.render("shop/product_list",{
 pageTitle : "All Products List",
 path:"/products",
 prods : respond,
-isAuthCorrect : false
+
 })
 }).catch(err=>{
      console.error(err)
@@ -35,7 +35,7 @@ exports.cartProducts = (req,res,next)=>{
                 pageTitle : "Your Cart",
                 path:"/cart",
                 hasProducts:cart.length > 0,
-isAuthCorrect : false}) 
+}) 
           
      }).catch(err=>{
           console.error(err)
@@ -65,7 +65,7 @@ exports.orderProducts = (req,res,next)=>{
                     order : products,
                      pageTitle : "Your Orders",
                      path:"/orders",
-                    isAuthCorrect : false
+                    
                }) 
      })
 }
@@ -179,7 +179,7 @@ exports.getidProduct = (req,res,next)=> {
                product : product,
                pageTitle : "Product detail",
                path : "/products",
-               isAuthCorrect : false
+               
           })
           
      }).catch(err=>{
