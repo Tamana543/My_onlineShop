@@ -24,7 +24,7 @@ const MONGOD_URL = 'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufec
 
 const store = new mongostoreSession({
      uri : MONGOD_URL,
-     Collection : 'sessions'
+     collection : 'sessions'
 })
 app.use(session({
      secret : 'My first Car Online Shop',
@@ -66,11 +66,7 @@ app.use((req, res, next) => {
       next();
     });
 });
-// debugger;
-app.use((req, res, next) => {
-  console.log('SESSION:', req.session);
-  next();
-});
+
 
 
 app.use("/admin",adminRoute)
@@ -82,6 +78,12 @@ app.use(shapRouter)
 app.use(homeRouter)
 
 app.use(authRoutes)
+
+// debugger;
+app.use((req, res, next) => {
+  console.log('SESSION:', req.session);
+  next();
+});
 
 // storing through all the program, running one only during the each server run 
 

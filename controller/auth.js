@@ -130,16 +130,14 @@ exports.postLogIn = (req,res,next)=>{
 bcreypt.compare(password, user.password).then(isMatching=>{
 if(isMatching){
 
-     req.session.isLoggedin = true
-     //     res.locals.isAuthCorrect = true
-     
-     req.session.user = user 
+     // req.session.isLoggedin = true
+     // req.session.user = user 
      return req.session.save((err)=>{
           res.redirect('/')
      })
 
 }else{
-     return res.satatus(422).render('auth/login',{
+     return res.render('auth/login',{
       path : "/login",
                pageTitle : "Login",
                 
