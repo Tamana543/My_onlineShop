@@ -22,21 +22,27 @@ app.set('views','views') // find the dinamic data from here (vidit expres.set fo
 // const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
 const MONGOD_URL = 'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/online_shop?retryWrites=true&w=majority';
 
+
+
 const store = new mongostoreSession({
-     uri : MONGOD_URL,
-     collection : 'sessions'
+  uri : MONGOD_URL,
+  collection : 'sessions'
 })
+// app.engine('hbs',expressHandlebar())
+app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dinamic data ( compile it )
+// app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
+
 app.use(session({
-     secret : 'My first Car Online Shop',
-     resave : false, 
-     saveUninitialized : false,
-     store : store
+  secret : 'My first Car Online Shop',
+  resave : false, 
+  saveUninitialized : false,
+  store : store
 }))
 app.use(flash())
 
 app.use((req,res,next)=>{
      res.locals.isAuthCorrect = req.session.isLoggedin;
-     console.log(res.locals)
+    
      next()
 })
 // app.use((req,res,next)=>{
@@ -53,8 +59,10 @@ app.use((req, res, next) => {
     return next();
   }
 
-  User.findById(req.session.user._id)
+  console.log(req.session.user._id)
+User.findById(req.session.user._id)
     .then(user => {
+      console.log(user)
       if (!user) {
         return next();
       }
@@ -71,19 +79,16 @@ app.use((req, res, next) => {
 
 app.use("/admin",adminRoute)
 
-// app.engine('hbs',expressHandlebar())
-app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dinamic data ( compile it )
-// app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
 app.use(shapRouter)
 app.use(homeRouter)
 
 app.use(authRoutes)
 
 // debugger;
-// app.use((req, res, next) => {
-//   console.log('SESSION:', req.session);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log('SESSION:', req.session);
+  next();
+});
 
 // storing through all the program, running one only during the each server run 
 

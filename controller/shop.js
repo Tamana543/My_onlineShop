@@ -19,6 +19,7 @@ res.render("shop/product_list",{
 pageTitle : "All Products List",
 path:"/products",
 prods : respond,
+isAuthCorrect : false
 
 })
 }).catch(err=>{
@@ -65,6 +66,7 @@ exports.orderProducts = (req,res,next)=>{
                     order : products,
                      pageTitle : "Your Orders",
                      path:"/orders",
+                     isAuthCorrect : false
                     
                }) 
      })
