@@ -39,21 +39,25 @@ width: 25%;
 
 }
 
-.link a {
+.link a,
+.logout_btn {
 text-decoration: none;
 color: #ffffffb4;
+position: relative;
 }
-.link a:hover {
+.link a:hover,
+.logout_btn:hover {
 
 color: #DDB321;
 /* border-bottom: 1px solid #f0d77e;
 transition: line 0.1s ; */
 
 }
- .link a::before {
+ .link a::before,
+ .logout_btn::before {
 content: "";
 position: absolute;
-top: 88px;
+    top: 38px;
 height: 4px;
 width: 80px;
 background-color:#f0d77e ;
@@ -61,12 +65,19 @@ border-radius: 50px;
 transform: scaleX(0);
 transition: transform 0.2s linear;
  }
- .link a:hover::before {
+ .link a:hover::before,
+ .logout_btn:hover::before {
      transform: scaleX(1);
  }
-.link a.active {
+.link a.active ,
+.logout_btn:active {
      color: #ffeb3b;
    }
+.logout_btn {
+background: none;
+border: none ;
+
+}
 
 .card-img {
 filter: opacity(0.2);   

@@ -80,10 +80,10 @@ app.use(homeRouter)
 app.use(authRoutes)
 
 // debugger;
-app.use((req, res, next) => {
-  console.log('SESSION:', req.session);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('SESSION:', req.session);
+//   next();
+// });
 
 // storing through all the program, running one only during the each server run 
 

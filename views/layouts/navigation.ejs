@@ -8,7 +8,7 @@
 <ul class="links_bar flex">
      <li class="link flex">
 
-          <a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a>
+          <a href="/" class="<%= path === '/home' ? 'active' : '' %>">Home</a>
      </li>
    
      <li class="link flex">
@@ -34,12 +34,12 @@
      </li>
      <li class="link flex">
 
-          <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>" >Admin Products</a>
+          <a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : ''%>" >Admin</a>
      </li>
          <li class="link flex">
                <form action="/logout" method="post">
  
-           <button type="submit">Logout</button>
+           <button type="submit" class="logout_btn">Logout</button>
                </form>
           </li>
      
