@@ -1,25 +1,15 @@
-const product = require("../module/product")
 const Products = require("../module/product")
 const Order = require('../module/order')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 
 exports.productsShop = (req,res,next)=> {
-     // console.log(adminData.products);
-     // res.sendFile(path.join(rootPath,"views","shop.html")) // To connect your HTML, path creates a path the join make the url, the __dirname go through all dirictoryies in your PC , ../ goes one level up .
-     // const products = adminData.products;
-//   console.log(products);
-//  Products.fetchAll(products=> {
-
-//       res.render("shop/product_list",{
-//           prods : products, pageTitle : "All Products",path:"/products",hasProducts:products.length > 0}) // express for more information 
-//  })
+     
 Products.find().then(respond=>{
 res.render("shop/product_list",{
 pageTitle : "All Products List",
 path:"/products",
-prods : respond,
-isAuthCorrect : false
+prods : respond
 
 })
 }).catch(err=>{
@@ -27,7 +17,9 @@ isAuthCorrect : false
 })
 }
 exports.cartProducts = (req,res,next)=>{
-     console.log(req.user);
+     // console.log(req.user);
+
+  
      // getting the card items to show 
      req.user.populate('cart.items.productId').then(user=>{
           const cart = user.cart.items;
@@ -36,6 +28,7 @@ exports.cartProducts = (req,res,next)=>{
                 pageTitle : "Your Cart",
                 path:"/cart",
                 hasProducts:cart.length > 0,
+                isAuthCorrect : req.session.isLoggedin
 }) 
           
      }).catch(err=>{
@@ -65,8 +58,7 @@ exports.orderProducts = (req,res,next)=>{
                {
                     order : products,
                      pageTitle : "Your Orders",
-                     path:"/orders",
-                     isAuthCorrect : false
+                     path:"/orders"
                     
                }) 
      })
@@ -191,8 +183,7 @@ exports.getidProduct = (req,res,next)=> {
 exports.indexProducts = (req,res,next)=>{
      Products.find().then(result=>{
           res.render("shop/index",
-               {prods : result, pageTitle : "shop",path:"/shop",
-               isAuthCorrect : false}
+               {prods : result, pageTitle : "shop",path:"/shop"}
           ) 
 
      }).catch(err=> {
