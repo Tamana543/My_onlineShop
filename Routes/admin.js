@@ -1,21 +1,22 @@
-const path = require("path")
 const express = require("express")
-const addminController = require('../controller/admin')
-const router = express.Router();
 const { title } = require("process");
-router.get("/add-product", addminController.getAddProducts);
+const router = express.Router();
+const addminController = require('../controller/admin')
+const rootAuth = require('../middleware/is_auth')
 
-router.get("/products", addminController.adminProducts);
+router.get("/add-product",  rootAuth ,addminController.getAddProducts);
 
-router.post("/add-product",addminController.postproducts)
+router.get("/products",  rootAuth ,addminController.adminProducts);
 
-router.get("/edit_products/:productID",addminController.editGitProduct)
+router.post("/add-product", rootAuth ,addminController.postproducts)
 
-router.post("/edit_products",addminController.editPostProduct)
+router.get("/edit_products/:productID", rootAuth ,addminController.editGitProduct)
+
+router.post("/edit_products", rootAuth ,addminController.editPostProduct)
 
 
 
-router.delete('/product/:productId',addminController.deleteProduct)
+router.delete('/product/:productId', rootAuth ,addminController.deleteProduct)
 module.exports = router;
 // exports.routs = router;
 // exports.products = products;
