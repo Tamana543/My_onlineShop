@@ -27,7 +27,7 @@ exports.getLogIn = (req,res,next)=>{
      res.render('auth/login',{
           pageTitle :"Login page",
           path : '/login',
-           
+           isAuthCorrect: false,
            errorMessage : errorMessage,
            ValidationError : []
      })
@@ -45,7 +45,7 @@ exports.getSignUp = (req,res,next)=>{
       res.render('auth/signup',{
           pageTitle :"signup page",
           path : '/signup',
-          
+          isAuthCorrect : false,
           errorMessage : errorMessage,
           ValidationError : []
           
@@ -75,7 +75,7 @@ exports.postSignup = (req,res,next)=>{
      return res.status(422).render("auth/signup",{
           path: '/signup',
           pageTitle : "Signup",
-          
+           isAuthCorrect : false,
           errorMessage : error,
           ValidationError : validated.array()
 
@@ -121,7 +121,7 @@ exports.postLogIn = (req,res,next)=>{
           return res.render('auth/login',{
                path : "/login",
                pageTitle : "Login",
-                
+                 isAuthCorrect : false,
                 errorMessage : "Incorrect Password or Email Try again",
                 ValidationError : [{path : 'email', path : 'Password'}]
 
@@ -130,7 +130,7 @@ exports.postLogIn = (req,res,next)=>{
 bcreypt.compare(password, user.password).then(isMatching=>{
 if(isMatching){
 
-     // req.session.isLoggedin = true
+     req.session.isLoggedin = true
      // req.session.user = user 
      return req.session.save((err)=>{
           res.redirect('/')
@@ -140,7 +140,7 @@ if(isMatching){
      return res.render('auth/login',{
       path : "/login",
                pageTitle : "Login",
-                
+                 isAuthCorrect : false,
                 errorMessage : "Incorrect Password Try again",
                 ValidationError : [{path : 'email', path : 'Password'}]
 })

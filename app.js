@@ -36,7 +36,7 @@ app.use(flash())
 
 app.use((req,res,next)=>{
      res.locals.isAuthCorrect = req.session.isLoggedin;
-     res.locals.path = req.path
+     console.log(res.locals)
      next()
 })
 // app.use((req,res,next)=>{
@@ -89,12 +89,7 @@ app.use((req, res, next) => {
 
 
 
-app.use((req,res,next)=>{
-     if(!req.session.user){
-          return next()
-     }
 
-})
 
 app.use((req,res,next) => {
 res.status(404).render('404',{pageTitle: 'Page Not Found'})
@@ -102,9 +97,7 @@ res.status(404).render('404',{pageTitle: 'Page Not Found'})
 
 
 mongoose.connect(MONGOD_URL).then(result=>{
-
-
-     app.listen(3000)
+  app.listen(3000)
 }
 ).catch(err=> console.log(err))
 
