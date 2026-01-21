@@ -17,7 +17,7 @@ prods : respond
 })
 }
 exports.cartProducts = (req,res,next)=>{
-     // console.log(req.user);
+     console.log(req.user);
 
   
      // getting the card items to show 

@@ -55,24 +55,23 @@ app.use((req,res,next)=>{
 //      })
 // });
 app.use((req, res, next) => {
-  if (!req.session.user) {
-    return next();
-  }
-
+    if (!req.session.user) {
+      return next();
+    }
   console.log(req.session.user._id)
-User.findById(req.session.user._id)
-    .then(user => {
-      console.log(user)
-      if (!user) {
-        return next();
-      }
-      req.user = user;
-      next();
-    })
-    .catch(err => {
-      console.log(err);
-      next();
-    });
+  User.findById(req.session.user._id)
+      .then(user => {
+        console.log(user)
+        if (!user) {
+          return next();
+        }
+        req.user = user;
+        next();
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+      });
 });
 
 
@@ -80,9 +79,9 @@ User.findById(req.session.user._id)
 app.use("/admin",adminRoute)
 
 app.use(shapRouter)
+app.use(authRoutes)
 app.use(homeRouter)
 
-app.use(authRoutes)
 
 // debugger;
 app.use((req, res, next) => {
