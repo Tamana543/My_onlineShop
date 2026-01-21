@@ -17,7 +17,7 @@ prods : respond
 })
 }
 exports.cartProducts = (req,res,next)=>{
-     console.log(req.user);
+     console.log(req);
 
   
      // getting the card items to show 
@@ -39,7 +39,7 @@ exports.cartProducts = (req,res,next)=>{
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
      const productId =req.body.productId ;
-     console.log(req.body)
+     console.log("Here",req.body)
      
      Products.findById(productId)
      .then((respond)=>{
