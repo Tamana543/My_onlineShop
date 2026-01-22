@@ -19,7 +19,9 @@ prods : respond
 exports.cartProducts = (req,res,next)=>{
      console.log(req);
 
-  
+  if(!req.user){
+     return res.redirect('/login')
+  }
      // getting the card items to show 
      req.user.populate('cart.items.productId').then(user=>{
           const cart = user.cart.items;
@@ -65,7 +67,9 @@ exports.orderProducts = (req,res,next)=>{
 }
 exports.orderPostProducts = (req,res,next)=>{
      const prodId =req.body.productId.trim();
-   
+   if(!req.user){
+     return res.redirect('/login')
+  }
 
      req.user.populate('cart.items.productId').then(user=>{
           const product = user.cart.items.find(item =>{

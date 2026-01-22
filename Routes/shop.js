@@ -3,7 +3,7 @@ const express = require("express")
 const router = express.Router()
 const shopController = require("../controller/shop")
 const rootAuth = require('../middleware/is_auth')
-const userCheck = require('../middleware/is_auth')
+
 
 // router.get("/",rootPath)
 router.get("/shop/product_list",rootAuth,shopController.indexProducts)
@@ -11,7 +11,7 @@ router.get("/shop/product_list",rootAuth,shopController.indexProducts)
 router.get("/products/:productId",rootAuth,shopController.getidProduct)
 router.get("/products",rootAuth,shopController.productsShop)
 
-router.get("/cart",rootAuth,userCheck,shopController.cartProducts)
+router.get("/cart",rootAuth,shopController.cartProducts)
 router.post("/add-to-cart",rootAuth,shopController.postCardShop)
 router.post('/cart-delete-item',rootAuth,shopController.deletePostProduct)
 
