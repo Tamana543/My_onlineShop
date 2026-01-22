@@ -17,7 +17,7 @@ prods : respond
 })
 }
 exports.cartProducts = (req,res,next)=>{
-     console.log(req);
+     // console.log(req);
 
   if(!req.user){
      return res.redirect('/login')

@@ -88,10 +88,11 @@ exports.postSignup = (req,res,next)=>{
           const newUser = new user({
                email : email,
                password : hashedPassword,
-               card : {item :[]}
+               cart : {items :[]}
           })
           return newUser.save()
      }).then(result=>{
+          req.session.user = result
           const sender = {
                address : "Tamanafarzami33@gmail.com",
                name : "Tamana Farzami "
@@ -131,7 +132,7 @@ bcreypt.compare(password, user.password).then(isMatching=>{
 if(isMatching){
 
      req.session.isLoggedin = true
-     // req.session.user = user 
+     req.session.user = user 
      return req.session.save((err)=>{
           res.redirect('/')
      })
