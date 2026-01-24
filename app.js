@@ -58,10 +58,10 @@ app.use((req, res, next) => {
     if (!req.session.user) {
       return next();
     }
-  console.log(req.session.user._id)
+  // console.log(req.session.user._id)
   User.findById(req.session.user._id)
       .then(user => {
-        console.log(user)
+        // console.log(user)
         if (!user) {
           return next();
         }
@@ -84,10 +84,10 @@ app.use(homeRouter)
 
 
 // debugger;
-app.use((req, res, next) => {
-  console.log('SESSION:', req.session);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('SESSION:', req.session);
+//   next();
+// });
 
 // storing through all the program, running one only during the each server run 
 
