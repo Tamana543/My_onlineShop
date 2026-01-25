@@ -9,6 +9,7 @@ const rootAuth = require('../middleware/is_auth')
 router.get("/shop/product_list",rootAuth,shopController.indexProducts)
 // to hundle id . Remember in here when you use : it means that the app should not only go through file to find exactly product but what data had been stored to the variable named that.
 router.get("/products/:productId",rootAuth,shopController.getidProduct)
+
 router.get("/products",rootAuth,shopController.productsShop)
 
 router.get("/cart",rootAuth,shopController.cartProducts)
@@ -22,4 +23,5 @@ router.get("/checkout",rootAuth,shopController.checkoutProducts)
 
 
 router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
+
 module.exports = router

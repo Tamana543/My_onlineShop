@@ -17,6 +17,11 @@ const SchemaFirstProduct = new Scheme({
      imageUrl : {
           type : String,
           required : true 
+     },
+     productId : {
+          type : Scheme.Types.ObjectId,
+          ref : 'User',
+          require : true
      }
 });
 
