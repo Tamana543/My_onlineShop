@@ -92,7 +92,7 @@ exports.postSignup = (req,res,next)=>{
           })
           return newUser.save()
      }).then(result=>{
-          req.session.user = result
+          // req.session.user = result
           const sender = {
                address : "Tamanafarzami33@gmail.com",
                name : "Tamana Farzami "

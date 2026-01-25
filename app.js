@@ -55,6 +55,7 @@ app.use((req,res,next)=>{
 //      })
 // });
 app.use((req, res, next) => {
+  console.log(req.session)
     if (!req.session.user) {
       console.log("Meeee")
       return next();
