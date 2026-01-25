@@ -92,23 +92,30 @@ exports.postSignup = (req,res,next)=>{
           })
           return newUser.save()
      }).then(result=>{
-          // req.session.user = result
-          const sender = {
-               address : "Tamanafarzami33@gmail.com",
-               name : "Tamana Farzami "
+                    req.session.isLoggedin = true
+                    req.session.user = result
+                    const sender = {
+                         address : "Tamanafarzami33@gmail.com",
+                         name : "Tamana Farzami "
+                    }
+               const recipients = email
+               transport.sendMail({
+                    from: sender,
+                    to:recipients,
+                    subject: "SIGN UP Completed Successfully :)",
+                    html : emailTemplate,
+                    category: "Integration Test",
+          }).then((respond)=>console.log(respond))
+          .catch(err=>{
+               next(new Error(err))
+          })
+
+      return req.session.save(err=>{
+          if(err) {
+               console.log(err)
+               res.redirect('/login') 
           }
-         const recipients = email
-    transport.sendMail({
-      from: sender,
-      to:recipients,
-      subject: "SIGN UP Completed Successfully :)",
-      html : emailTemplate,
-        category: "Integration Test",
-    }).then((respond)=>console.log(respond))
-    .catch(err=>{
-      next(new Error(err))
-    })
-    res.redirect('/login')
+     }) 
      })
 }
 
