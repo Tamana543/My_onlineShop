@@ -113,8 +113,8 @@ exports.postSignup = (req,res,next)=>{
       return req.session.save(err=>{
           if(err) {
                console.log(err)
-               res.redirect('/login') 
           }
+          res.redirect('/login') 
      }) 
      })
 }

@@ -55,26 +55,22 @@ app.use((req,res,next)=>{
 //      })
 // });
 app.use((req, res, next) => {
-  console.log(req.session)
-    if (!req.session.user) {
-      console.log("Meeee")
-      return next();
-    }
-  // console.log(req.session.user._id)
+  if (!req.session.user) {
+    return next();
+  }
+
   User.findById(req.session.user._id)
-      .then(user => {
-        console.log("req.user: ",req.user)
-        console.log("User: ",user)
-        if (!user) {
-          return next();
-        }
-        req.user = user;
-        next();
-      })
-      .catch(err => {
-        console.log(err);
-        next();
-      });
+    .then(user => {
+      if (!user) {
+        return next();
+      }
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+      next();
+    });
 });
 
 
