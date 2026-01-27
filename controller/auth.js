@@ -140,11 +140,13 @@ exports.postLogIn = (req,res,next)=>{
 
           })
      }
-bcreypt.compare(password, user.password).then(isMatching=>{
+return bcreypt.compare(password, user.password).then(isMatching=>{
 if(isMatching){
 
      req.session.isLoggedin = true
-     req.session.user = user 
+     req.session.user = {
+  _id: user._id.toString()
+};
      return req.session.save((err)=>{
           res.redirect('/')
      })
@@ -169,7 +171,9 @@ if(isMatching){
 exports.postLogOut = (req,res,next)=>{
      console.log(req.session);
 req.session.destroy(err=>{
+     if(err) console.log(err);
      
-     res.redirect('/')
+     res.clearCookie('connect.sid');
+    res.redirect('/')
 })
 }
