@@ -167,5 +167,9 @@ if(isMatching){
     })
 }
 exports.postLogOut = (req,res,next)=>{
-
+     console.log(req.session);
+req.session.destroy(err=>{
+     
+     res.redirect('/')
+})
 }

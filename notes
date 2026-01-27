@@ -51,7 +51,7 @@ signup : add the validation , install the bcrypt error sucrity, hundle the bcryp
 login : write the roots , controller main function , find the user by email , handle the false condition , becrypt the password matching , rand the pages,
 create the authontication gard middleware  
 
-Signout : 
+Signout : destroy the session (bugg in creating the session from login again fix)
 
 to do :  take a look to the email template in Shop now get the token from change password,
 
