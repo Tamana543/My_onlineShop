@@ -84,7 +84,8 @@ exports.postSignup = (req,res,next)=>{
      const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.', email, 'Start Shopping'); 
 
      bcreypt.hash(password,12).then((hashedPassword)=>{
-          req.session.isLoggedin = true 
+ 
+          
           const newUser = new user({
                email : email,
                password : hashedPassword,
@@ -93,7 +94,9 @@ exports.postSignup = (req,res,next)=>{
           return newUser.save()
      }).then(result=>{
                     req.session.isLoggedin = true
-                    req.session.user = result
+                  req.session.user = {
+        _id: result._id.toString()
+      };
                     const sender = {
                          address : "Tamanafarzami33@gmail.com",
                          name : "Tamana Farzami "
@@ -111,11 +114,13 @@ exports.postSignup = (req,res,next)=>{
           })
 
       return req.session.save(err=>{
-          if(err) {
-               console.log(err)
-          }
+          if(err) console.log(err)
           res.redirect('/login') 
      }) 
+     })
+     .catch(err=>{
+          console.log(err);
+          next(err)
      })
 }
 
