@@ -166,3 +166,6 @@ if(isMatching){
      console.log(err);
     })
 }
+exports.postLogOut = (req,res,next)=>{
+
+}

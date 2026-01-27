@@ -45,15 +45,7 @@ app.use((req,res,next)=>{
     
      next()
 })
-// app.use((req,res,next)=>{
-//      User.findOne().then(user=>{
-//           console.log(user);
-//           req.user = user
-//           next()
-//      }).catch(err=>{
-//           console.log(err);
-//      })
-// });
+
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
