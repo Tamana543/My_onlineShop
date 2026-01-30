@@ -7,7 +7,7 @@ const User = require('../module/user')
 router.get('/login',authController.getLogIn)
 router.get('/signup',authController.getSignUp)
 router.get('/reset',authController.getReset)
-
+router.get('/reset/:token',authController.getNewPassword)
 
 router.post('/login',[
  check('email').isEmail().withMessage("Incorrect Email ")
@@ -41,4 +41,7 @@ router.post('/logout',authController.postLogOut)
 router.post('/reset',[
   check('email').isEmail().withMessage("Email is not valid!")
 ],authController.postReset)
+
+
+
 module.exports = router

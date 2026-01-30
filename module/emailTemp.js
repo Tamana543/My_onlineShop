@@ -1,5 +1,5 @@
 
-function emailCreator(message1, message2,message3,emailAddress,btnText ) {
+function emailCreator(message1, message2,message3,emailAddress,address,btnText ) {
 
      const emailTemplate = `
      <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 10px; overflow: hidden;">
@@ -20,7 +20,7 @@ function emailCreator(message1, message2,message3,emailAddress,btnText ) {
              <p style="font-size: 16px;">${message3}</p>
              
              <div style="text-align: center; margin-top: 30px;">
-                 <a href="http://yourdomain.com/login" style="background-color: #af8931; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">${btnText}</a>
+                 <a href=${address} style="background-color: #af8931; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">${btnText}</a>
              </div>
          </div>
      

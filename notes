@@ -53,5 +53,5 @@ create the authontication gard middleware
 
 Signout : destroy the session (bugg in creating the session from login again fix)
 
-to do :  take a look to the email template in Shop now get the token from change password,
+to do :  
 

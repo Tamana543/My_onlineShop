@@ -68,6 +68,10 @@ exports.getReset = (req,res,next)=>{
                 })
 }
 
+exports.getNewPassword = (req,res,next)=>{
+
+}
+
 exports.postSignup = (req,res,next)=>{
      const email = req.body.email ;
      const password = req.body.password;
@@ -90,7 +94,7 @@ exports.postSignup = (req,res,next)=>{
 
      })
      }
-     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email, 'Start Shopping'); 
+     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email,'http://localhost:3000/','Start Shopping'); 
 
      bcreypt.hash(password,12).then((hashedPassword)=>{
  
@@ -205,7 +209,7 @@ exports.postReset = (req,res,next)=>{
           })
           .then(respond=>{
 
-               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email, 'Reset Password'); 
+               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email,'http://localhost:3000/reset/${token}','Reset Password'); 
             const sender = {
                                    address : "Tamanafarzami33@gmail.com",
                                    name : "Tamana Farzami "
@@ -225,6 +229,5 @@ exports.postReset = (req,res,next)=>{
           })
 
      })
-console.log(cryptoToken);
  
 }
