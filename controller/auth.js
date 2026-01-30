@@ -69,7 +69,25 @@ exports.getReset = (req,res,next)=>{
 }
 
 exports.getNewPassword = (req,res,next)=>{
+cryptoToken = req.params.token;
+user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}).then(user =>{
+     let errorMessage = req.flash('passwordRepeated')
+     if(errorMessage.length > 0){
+          errorMessage = errorMessage
+     }else {
+          errorMessage = null
+     }
 
+     res.redirect('auth/newPassword',{
+          path : '/newPassword',
+          pageTitle : 'New Password',
+          isAuthCorrect : false,
+          errorMessage : errorMessage,
+          
+     })
+}).catch(err=>{
+     console.log(err)
+})
 }
 
 exports.postSignup = (req,res,next)=>{
@@ -209,7 +227,7 @@ exports.postReset = (req,res,next)=>{
           })
           .then(respond=>{
 
-               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email,'http://localhost:3000/reset/${token}','Reset Password'); 
+               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email,'http://localhost:3000/reset/${cryptoToken}','Reset Password'); 
             const sender = {
                                    address : "Tamanafarzami33@gmail.com",
                                    name : "Tamana Farzami "
