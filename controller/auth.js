@@ -90,7 +90,7 @@ exports.postSignup = (req,res,next)=>{
 
      })
      }
-     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.', email, 'Start Shopping'); 
+     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email, 'Start Shopping'); 
 
      bcreypt.hash(password,12).then((hashedPassword)=>{
  
@@ -200,17 +200,18 @@ exports.postReset = (req,res,next)=>{
                     res.redirect('auth/resetPassword')
                }
                userFound.resetToken = cryptoToken;
-               userFound.resetExpiredToken = Data.now() + 3600000
+               userFound.resetExpiredToken = Date.now() + 3600000
                return userFound.save()
           })
           .then(respond=>{
 
-               const emailTemplate = emailTemplateEng('Thank you for your patience', ' Your account has been successfully created.', email, 'Reset Password'); 
+               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email, 'Reset Password'); 
             const sender = {
                                    address : "Tamanafarzami33@gmail.com",
                                    name : "Tamana Farzami "
                               }
                          const recipients = email
+                         res.redirect('/login')
                          transport.sendMail({
                               from: sender,
                               to:recipients,
@@ -224,5 +225,6 @@ exports.postReset = (req,res,next)=>{
           })
 
      })
+console.log(cryptoToken);
  
 }
