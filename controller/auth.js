@@ -1,10 +1,11 @@
 const user = require('../module/user')
 const emailTemplateEng = require('../module/emailTemp')
 const {validationResult} = require("express-validator")
+const crypto = require('crypto')
 const bcreypt= require('bcrypt')
 const nodemailer = require("nodemailer")
 const { ValidationError } = require('sequelize')
-
+let cryptoToken = '';
 
 // gmail SMTP 
 
@@ -187,19 +188,41 @@ req.session.destroy(err=>{
 }
 
 exports.postReset = (req,res,next)=>{
-   const email = req.body.email;
-     const emailTemplate = emailTemplateEng('Thank you for your patience', ' Your account has been successfully created.', email, 'Reset Password'); 
-  const sender = {
-                         address : "Tamanafarzami33@gmail.com",
-                         name : "Tamana Farzami "
-                    }
-               const recipients = email
-               transport.sendMail({
-                    from: sender,
-                    to:recipients,
-                    subject: "Reset Password",
-                    html : emailTemplate,
-                    category: "Integration Test",
+       const email = req.body.email;
+     crypto.randomBytes(32,(error,buffer)=>{
+          if(error){
+               res.redirect('auth/resetPassword')
+          }
+          cryptoToken = buffer.toString('hex')
+          user.findOne({email : email}).then(userFound=>{
+               if(!userFound){
+                    req.flash('error','Email Address not found !')
+                    res.redirect('auth/resetPassword')
+               }
+               userFound.resetToken = cryptoToken;
+               userFound.resetExpiredToken = Data.now() + 3600000
+               return userFound.save()
+          })
+          .then(respond=>{
 
-               })
+               const emailTemplate = emailTemplateEng('Thank you for your patience', ' Your account has been successfully created.', email, 'Reset Password'); 
+            const sender = {
+                                   address : "Tamanafarzami33@gmail.com",
+                                   name : "Tamana Farzami "
+                              }
+                         const recipients = email
+                         transport.sendMail({
+                              from: sender,
+                              to:recipients,
+                              subject: "Reset Password",
+                              html : emailTemplate,
+                              category: "Integration Test",
+          
+                         })
+          }).catch(err=>{
+               console.log(err);
+          })
+
+     })
+ 
 }
