@@ -53,9 +53,17 @@ exports.getSignUp = (req,res,next)=>{
 }
 
 exports.getReset = (req,res,next)=>{
+     let errorMessage = req.flash('error')
+     if(errorMessage.length > 0){
+          errorMessage = errorMessage
+     }else {
+          errorMessage = null
+          
+     }
          res.render('auth/resetPassword',{
           pageTitle :"Reset Password page",
           path : '/login',
+          errorMessage : errorMessage
                 })
 }
 

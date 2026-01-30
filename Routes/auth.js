@@ -6,7 +6,7 @@ const User = require('../module/user')
 
 router.get('/login',authController.getLogIn)
 router.get('/signup',authController.getSignUp)
-router.get('/reset',authController.getSignUp)
+router.get('/reset',authController.getReset)
 
 
 router.post('/login',[
