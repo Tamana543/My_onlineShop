@@ -187,5 +187,19 @@ req.session.destroy(err=>{
 }
 
 exports.postReset = (req,res,next)=>{
-     
+   const email = req.body.email;
+     const emailTemplate = emailTemplateEng('Thank you for your patience', ' Your account has been successfully created.', email, 'Reset Password'); 
+  const sender = {
+                         address : "Tamanafarzami33@gmail.com",
+                         name : "Tamana Farzami "
+                    }
+               const recipients = email
+               transport.sendMail({
+                    from: sender,
+                    to:recipients,
+                    subject: "Reset Password",
+                    html : emailTemplate,
+                    category: "Integration Test",
+
+               })
 }
