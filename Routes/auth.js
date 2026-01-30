@@ -37,4 +37,8 @@ router.post('/signup',[
    })
 ],authController.postSignup)
 router.post('/logout',authController.postLogOut)
+
+router.post('/reset',[
+  check('email').isEmail().withMessage("Email is not valid!")
+],authController.postReset)
 module.exports = router

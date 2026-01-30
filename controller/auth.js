@@ -185,3 +185,7 @@ req.session.destroy(err=>{
     res.redirect('/')
 })
 }
+
+exports.postReset = (req,res,next)=>{
+     
+}
