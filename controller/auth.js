@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const bcreypt= require('bcrypt')
 const nodemailer = require("nodemailer")
 const { ValidationError } = require('sequelize')
-let cryptoToken = '';
+let cryptoToken;
 
 // gmail SMTP 
 
@@ -71,7 +71,8 @@ exports.getReset = (req,res,next)=>{
 exports.getNewPassword = (req,res,next)=>{
 cryptoToken = req.params.token;
 console.log(cryptoToken);
-user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}).then(user =>{
+user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}})
+.then(user =>{
      console.log(user);
      let errorMessage = req.flash('passwordRepeated')
      if(errorMessage.length > 0){
@@ -79,8 +80,12 @@ user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}
      }else {
           errorMessage = null
      }
+     if (!user) {
+    req.flash('error', 'Token is invalid or expired')
+    return res.redirect('/reset')
+  }
 
-     res.redirect('auth/newPassword',{
+     res.render('auth/newPassword',{
           path : '/newPassword',
           pageTitle : 'New Password',
           isAuthCorrect : false,
@@ -230,8 +235,16 @@ exports.postReset = (req,res,next)=>{
                return userFound.save()
           })
           .then(respond=>{
+const resetLink = `http://localhost:3000/reset/${cryptoToken}`;
 
-               const emailTemplate = emailTemplateEng('Thank you for your patience', 'Your request for reseting your password recieved.','For reset click btn bellow', email,'http://localhost:3000/reset/${cryptoToken}','Reset Password'); 
+const emailTemplate = emailTemplateEng(
+  'Password Reset',
+  'Click the button below to reset your password.',
+  'Reset your password securely',
+  email,
+  resetLink,
+  'Reset Password'
+);
             const sender = {
                                    address : "Tamanafarzami33@gmail.com",
                                    name : "Tamana Farzami "
