@@ -276,7 +276,7 @@ let resetUser;
 user.findOne({resetToken : newToken, resetExpiredToken : {$gt : Date.now()}, _id : UserId})
 .then(userIn =>{
 if(!userIn){
-     req.flash('errorMessage','User not found')
+     req.flash('error','User not found')
 }
 resetUser = userIn
 return bcreypt.hash(newPassword, 12)
