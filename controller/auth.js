@@ -70,7 +70,9 @@ exports.getReset = (req,res,next)=>{
 
 exports.getNewPassword = (req,res,next)=>{
 cryptoToken = req.params.token;
+console.log(cryptoToken);
 user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}).then(user =>{
+     console.log(user);
      let errorMessage = req.flash('passwordRepeated')
      if(errorMessage.length > 0){
           errorMessage = errorMessage
@@ -83,6 +85,8 @@ user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}
           pageTitle : 'New Password',
           isAuthCorrect : false,
           errorMessage : errorMessage,
+          userId : user._id.toString(),
+          passwordToken : cryptoToken
           
      })
 }).catch(err=>{
