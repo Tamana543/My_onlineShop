@@ -251,5 +251,29 @@ exports.postReset = (req,res,next)=>{
 }
 
 exports.postNewPassword = (req,res,next)=>{
+const newPassword = req.body.password;
+const UserId = req.body.userId;
+const newToken = req.body.passwordToken;
+let resetUser;
+
+user.findOne({resetToken : newToken, resetExpiredToken : {$gt : Date.now()}, _id : UserId})
+.then(userIn =>{
+if(!userIn){
+     req.flash('errorMessage','User not found')
+}
+resetUser = userIn
+return bcreypt.hash(newPassword, 12)
+})
+.then(hashedPassword=>{
+resetUser.password = hashedPassword;
+resetUser.resetToken = undefined;
+resetUser.resetExpiredToken = undefined;
+return resetUser.save()
+})
+.then(respond=>{
+     res.redirect('/login')
+}).catch(err=>{
+     console.log(err);
+})
 
 }
