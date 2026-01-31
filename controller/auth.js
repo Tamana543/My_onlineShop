@@ -249,3 +249,7 @@ exports.postReset = (req,res,next)=>{
      })
  
 }
+
+exports.postNewPassword = (req,res,next)=>{
+
+}

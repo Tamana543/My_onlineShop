@@ -42,6 +42,15 @@ router.post('/reset',[
   check('email').isEmail().withMessage("Email is not valid!")
 ],authController.postReset)
 
+router.post('/newPassword',[
+  body('password').isStrongPassword({
+    minLength : 6,
+    minLowercase : 1,
+    minUppercase: 1,
+    minNumbers : 1 ,
+    minSymbols : 1
+  }).withMessage("Password must be at least 5 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one symbol.").trim()
+], authController.postNewPassword)
 
 
 module.exports = router
