@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const bcreypt= require('bcrypt')
 const nodemailer = require("nodemailer")
 const { ValidationError } = require('sequelize')
-let cryptoToken;
+
 
 // gmail SMTP 
 
@@ -69,9 +69,9 @@ exports.getReset = (req,res,next)=>{
 }
 
 exports.getNewPassword = (req,res,next)=>{
-cryptoToken = req.params.token;
-console.log(cryptoToken);
-user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}})
+const token = req.params.token;
+console.log(token);
+user.findOne({resetToken : token , resetExpiredToken : {$gt : Date.now()}})
 .then(user =>{
      console.log(user);
      let errorMessage = req.flash('passwordRepeated')
@@ -91,7 +91,7 @@ user.findOne({resetToken : cryptoToken , resetExpiredToken : {$gt : Date.now()}}
           isAuthCorrect : false,
           errorMessage : errorMessage,
           userId : user._id.toString(),
-          passwordToken : cryptoToken
+          passwordToken : token
           
      })
 }).catch(err=>{
@@ -224,18 +224,18 @@ exports.postReset = (req,res,next)=>{
           if(error){
                res.redirect('auth/resetPassword')
           }
-          cryptoToken = buffer.toString('hex')
+          const token = buffer.toString('hex')
           user.findOne({email : email}).then(userFound=>{
                if(!userFound){
                     req.flash('error','Email Address not found !')
                     res.redirect('auth/resetPassword')
                }
-               userFound.resetToken = cryptoToken;
+               userFound.resetToken = token;
                userFound.resetExpiredToken = Date.now() + 3600000
                return userFound.save()
           })
           .then(respond=>{
-const resetLink = `http://localhost:3000/reset/${cryptoToken}`;
+const resetLink = `http://localhost:3000/reset/${token}`;
 
 const emailTemplate = emailTemplateEng(
   'Password Reset',
