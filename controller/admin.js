@@ -8,7 +8,7 @@ exports.getAddProducts = (req,res,next)=> {
           res.render("admin/add-product",{
                pageTitle: "Add Product",
                path: '/admin/add-product',
-
+                    csrfToken : req.csrfToken()
                      
                     }) 
                     
@@ -32,7 +32,7 @@ exports.postproducts = (req,res,next)=> {
      imageUrl : imageUrl,
      description : description,
      price : price,
-
+csrfToken : req.csrfToken(),
    
      }
 )
@@ -89,7 +89,7 @@ exports.editGitProduct = (req,res,next)=>{
                pageTitle: "Edit Product",
                path: '/admin/products',
                product : product,
-
+csrfToken : req.csrfToken()
 
                
           })

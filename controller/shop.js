@@ -30,7 +30,8 @@ exports.cartProducts = (req,res,next)=>{
                 pageTitle : "Your Cart",
                 path:"/cart",
                 hasProducts:cart.length > 0,
-                isAuthCorrect : req.session.isLoggedin
+                isAuthCorrect : req.session.isLoggedin,
+                csrfToken : req.csrfToken()
 }) 
           
      }).catch(err=>{
