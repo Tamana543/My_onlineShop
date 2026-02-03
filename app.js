@@ -41,7 +41,7 @@ app.use(session({
   saveUninitialized : false,
   store : store
 }))
-app.user(csrufProtection)
+app.use(csrufProtection)
 app.use(flash())
 
 app.use((req,res,next)=>{
