@@ -4,7 +4,7 @@ const session = require('express-session')
 const mongostoreSession = require('connect-mongodb-session')(session)
 const mongoose = require('mongoose')
 const flash = require('connect-flash')
-const csrf = require('csurf')
+const csurf = require('csurf')
 const User = require("./module/user")
 const adminRoute = require("./Routes/admin")
 const shapRouter = require("./Routes/shop")
@@ -22,6 +22,8 @@ const store = new mongostoreSession({
   collection : 'sessions'
 })
 
+
+const csrufProtection = csurf()
 // const expressHandlebar = require('express-handlebars'); un commit this if you like to use handlebar
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname,'public')))
@@ -39,10 +41,12 @@ app.use(session({
   saveUninitialized : false,
   store : store
 }))
+app.user(csrufProtection)
 app.use(flash())
 
 app.use((req,res,next)=>{
      res.locals.isAuthCorrect = req.session.isLoggedin;
+     res.locals.csrfToken = req.csrfToken();
     
      next()
 })
