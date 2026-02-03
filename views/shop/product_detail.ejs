@@ -29,6 +29,7 @@
                          <div class="buttons d-flex my-5 flex">
                               <form action="/add-to-cart" method="post">
                                    <input type="hidden" name="productId" value="<%= product._id%>">
+                                   <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                    <button class="btn btn-dark" >Add to Cart</button>
                               </form>
                          </div>
