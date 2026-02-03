@@ -22,12 +22,12 @@
                                    <div class="flex ">
                                    <form action="/cart-delete-item" method="POST" class="flex_1">
                                         <input type="hidden" value="<%= prod.productId._id %>" name="productId">
-                                        
+                                         <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                         <button class="btn danger btn-outline-light" type="submit">Delete</button>
                                    </form>
                                    <form action="/order_Item" method="POST" class="flex_1">
                                         <input type="hidden" value="<%= prod.productId._id %>" name="productId">
-                                        
+                                         <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                         <button class="btn danger btn-outline-light m-1" type="submit">Order</button>
                                    </form>
                                    </div>
