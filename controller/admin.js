@@ -1,8 +1,4 @@
-const path = require('path')
-
 const Products = require("../module/product")
-const deleteHelper = require("../util/file")
-
 exports.getAddProducts = (req,res,next)=> {
      try {
           res.render("admin/add-product",{
