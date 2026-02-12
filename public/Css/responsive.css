@@ -1,0 +1,13 @@
+@media (max-width : 500px) {
+     .sub_head {
+position: relative !important;
+     }
+     .body_head {
+              grid-template-columns: 1fr;
+     }
+     .data {
+         margin: 0 auto;
+    width: 58%;
+}
+
+}
