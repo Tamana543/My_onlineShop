@@ -1,6 +1,7 @@
 @media (max-width : 500px) {
      .sub_head {
 position: relative !important;
+top: 0;
      }
      .body_head {
               grid-template-columns: 1fr;
@@ -8,6 +9,18 @@ position: relative !important;
      .data {
          margin: 0 auto;
     width: 58%;
+}
+.home_main {
+         min-width: 48vh;
+}
+.logo {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+header {
+     flex-direction: column;
 }
 
 }
