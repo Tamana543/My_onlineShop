@@ -98,6 +98,8 @@ header {
   -ms-transform: translateY(13px);
   -o-transform: translateY(13px);
   transform: translateY(13px);
+  position: absolute;
+    top: 41px;
 }
 
 #hamburger-6.is-active .line:nth-child(3){
