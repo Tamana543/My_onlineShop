@@ -14,17 +14,30 @@ top: 0;
          min-width: 48vh;
 }
 .logo {
-     width: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
+     width: 50%;
+   
 }
+.logo img {
+    width: 54%;
+  }
+
 header {
-     flex-direction: column;
+justify-content: flex-start !important;
+    gap: 21%;
 }
 .hamburger {
   display:inline !important;
 }
+ .navbar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #000; /* or your header bg */
+  }
+
+  .navbar.open {
+    display: flex;
+  }
 }
 
 .cf:before,

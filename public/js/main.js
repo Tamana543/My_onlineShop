@@ -1,23 +1,11 @@
 // for navBar
-// const backdrop = document.querySelector('.backdrop');
-const sideDrawer = document.querySelector('.mobile-nav');
+
 const hamburger = document.querySelector('#hamburger-6');
+const navbar = document.querySelector('.navbar');
 
-// function backdropClickHandler() {
-//   backdrop.style.display = 'none';
-//   sideDrawer.classList.remove('open');
-// }
-
-// function menuToggleClickHandler() {
-//   backdrop.style.display = 'block';
-//   sideDrawer.classList.add('open');
-// }
-
-function hamburgerEng(){
-  hamburger.classList.toggle("is-active")
-}
-// backdrop.addEventListener('click', backdropClickHandler);
-
-hamburger.addEventListener('click',hamburgerEng)
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('is-active'); // animation
+  navbar.classList.toggle('open');         // show / hide
+});
 
 
