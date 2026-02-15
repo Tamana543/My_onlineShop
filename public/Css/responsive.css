@@ -18,7 +18,7 @@ top: 0;
    
 }
 .logo img {
-         width: 57%;
+         width: 57% !important;
         margin-top: 2%;
   }
 
@@ -61,6 +61,24 @@ justify-content: flex-start !important;
   .links_bar a {
     color: white;
     font-size: 1.2rem;
+  }
+  /* add product special */
+  .add_product-main {
+    flex-direction: row;
+  }
+  .form {
+    text-align: center;
+
+  }
+  .add_inputs {
+     width: 325px;
+  }
+  .form-control{
+    align-items: flex-start !important;
+    text-align: center;
+  }
+  .form-control label {
+        margin: 0 auto !important;
   }
 }
 /* html {
