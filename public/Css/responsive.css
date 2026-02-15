@@ -14,7 +14,7 @@ top: 0;
          min-width: 48vh;
 }
 .logo {
-        width: 100%;
+        width: 100% !important;
    
 }
 .logo img {
@@ -25,7 +25,7 @@ top: 0;
 header {
 justify-content: flex-start !important;
     gap: 21%;
-      padding: 0 20px;
+      padding: 0 50px;
 }
 .hamburger {
   display:inline !important;
@@ -63,7 +63,9 @@ justify-content: flex-start !important;
     font-size: 1.2rem;
   }
 }
-
+/* html {
+  border: 3px solid red !important;
+} */
 .cf:before,
 .cf:after {
     content: " ";
