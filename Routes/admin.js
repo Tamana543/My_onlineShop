@@ -16,7 +16,9 @@ router.post("/edit_products", rootAuth ,addminController.editPostProduct)
 
 
 
-router.delete('/product/:productId', rootAuth ,addminController.deleteProduct)
+// router.delete('/product/:productId', rootAuth ,addminController.deleteProduct)
+router.delete('/delete-product/:productId', addminController.deleteProduct);
+
 module.exports = router;
 // exports.routs = router;
 // exports.products = products;
