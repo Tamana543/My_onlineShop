@@ -17,8 +17,7 @@ exports.getAddProducts = (req,res,next)=> {
               
      }
 exports.postproducts = (req,res,next)=> {
-     // console.log( req.body.imageUrl);
-     // getting data from form add product page 
+
      const title = req.body.title; 
      const imageUrl = req.body.imageUrl;
      const price = req.body.price;

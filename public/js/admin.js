@@ -1,25 +1,3 @@
-
-// const deleteProduct = (btn)=>{
-
-// const productId = btn.parentNode.querySelector('[name=productId]').value
-// const btnParent = btn.closest('article')
-
-
-// fetch('/admin/product/'+productId,{
-//      method : 'DELETE',
-
-   
-// }).then(result=>{
-// return result.json()
-// }).then(()=>{
-// console.log("Done From admin public");
-// btnParent.parentNode.removeChild(btnParent)
-// // btnParent.remove()
-// }).catch(err=>{
-//      console.log(err);
-// })
-// };
-
 function deleteProduct(button){
      const prodId = button.dataset.productId;
      const csrf = button.dataset.csrf
