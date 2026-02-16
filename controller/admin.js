@@ -1,3 +1,4 @@
+const { Button } = require("bootstrap");
 const Products = require("../module/product")
 exports.getAddProducts = (req,res,next)=> {
      try {
@@ -57,20 +58,36 @@ exports.adminProducts = (req,res,next)=>{
      })  
 }
 exports.deleteProduct = (req,res,next)=>{
-  const prodId = req.params.productId.trim();
+//   const prodId = req.params.productId.trim();
+     const prodId = button.dataset.productId
+  const csrf = button.dataset.csrf
 
-  Products.findByIdAndDelete(prodId)
-  .then(result => {
-    if(!result){
-      return res.status(404).json({ message: "Product not found" });
-    }
+  fetch('/admin/delete-product/'+prodId,{
+     method : 'DELETE',
+     headers : {
+          'Content-Type': 'application/json',
+          'CSRF-Token': csrf
+     }
+  }).then(response=>{
+if(response.ok){
+     button.closest('article').remove();
+}else {
+     alert('Deleting Failed')
+}
+  }).catch(err=>console.log(err))
 
-    res.status(200).json({ message: "Product deleted" });
-  })
-  .catch(err=>{
-    console.log(err);
-    res.status(500).json({ message: "Deleting failed" });
-  });
+//   Products.findByIdAndDelete(prodId)
+//   .then(result => {
+//     if(!result){
+//       return res.status(404).json({ message: "Product not found" });
+//     }
+
+//     res.status(200).json({ message: "Product deleted" });
+//   })
+//   .catch(err=>{
+//     console.log(err);
+//     res.status(500).json({ message: "Deleting failed" });
+//   });
 };
 
 exports.editGitProduct = (req,res,next)=>{
