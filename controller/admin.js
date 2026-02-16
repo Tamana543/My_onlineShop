@@ -54,6 +54,7 @@ exports.adminProducts = (req,res,next)=>{
                pageTitle : "Admins Products",
                path:"/admin/products",
                hasProducts:products.length > 0,
+               csrfToken: req.csrfToken() 
 }) // express for more information 
      })  
 }

@@ -20,7 +20,7 @@
 // })
 // };
 
-function deleteProduct(){
+function deleteProduct(button){
      const prodId = button.dataset.productId;
      const csrf = button.dataset.csrf
 
