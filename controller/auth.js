@@ -121,7 +121,9 @@ exports.postSignup = (req,res,next)=>{
 
      })
      }
-     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email,'http://localhost:3000/','Start Shopping'); 
+     const homeLink = `${process.env.BASE_URL}/`;
+     
+     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email,homeLink,'Start Shopping'); 
 
      bcreypt.hash(password,12).then((hashedPassword)=>{
  
@@ -235,7 +237,8 @@ exports.postReset = (req,res,next)=>{
                return userFound.save()
           })
           .then(respond=>{
-const resetLink = `http://localhost:3000/reset/${token}`;
+// const resetLink = `http://localhost:3000/reset/${token}`;
+const resetLink = `${process.env.BASE_URL}/reset/${token}`; // to use env base (environment-based base URL)
 
 const emailTemplate = emailTemplateEng(
   'Password Reset',
