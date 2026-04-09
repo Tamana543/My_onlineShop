@@ -101,9 +101,3 @@ mongoose.connect(MONGOD_URL).then(result=>{
   app.listen(3000)
 }
 ).catch(err=> console.log(err))
-
-
-
-// mangoCreateDb(()=>{
-//      app.listen(3000)
-// })
