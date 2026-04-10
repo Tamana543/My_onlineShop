@@ -24,7 +24,7 @@ exports.cartProducts = (req,res,next)=>{
   }
      // getting the card items to show 
      req.user.populate('cart.items.productId').then(user=>{
-          const cart = user.cart.items;
+            const cart = user.cart.items.filter(item => item.productId !== null);
           res.render("shop/cart",
                {prods : cart,
                 pageTitle : "Your Cart",

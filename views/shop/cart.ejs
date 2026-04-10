@@ -14,6 +14,7 @@
                <ul class="card_continer">
 
                     <% prods.forEach(prod=> { %>
+                           <% if (prod.productId) { %>
                          <li class="card_item">
                          <div class="card text-bg-dark">
                               <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
@@ -35,8 +36,10 @@
                                    </div>
                               </div>
                               </li>
+                              <% } %>
                               <% }) %>
                          </ul>
           <% } %>
+        
 </div>
           <%- include('../layouts/end.ejs') %>
