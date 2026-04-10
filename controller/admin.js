@@ -29,6 +29,7 @@ exports.postproducts = (req,res,next)=> {
      description : description,
      price : price,
 csrfToken : req.csrfToken(),
+userId: req.user._id
    
      }
 )
@@ -46,7 +47,7 @@ productData.save().then(reult=>{
 }
 
 exports.adminProducts = (req,res,next)=>{
-     Products.find().then((products)=> {
+     Products.find({ userId: req.user._id }) .then((products)=> {
 
           res.render("admin/products",{
                prods : products, 
@@ -60,9 +61,7 @@ exports.adminProducts = (req,res,next)=>{
 exports.deleteProduct = (req,res,next)=>{
   const prodId = req.params.productId.trim();
      
-  
-
-  Products.findByIdAndDelete(prodId)
+  Products.findOneAndDelete({ _id: prodId, userId: req.user._id })
   .then(result => {
     if(!result){
       return res.status(404).json({ message: "Product not found" });
@@ -79,8 +78,7 @@ exports.deleteProduct = (req,res,next)=>{
 exports.editGitProduct = (req,res,next)=>{
      const prodID = req.params.productID ;
      // console.log(prodID);
-
-     Products.findById(prodID).then(product=>{
+Products.findOne({ _id: prodID, userId: req.user._id }) .then(product=>{
           if(!product){
                return res.redirect('/admin/products')
           }
@@ -104,7 +102,7 @@ exports.editPostProduct = (req,res,next) =>{
     const updatedImage = req.body.imageUrl
     const updatedDescription = req.body.description;
 
-    Products.findById(prodId) .then(product=>{
+    Products.findOne({ _id: prodId, userId: req.user._id }) .then(product=>{
      //     console.log(product);
      
      product.title = updatedTitle;
