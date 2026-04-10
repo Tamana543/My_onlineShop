@@ -82,7 +82,7 @@ exports.editGitProduct = (req,res,next)=>{
 
      Products.findById(prodID).then(product=>{
           if(!product){
-               return res.redirect('/products')
+               return res.redirect('/admin/products')
           }
           res.render("admin/edit_products",{
                pageTitle: "Edit Product",
@@ -112,7 +112,7 @@ exports.editPostProduct = (req,res,next) =>{
      product.description = updatedDescription;
      product.imageUrl = updatedImage;
      return product.save().then(result=>{
-          res.redirect('/products')
+          res.redirect('/admin/products')
      }).catch(err=>console.log("Error here",err))
 
     })

@@ -226,7 +226,7 @@ exports.deletePostProduct = (req,res,next)=>{
       return res.status(404).json({ message: "Product not found" });
     }
 
-    //CLEAN ALL USERS' CARTS
+    //CLEAN ALL USERS' CARTS (pull-> removing anything returning true to the given condition)
     return User.updateMany(
       {},
       { $pull: { 'cart.items': { productId: prodId } } }
