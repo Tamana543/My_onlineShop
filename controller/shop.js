@@ -2,7 +2,7 @@ const Products = require("../module/product")
 const Order = require('../module/order')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
-
+const User = require('../module/user')
 exports.productsShop = (req,res,next)=> {
      
 Products.find().then(respond=>{
@@ -210,11 +210,34 @@ isAuthCorrect : false})
 }
 
 exports.deletePostProduct = (req,res,next)=>{
-     const prodId = req.body.productId.trim()
-     req.user.deleteItemCard(prodId).then(result =>{
-          res.redirect("/cart")
-     }).catch(err=>{
-          console.log(err)
-})
-}
+//      const prodId = req.body.productId.trim()
+//      req.user.deleteItemCard(prodId).then(result =>{
+//           res.redirect("/cart")
+//      }).catch(err=>{
+//           console.log(err)
+// })
+
+
+  const prodId = req.params.productId.trim();
+
+  Products.findByIdAndDelete(prodId)
+  .then(result => {
+    if(!result){
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    //CLEAN ALL USERS' CARTS
+    return User.updateMany(
+      {},
+      { $pull: { 'cart.items': { productId: prodId } } }
+    );
+  })
+  .then(() => {
+    res.status(200).json({ message: "Product deleted and carts cleaned" });
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({ message: "Deleting failed" });
+  });
+};
 
