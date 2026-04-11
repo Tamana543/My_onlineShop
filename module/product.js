@@ -18,7 +18,7 @@ const SchemaFirstProduct = new Scheme({
           type : String,
           required : true 
      },
-     productId : {
+     userId : {
           type : Scheme.Types.ObjectId,
           ref : 'User',
           require : true
