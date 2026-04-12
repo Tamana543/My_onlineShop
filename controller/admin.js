@@ -59,7 +59,7 @@ exports.adminProducts = (req,res,next)=>{
      })  
 }
 exports.deleteProduct = (req,res,next)=>{
-  const prodId = req.params.userId.trim();
+  const prodId = req.params.productId.trim();
      
   Products.findOneAndDelete({ _id: prodId, userId: req.user._id })
   .then(result => {
@@ -76,7 +76,7 @@ exports.deleteProduct = (req,res,next)=>{
 };
 
 exports.editGitProduct = (req,res,next)=>{
-     const prodID = req.params.userId ;
+     const prodID = req.params.productID;
      // console.log(prodID);
 Products.findOne({ _id: prodID, userId: req.user._id }) .then(product=>{
           if(!product){
