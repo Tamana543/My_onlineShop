@@ -14,8 +14,8 @@ const transport = nodemailer.createTransport({
   port: 465, 
   secure : true,
   auth : {
-     user : "tamanafarzami33@gmail.com",
-    pass: "fdyk inej sqez xtnd"
+     user : process.env.EMAIL_USER,
+    pass: process.env.EMAIL_USER
   }
 })
 exports.getLogIn = (req,res,next)=>{
