@@ -59,7 +59,7 @@ exports.adminProducts = (req,res,next)=>{
      })  
 }
 exports.deleteProduct = (req,res,next)=>{
-  const prodId = req.params.unserId.trim();
+  const prodId = req.params.userId.trim();
      
   Products.findOneAndDelete({ _id: prodId, userId: req.user._id })
   .then(result => {
