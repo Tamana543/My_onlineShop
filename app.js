@@ -98,6 +98,7 @@ res.status(404).render('404',{pageTitle: 'Page Not Found'})
 
 
 mongoose.connect(MONGOD_URL).then(result=>{
-  app.listen(3000)
+ const PORT = process.env.PORT || 3000;
+app.listen(PORT);
 }
 ).catch(err=> console.log(err))
