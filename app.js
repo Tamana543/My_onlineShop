@@ -17,11 +17,17 @@ const app = express()
 
 // database : Mongoo : VpUGVuzoovqhnuRo
 // const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
-const MONGOD_URL = process.env.MONGOD_URI;
+const MONGOD_URL = process.env.MONGO_URI;
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
+if (!MONGOD_URL) {
+  throw new Error("MONGO_URI is missing in environment variables");
+}
 const store = new mongostoreSession({
   uri : MONGOD_URL,
   collection : 'sessions'
 })
+
 
 
 const csrufProtection = csurf()
@@ -97,8 +103,12 @@ res.status(404).render('404',{pageTitle: 'Page Not Found'})
 })
 
 
-mongoose.connect(MONGOD_URL).then(result=>{
- const PORT = process.env.PORT || 3000;
-app.listen(PORT);
-}
-).catch(err=> console.log(err))
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(MONGOD_URL)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("Server running on port:", PORT);
+    });
+  })
+  .catch(err => console.log(err));
