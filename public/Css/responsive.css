@@ -166,3 +166,94 @@ justify-content: flex-start !important;
   -o-transform: translateY(-13px) rotate(90deg);
 transform: translateY(-13px) rotate(132deg);
 }
+
+
+
+/* bootstrap style setups */
+.custom-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(240, 215, 126, 0.15);
+  transition: 0.3s;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: #bbb;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+.custom-card {
+  background: #111 !important;
+  border: none;
+}
+
+.custom-card .card-body {
+  background: #111 !important;
+}
+.custom-card .card-title {
+  color: #fff;
+}
+
+.custom-card .card-text {
+  color: #bbb;
+}
+.custom-card {
+  background: linear-gradient(180deg, #111, #1a1a1a) !important;
+      box-shadow: 0 8px 10px 9px rgba(240, 215, 126, 0.15) !important;
+}
+.custom-btn {
+  border: none;
+  color: #000;
+  background: linear-gradient(135deg, #f0d77e, #c99c38);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.custom-btn:hover {
+  background: linear-gradient(135deg, #c99c38, #f0d77e);
+  transform: scale(1.05);
+}
+
+.custom-btn:active {
+  transform: scale(0.97);
+}
+.custom-btn.delete {
+     background: linear-gradient(135deg, #c19c9c, #1f1a19);
+  color: #fff;
+}
+
+.custom-btn.delete:hover {
+  background: linear-gradient(135deg, #c0392b, #ff6b6b);
+}

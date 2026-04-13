@@ -16,7 +16,7 @@
                     <% prods.forEach(prod=> { %>
                            <% if (prod.productId) { %>
                          <li class="card_item">
-                         <div class="card text-bg-dark">
+                         <!-- <div class="card text-bg-dark">
                               <img src="<%= prod.productId.imageUrl %>" class="card-img" alt="<%= prod.productId.title %>">
                               <div class="card-img-overlay">
                                    <h5 class="card-title text-black text-center"><%= prod.productId.title %></h5>
@@ -34,6 +34,31 @@
                                         <button class="btn danger btn-outline-light m-1" type="submit">Order</button>
                                    </form>
                                    </div>
+                              </div> -->
+                              <div class="card custom-card">
+                                        <img src="<%= prod.productId.imageUrl %>" class="card-img-top" alt="<%= prod.productId.title %>">
+
+                                        <div class="card-body text-center">
+                                        <h5 class="card-title"><%= prod.productId.title %></h5>
+                                        <p class="card-text desc"><%= prod.productId.description %></p>
+                                        <p class="card-text small-text">
+                                             You have <%= prod.quantity %> in your cart
+                                        </p>
+
+                                        <div class="flex">
+                                             <form action="/cart-delete-item" method="POST" class="flex_1">
+                                             <input type="hidden" value="<%= prod.productId._id %>" name="productId">
+                                             <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                             <button class="btn custom-btn delete" type="submit">Delete</button>
+                                             </form>
+
+                                             <form action="/order_Item" method="POST" class="flex_1">
+                                             <input type="hidden" value="<%= prod.productId._id %>" name="productId">
+                                             <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                             <button class="btn custom-btn m-1" type="submit">Order</button>
+                                             </form>
+                                        </div>
+                                        </div>
                               </div>
                               </li>
                               <% } %>
