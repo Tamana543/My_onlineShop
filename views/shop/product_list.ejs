@@ -10,7 +10,7 @@
      <div class="container">
         <%- include('../layouts/navigation.ejs') %>
      
-     <main>
+     <main style="flex-direction: column;">
           <div class="body_head flex">
                <% if (prods.length > 0) { %>
                <div class="flex_able">
@@ -39,6 +39,7 @@
                </div> 
                <% }else {%>
                     <h1>No Product Yet !</h1>
+                     <span style="font-size:0.9rem;">Start by adding your first product</span>
                <% }%>
           </div>
          <%- include('../layouts/end.ejs') %>

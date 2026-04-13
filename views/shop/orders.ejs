@@ -9,7 +9,7 @@
   <div class="container">
     <%- include('../layouts/navigation.ejs') %>
 
-    <main class="flex">
+    <main class="flex" style="flex-direction: column;">
       <div class="body_head flex">
 
         <% if (order.length > 0) { %>
@@ -55,6 +55,7 @@
           </div>
         <% } else { %>
           <h1>No Product Yet!</h1>
+           <span style="font-size:0.9rem;">Start by adding your first product</span>
         <% } %>
 
       </div>

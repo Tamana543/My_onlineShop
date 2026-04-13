@@ -3,6 +3,7 @@
 * {
      padding: 0;
      margin: 0;
+     transition: all 0.2s ease-in-out;
 }
 .flex,.flex_1 {
      display:flex;
@@ -41,17 +42,16 @@ width: 25%;
 
 .link a,
 .logout_btn {
-text-decoration: none;
-color: #ffffffb4;
-position: relative;
+     text-decoration: none;
+     color: #ffffffb4;
+     position: relative;
+     transition: all 0.2s ease;
 }
 .link a:hover,
 .logout_btn:hover {
 
 color: #DDB321;
-/* border-bottom: 1px solid #f0d77e;
-transition: line 0.1s ; */
-
+letter-spacing: 0.5px;
 }
  .link a::before,
  .logout_btn::before {
