@@ -210,34 +210,15 @@ isAuthCorrect : false})
 }
 
 exports.deletePostProduct = (req,res,next)=>{
-//      const prodId = req.body.productId.trim()
-//      req.user.deleteItemCard(prodId).then(result =>{
-//           res.redirect("/cart")
-//      }).catch(err=>{
-//           console.log(err)
-// })
+  const prodId = req.body.productId.trim();
 
-
-  const prodId = req.params.productId.trim();
-
-  Products.findByIdAndDelete(prodId)
-  .then(result => {
-    if(!result){
-      return res.status(404).json({ message: "Product not found" });
-    }
-
-    //CLEAN ALL USERS' CARTS (pull-> removing anything returning true to the given condition)
-    return User.updateMany(
-      {},
-      { $pull: { 'cart.items': { productId: prodId } } }
-    );
-  })
+  req.user.deleteItemCard(prodId)
   .then(() => {
-    res.status(200).json({ message: "Product deleted and carts cleaned" });
+    res.redirect("/cart");
   })
-  .catch(err=>{
+  .catch(err => {
     console.log(err);
-    res.status(500).json({ message: "Deleting failed" });
   });
+
 };
 
