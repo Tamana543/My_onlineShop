@@ -2,6 +2,7 @@
      <!-- <link rel="stylesheet" href="/Css/addProduct.css"> -->
       <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
       <script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script defer src="../../module/animations.js"></script>
       <link rel="stylesheet" href="/Css/responsive.css">
 <script src="/js/main.js" defer></script>
 </head>
@@ -31,13 +32,19 @@
                                              <form action="/cart-delete-item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                                             <button class="btn custom-btn delete" type="submit">Delete</button>
+                                             <button class="btn custom-btn delete-btn" type="submit">
+                                             <span class="btn-text">Delete</span>
+                                             <span class="spinner hidden"></span>
+                                             </button>
                                              </form>
 
                                              <form action="/order_Item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                                             <button class="btn custom-btn m-1" type="submit">Order</button>
+                                             <button class="btn custom-btn order-btn" type="submit">
+                                             <span class="btn-text">Order</span>
+                                             <span class="spinner hidden"></span>
+                                             </button>
                                              </form>
                                         </div>
                                         </div>
