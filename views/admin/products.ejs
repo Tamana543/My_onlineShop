@@ -29,14 +29,12 @@
                          <div class="card__actions flex">
                             
                              <a href="/admin/edit_products/<%=product._id%>"class="btn">Edit</a>
-
-                              
                                   <button
                                    class="btn"
                                    type="button"
                                    data-product-id="<%= product._id %>"
                                    data-csrf="<%= csrfToken %>"
-                                   onclick="deleteProduct(this)"
+                                   onclick="handleAdminDelete('<%= product._id %>', '<%= csrfToken %>')"
                                    >
                                    Delete
                                    </button>

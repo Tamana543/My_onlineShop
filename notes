@@ -56,5 +56,5 @@ Signout : destroy the session (bugg in creating the session from login again fix
 
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
-to do : Fix the spinar 
+to do : test the delete popup and fix the bugges if needed 
 

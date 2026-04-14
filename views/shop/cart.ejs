@@ -32,10 +32,11 @@
                                              <form action="/cart-delete-item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                                             <button class="btn custom-btn delete-btn m-1" type="submit">
+                                             <button class="btn custom-btn delete-btn m-1" type="submit" onclick="handleCartDelete(this)">
                                              <span class="btn-text">Delete</span>
                                              <span class="spinner hidden"></span>
                                              </button>
+                                        
                                              </form>
 
                                              <form action="/order_Item" method="POST" class="flex_1">
@@ -58,5 +59,6 @@
            <span style="font-size:0.9rem; display: block;">Start by adding your first product</span>
         <% } %>
         
-</div>
+</div>  
+         <script src="/js/admin.js"></script>
           <%- include('../layouts/end.ejs') %>
