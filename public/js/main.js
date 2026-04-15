@@ -1,6 +1,8 @@
+console.log("JS LOADED");
+
 const hamburger = document.querySelector('#hamburger-6');
 const navbar = document.querySelector('.navbar');
-
+const modal = document.getElementById("confirmModal")
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('is-active');
   navbar.classList.toggle('open');
@@ -16,6 +18,7 @@ document.querySelectorAll('.links_bar a').forEach(link => {
 
 
 function handleAdminDelete(productId, csrfToken) {
+   console.log("DELETE CLICKED");
   openConfirm(() => {
     fetch('/admin/delete-product/' + productId, {
       method: 'DELETE',
