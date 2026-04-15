@@ -15,7 +15,35 @@ document.querySelectorAll('.links_bar a').forEach(link => {
   });
 });
 
+let selectedAction = null;
 
+const confirmBtn = document.getElementById("confirmBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+
+function openConfirm(action) {
+  selectedAction = action;
+  if (!modal) return console.error("Modal not found");
+  modal.classList.remove("hidden");
+}
+
+function closeConfirm() {
+  modal.classList.add("hidden");
+  selectedAction = null;
+}
+
+confirmBtn?.addEventListener("click", () => {
+  console.log("CONFIRM CLICKED"); // debug
+
+  if (selectedAction) {
+    selectedAction();
+  }
+  closeConfirm();
+});
+
+cancelBtn?.addEventListener("click", () => {
+  console.log("CANCEL CLICKED"); // debug
+  closeConfirm();
+});
 
 function handleAdminDelete(productId, csrfToken) {
    console.log("DELETE CLICKED");
