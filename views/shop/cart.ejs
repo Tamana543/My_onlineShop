@@ -5,7 +5,7 @@
       <script defer src="../../module/delete_animations.js"></script>
       <link rel="stylesheet" href="/Css/responsive.css">
       <link rel="stylesheet" href="/Css/main.css">
-<script src="/js/main.js" defer></script>
+     <script src="/js/main.js" defer></script>
 </head>
 
 <body>
@@ -33,7 +33,10 @@
                                              <form action="/cart-delete-item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                                             <button class="btn custom-btn delete-btn m-1" type="submit" onclick="handleCartDelete(this)">
+                                            <button 
+                                             class="btn custom-btn delete-btn m-1" 
+                                             type="button"
+                                             onclick="handleCartDelete(this)">
                                              <span class="btn-text">Delete</span>
                                              <span class="spinner hidden"></span>
                                              </button>
@@ -61,5 +64,5 @@
         <% } %>
         
 </div>  
-         <script src="/js/main.js"></script>
+         
           <%- include('../layouts/end.ejs') %>
