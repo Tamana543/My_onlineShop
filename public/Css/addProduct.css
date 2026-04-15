@@ -24,7 +24,7 @@ label {
     
 }
 input,textarea {
-     background: none;
+      background-color: transparent !important;
      border: 1px solid #DDB321;
      font-family: "Lato",sans-serif;
      font-weight: bold;
@@ -35,6 +35,17 @@ input,textarea {
   margin-right: 5%;
   width: 350px;
   height: 30px;
+}
+input:focus,
+textarea:focus {
+  border-color: #ffeb3b;
+  box-shadow: 0 0 8px rgba(221, 179, 33, 0.4);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1A2226 inset !important;
+  -webkit-text-fill-color: #f4d569e2 !important;
+  transition: background-color 9999s ease-in-out 0s;
 }
 textarea {
      height: 90px !important;
