@@ -200,14 +200,19 @@ exports.indexProducts = (req,res,next)=>{
      // })  
 }
 exports.checkoutProducts = (req,res,next)=>{
-   
-  Products.find().this(products=>{
+  req.user.populate('cart.items.productId')
+  .then(user => {
+    const cart = user.cart.items.filter(item => item.productId !== null);
 
-       res.render("shop/checkout",{prods : products, pageTitle : "checkout",path:"/checkout",
-isAuthCorrect : false}) 
+    res.render("shop/checkout", {
+      prods: cart,
+      pageTitle: "Checkout",
+      path: "/checkout",
+      csrfToken: req.csrfToken()
+    });
   })
-    
-}
+  .catch(err => console.log(err));
+};
 
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();
