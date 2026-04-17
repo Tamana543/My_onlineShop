@@ -1,5 +1,6 @@
 <%- include('../layouts/start.ejs') %>
-<link rel="stylesheet" href="/Css/shop.css">
+<link rel="stylesheet" href="/Css/main.css">
+<link rel="stylesheet" href="/Css/responsive.css">
 <script src="/js/main.js" defer></script>
 </head>
 
@@ -9,11 +10,11 @@
 
 <main class="flex" style="flex-direction: column; gap: 20px;">
 <div class="checkout-wrapper">
-<h1>Checkout</h1>
+<h1 class="checkout-title">Checkout</h1>
 
 <!--Product -->
-<div class="card" style="width: 400px;">
-  <div class="card__content">
+<div class="checkout-card">
+  <div class="checkout-summary">
     <% let total = 0; %>
 
     <% prods.forEach(p => { 
@@ -25,7 +26,7 @@
   </div>
 </div>
 
-<form action="/create-order" method="POST" class="flex" style="flex-direction: column; gap: 10px; width: 400px;">
+<form action="/create-order" method="POST" class="checkout-form">
   
   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
@@ -36,9 +37,9 @@
   <input type="text" name="address" required>
 
   <label>Payment Method</label>
-  <select name="payment">
-    <option value="cod">Cash on Delivery</option>
-    <option value="card">Card (Fake)</option>
+  <select name="payment" style="background: #3f3e3e85 !important;">
+    <option value="cod" >Cash on Delivery</option>
+    <option value="card">Card </option>
   </select>
 
   <button class="btn main_btn">Place Order</button>
