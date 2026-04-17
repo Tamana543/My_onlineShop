@@ -1,4 +1,49 @@
 <%- include('../layouts/start.ejs') %>
+<link rel="stylesheet" href="/Css/shop.css">
+<script src="/js/main.js" defer></script>
+</head>
 
+<body>
+<div class="container">
+<%- include('../layouts/navigation.ejs') %>
+
+<main class="flex" style="flex-direction: column; gap: 20px;">
+
+<h1>Checkout</h1>
+
+<!--Product -->
+<div class="card" style="width: 400px;">
+  <div class="card__content">
+    <% let total = 0; %>
+
+    <% prods.forEach(p => { 
+      total += p.productId.price * p.quantity;
+    }) %>
+
+    <p>Total Items: <%= prods.length %></p>
+    <h2>Total Price: $<%= total.toFixed(2) %></h2>
+  </div>
+</div>
+
+<form action="/create-order" method="POST" class="flex" style="flex-direction: column; gap: 10px; width: 400px;">
+  
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <label>Name</label>
+  <input type="text" name="name" required>
+
+  <label>Address</label>
+  <input type="text" name="address" required>
+
+  <label>Payment Method</label>
+  <select name="payment">
+    <option value="cod">Cash on Delivery</option>
+    <option value="card">Card (Fake)</option>
+  </select>
+
+  <button class="btn main_btn">Place Order</button>
+</form>
+
+</main>
 
  <%- include('../layouts/end.ejs') %>
