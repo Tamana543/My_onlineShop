@@ -213,7 +213,34 @@ exports.checkoutProducts = (req,res,next)=>{
   })
   .catch(err => console.log(err));
 };
+exports.checkoutPostProducts = ()=>{
+     const { name, address, payment } = req.body;
+     req.user.populate('cart.items.productId')
+     .then(user=>{
+          const products = user.cart.items.map(item=>{
+               return {
+                    quantity: item.quantity,
+                    product: {...item.productId._doc}
+               };
+          });
 
+          const order = new Order({
+               user :{
+                    name: name, 
+                    address: address,
+                    userId: req.user._id
+               },
+               products : products,
+               paymentMethod: payment,
+               status : "Processing",
+               createdAt: new Data()
+          });
+          return order.save().then(() => user.clearCart());
+     
+     }).then(()=>{
+          res.redirect("/orders")
+     }).catch(err =>console.log(err))
+}
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();
 

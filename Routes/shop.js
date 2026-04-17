@@ -20,6 +20,7 @@ router.get("/orders",rootAuth,shopController.orderProducts)
 router.post("/order_Item",rootAuth,shopController.orderPostProducts)
 
 router.get("/checkout",rootAuth,shopController.checkoutProducts)
+router.post("/checkout",rootAuth,shopController.checkoutPostProducts)
 
 
 router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
