@@ -23,7 +23,10 @@ const mainOrderSchema = new Schema({
                type : Schema.Types.ObjectId,
                require : true,
                ref :'User'
-          }
+          },
+          paymentMethod: String,
+          status : String,
+          createdAt: Date
      }
 })
 

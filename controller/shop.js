@@ -233,7 +233,7 @@ exports.checkoutPostProducts = ()=>{
                products : products,
                paymentMethod: payment,
                status : "Processing",
-               createdAt: new Data()
+               createdAt: new Date()
           });
           return order.save().then(() => user.clearCart());
      
