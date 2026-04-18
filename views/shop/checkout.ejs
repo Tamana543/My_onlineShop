@@ -5,6 +5,22 @@
 </head>
 
 <body>
+  <!-- Success -->
+  <div id="successModal" class="success-modal hidden">
+  <div class="success-box">
+
+    <div class="face-happy">
+      <div class="eye"></div>
+      <div class="eye right"></div>
+      <div class="mouth happy"></div>
+    </div>
+
+    <h2>Order Successful!</h2>
+    <p>Your order has been placed.</p>
+
+    <button id="successBtn" class="btn main_btn">Go Home</button>
+  </div>
+</div>
 <div class="container">
 <%- include('../layouts/navigation.ejs') %>
 
@@ -54,12 +70,12 @@
   <input type="text" name="address" required>
 
   <label>Payment Method</label>
-  <select name="payment" style="background: #3f3e3e85 !important;">
+  <select name="payment" style="background: #3f3e3e85 !important;" id="paymentMethod">
     <option value="cod" >Cash on Delivery</option>
     <option value="card">Card </option>
   </select>
 
-  <button class="btn main_btn">Place Order</button>
+  <button class="btn main_btn" type="submit">Place Order</button>
 </form>
 </div>
 </main>

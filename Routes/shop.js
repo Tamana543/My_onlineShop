@@ -22,6 +22,7 @@ router.post("/order_Item",rootAuth,shopController.orderPostProducts)
 router.get("/checkout",rootAuth,shopController.checkoutProducts)
 router.post("/checkout",rootAuth,shopController.checkoutPostProducts)
 
+router.post("/create-order",rootAuth,shopController.paymentPostProduct)
 
 router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
 

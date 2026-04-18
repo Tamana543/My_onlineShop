@@ -213,7 +213,7 @@ exports.checkoutProducts = (req,res,next)=>{
   })
   .catch(err => console.log(err));
 };
-exports.checkoutPostProducts = ()=>{
+exports.checkoutPostProducts = (req,res,next)=>{
      const { name, address, payment } = req.body;
      req.user.populate('cart.items.productId')
      .then(user=>{
@@ -240,6 +240,9 @@ exports.checkoutPostProducts = ()=>{
      }).then(()=>{
           res.redirect("/orders")
      }).catch(err =>console.log(err))
+}
+exports.paymentPostProduct = (req,res,next)=>{
+    res.redirect("/") 
 }
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();

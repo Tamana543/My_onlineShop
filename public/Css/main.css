@@ -300,6 +300,58 @@ footer a:hover {
 .hidden {
   display: none;
 }
+
+/* success animation*/
+.success-box {
+  background: #111;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 0 25px rgba(221, 179, 33, 0.3);
+}
+.face-happy {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  background: linear-gradient(to bottom, #fff3a0, #fff);
+  border-radius: 50%;
+  animation: bounce 1.5s infinite;
+}
+
+.face-happy .eye {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #333;
+  border-radius: 50%;
+  top: 30px;
+  left: 18px;
+}
+
+.face-happy .eye.right {
+  left: 52px;
+}
+
+.face-happy .mouth.happy {
+  position: absolute;
+  width: 25px;
+  height: 15px;
+  border: 3px solid #333;
+  border-color: transparent transparent #333 transparent;
+  border-radius: 50%;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* animation */
+@keyframes bounce {
+  50% {
+    transform: translateY(-6px);
+  }
+}
 @keyframes line {
      0% {
           width: 0%;

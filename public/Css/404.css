@@ -84,15 +84,10 @@ opacity: 0.5;
 position: absolute;
 width: 24%;
 height: 30%;
-/* background: #fcfcfc; */
+
 background-image: linear-gradient(to bottom , #ffffb4 40%, #ffff 100%);
-/* background-image: url(linear-gradient(to bottom , #DDB321 40%, #ffc39e 100%)); */
 border-radius: 50%;
-/* border-image: linear-gradient(to bottom , #DDB321 40%, #ffc39e 100%)1 100%; */
-/* border: 1px solid #777777; */
-/* border-width: 3px;
-  border-style: solid; */
-  /* border-image-slice: 1; */
+
 top: 21%;
 left: 37.5%;
 z-index: 2;
