@@ -242,7 +242,44 @@ exports.checkoutPostProducts = (req,res,next)=>{
      }).catch(err =>console.log(err))
 }
 exports.paymentPostProduct = (req,res,next)=>{
-    res.redirect("/") 
+
+exports.paymentPostProduct = (req, res, next) => {
+  const { name, address, payment } = req.body;
+
+  if (!req.user) {
+    return res.status(401).json({ success: false });
+  }
+
+  req.user.populate('cart.items.productId')
+    .then(user => {
+      const products = user.cart.items.map(item => ({
+        quantity: item.quantity,
+        product: { ...item.productId._doc }
+      }));
+
+      const order = new Order({
+        user: {
+          name,
+          address,
+          userId: req.user._id
+        },
+        products: products,
+        paymentMethod: payment,
+        status: payment === "card" ? "Paid" : "Pending",
+        createdAt: new Date()
+      });
+
+      return order.save()
+        .then(() => user.clearCart())
+        .then(() => {
+          res.status(200).json({ success: true });
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ success: false });
+    });
+};
 }
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();

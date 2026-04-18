@@ -88,5 +88,36 @@ cardInput?.addEventListener("input", (e) => {
   value = value.replace(/(.{4})/g, "$1 ").trim();
   e.target.value = value;
 });
+
+//  Success 
+
+const checkoutForm = document.getElementById("checkoutForm");
+const successModal = document.getElementById("successModal");
+const successBtn = document.getElementById("successBtn");
+
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // STOP reload
+
+    const formData = new FormData(checkoutForm);
+
+    fetch("/create-order", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        successModal.classList.remove("hidden");
+      }
+    })
+    .catch(err => console.log(err));
+  });
+}
+
+successBtn?.addEventListener("click", () => {
+  window.location.href = "/";
+});
+
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;
