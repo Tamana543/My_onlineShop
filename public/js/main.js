@@ -66,5 +66,20 @@ function handleCartDelete(button) {
   });
 }
 
+
+// Checkout 
+
+const paymentSelect = document.getElementById("paymentMethod");
+const cardDetails = document.getElementById("cardDetails");
+
+if (paymentSelect) {
+  paymentSelect.addEventListener("change", () => {
+    if (paymentSelect.value === "card") {
+      cardDetails.classList.remove("hidden");
+    } else {
+      cardDetails.classList.add("hidden");
+    }
+  });
+}
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;
