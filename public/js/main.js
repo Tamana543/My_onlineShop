@@ -71,6 +71,7 @@ function handleCartDelete(button) {
 
 const paymentSelect = document.getElementById("paymentMethod");
 const cardDetails = document.getElementById("cardDetails");
+const cardInput = document.querySelector('#cardDetails input');
 
 if (paymentSelect) {
   paymentSelect.addEventListener("change", () => {
@@ -81,5 +82,11 @@ if (paymentSelect) {
     }
   });
 }
+
+cardInput?.addEventListener("input", (e) => {
+  let value = e.target.value.replace(/\D/g, "").substring(0,16);
+  value = value.replace(/(.{4})/g, "$1 ").trim();
+  e.target.value = value;
+});
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;

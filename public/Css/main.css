@@ -190,6 +190,7 @@ footer a:hover {
   background: linear-gradient(135deg, #ff6b6b, #c0392b);
   color: #fff;
 }
+
 /* Checkout Style  */
 .checkout-wrapper {
   display: flex;
@@ -265,6 +266,39 @@ footer a:hover {
 .checkout-form label {
   font-size: 0.9rem;
   color: #aaa;
+}
+.card-details {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-details input {
+  background: transparent !important;
+  border: 1px solid #DDB321;
+  border-radius: 6px;
+  padding: 10px;
+  color: #fff;
+  outline: none;
+}
+
+.card-details input:focus {
+  border-color: #f0d77e;
+  box-shadow: 0 0 8px rgba(221, 179, 33, 0.4);
+}
+
+.card-row {
+  display: flex;
+  gap: 10px;
+}
+
+.card-row div {
+  flex: 1;
+}
+
+.hidden {
+  display: none;
 }
 @keyframes line {
      0% {
