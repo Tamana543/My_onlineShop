@@ -94,25 +94,38 @@ cardInput?.addEventListener("input", (e) => {
 const checkoutForm = document.getElementById("checkoutForm");
 const successModal = document.getElementById("successModal");
 const successBtn = document.getElementById("successBtn");
+const csrfToken = document.querySelector('input[name="_csrf"]').value;
+const submitBtn = checkoutForm.getElementById("checkout_submit");
+console.log(submitBtn)
+
+submitBtn.disabled = true;
+submitBtn.innerText = "Processing...";
 
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
     e.preventDefault(); // STOP reload
 
-    const formData = new FormData(checkoutForm);
+    const formData = new FormData(checkoutForm); })
+  
 
-    fetch("/create-order", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        successModal.classList.remove("hidden");
-      }
-    })
-    .catch(err => console.log(err));
-  });
+   
+fetch("/create-order", {
+  method: "POST",
+  headers: {
+    "csrf-token": csrfToken
+  },
+  body: formData
+})
+   .then(res => {
+  if (!res.ok) throw new Error("Request failed");
+  return res.json();
+})
+.then(data => {
+  if (data.success) {
+    successModal.classList.remove("hidden");
+  }
+})
+.catch(err => console.log(err));
 }
 
 successBtn?.addEventListener("click", () => {

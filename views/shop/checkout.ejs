@@ -59,8 +59,8 @@
   </div>
 </div>
 
-<!-- <form action="/create-order" method="POST" class="checkout-form"> With controller and payment methood -->
-  <form id="checkoutForm" class="checkout-form">
+<form action="/create-order" method="POST" class="checkout-form"> 
+  <!-- <form id="checkoutForm" class="checkout-form"> -->
   
   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
@@ -76,7 +76,7 @@
     <option value="card">Card </option>
   </select>
 
-  <button class="btn main_btn" type="submit">Place Order</button>
+  <button class="btn main_btn" type="submit" id="checkout_submit">Place Order</button>
 </form>
 </div>
 </main>
