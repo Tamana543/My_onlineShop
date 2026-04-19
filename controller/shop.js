@@ -241,10 +241,12 @@ exports.checkoutPostProducts = (req,res,next)=>{
           res.redirect("/orders")
      }).catch(err =>console.log(err))
 }
-exports.paymentPostProduct = (req,res,next)=>{
+
 
 exports.paymentPostProduct = (req, res, next) => {
+     console.log(req.body)
   const { name, address, payment } = req.body;
+
 
   if (!req.user) {
     return res.status(401).json({ success: false });
@@ -272,6 +274,7 @@ exports.paymentPostProduct = (req, res, next) => {
       return order.save()
         .then(() => user.clearCart())
         .then(() => {
+          console.log("ORDER SAVED"); 
           res.status(200).json({ success: true });
         });
     })
@@ -280,7 +283,7 @@ exports.paymentPostProduct = (req, res, next) => {
       res.status(500).json({ success: false });
     });
 };
-}
+
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();
 

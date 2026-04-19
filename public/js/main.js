@@ -102,18 +102,15 @@ const submitBtn = document.getElementById("checkout_submit");
 
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
     console.log("SUBMIT WORKING");
 
     const formData = new FormData(checkoutForm);
-    const csrfToken = document.querySelector('input[name="_csrf"]').value;
+    formData.append('_csrf', csrfToken);
 
     fetch("/create-order", {
       method: "POST",
-      headers: {
-        "csrf-token": csrfToken
-      },
       body: formData
     })
     .then(res => {
