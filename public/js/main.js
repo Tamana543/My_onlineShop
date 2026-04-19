@@ -95,11 +95,10 @@ const checkoutForm = document.getElementById("checkoutForm");
 const successModal = document.getElementById("successModal");
 const successBtn = document.getElementById("successBtn");
 const csrfToken = document.querySelector('input[name="_csrf"]').value;
-const submitBtn = checkoutForm.getElementById("checkout_submit");
-console.log(submitBtn)
+const submitBtn = document.getElementById("checkout_submit");
 
-submitBtn.disabled = true;
-submitBtn.innerText = "Processing...";
+
+
 
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
@@ -116,7 +115,7 @@ fetch("/create-order", {
   },
   body: formData
 })
-   .then(res => {
+  .then(res => {
   if (!res.ok) throw new Error("Request failed");
   return res.json();
 })
@@ -130,6 +129,8 @@ fetch("/create-order", {
 
 successBtn?.addEventListener("click", () => {
   window.location.href = "/";
+  submitBtn.disabled = true;
+submitBtn.innerText = "Processing...";
 });
 
 window.handleAdminDelete = handleAdminDelete;
