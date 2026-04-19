@@ -67,7 +67,6 @@ to do :
 * Toast notifications (success / error)
 * Image preview on add product
 * Form validation
-* Role-based access (admin vs user)
 * Pagination / load more
 * Dark mode toggle
 * Product sorting (price, newest, etc.)
@@ -75,5 +74,6 @@ to do :
 * Stock / availability system
 * Recently viewed products
 * Save cart (persistent cart)
+* Role-based access (admin vs user) ✔️
 
 

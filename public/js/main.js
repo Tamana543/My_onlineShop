@@ -67,7 +67,7 @@ function handleCartDelete(button) {
 }
 
 
-// Checkout 
+// Checkout UI
 
 const paymentSelect = document.getElementById("paymentMethod");
 const cardDetails = document.getElementById("cardDetails");
@@ -89,7 +89,7 @@ cardInput?.addEventListener("input", (e) => {
   e.target.value = value;
 });
 
-//  Success 
+// Checkout Success (Backend) 
 
 const checkoutForm = document.getElementById("checkoutForm");
 const successModal = document.getElementById("successModal");
@@ -102,29 +102,31 @@ const submitBtn = document.getElementById("checkout_submit");
 
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // STOP reload
+    e.preventDefault(); 
 
-    const formData = new FormData(checkoutForm); })
-  
+    console.log("SUBMIT WORKING");
 
-   
-fetch("/create-order", {
-  method: "POST",
-  headers: {
-    "csrf-token": csrfToken
-  },
-  body: formData
-})
-  .then(res => {
-  if (!res.ok) throw new Error("Request failed");
-  return res.json();
-})
-.then(data => {
-  if (data.success) {
-    successModal.classList.remove("hidden");
-  }
-})
-.catch(err => console.log(err));
+    const formData = new FormData(checkoutForm);
+    const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+    fetch("/create-order", {
+      method: "POST",
+      headers: {
+        "csrf-token": csrfToken
+      },
+      body: formData
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Request failed");
+      return res.json();
+    })
+    .then(data => {
+      if (data.success) {
+        successModal.classList.remove("hidden");
+      }
+    })
+    .catch(err => console.log(err));
+  });
 }
 
 successBtn?.addEventListener("click", () => {
