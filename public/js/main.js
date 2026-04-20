@@ -106,13 +106,21 @@ if (checkoutForm) {
 
     console.log("SUBMIT WORKING");
 
-    const formData = new FormData(checkoutForm);
-    formData.append('_csrf', csrfToken);
+    // const formData = new FormData(checkoutForm);
+    // formData.append('_csrf', csrfToken);
 
-    fetch("/create-order", {
-      method: "POST",
-      body: formData
-    })
+   fetch("/create-order", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "csrf-token": csrfToken
+  },
+  body: JSON.stringify({
+    name: checkoutForm.name.value,
+    address: checkoutForm.address.value,
+    payment: checkoutForm.payment.value
+  })
+})
     .then(res => {
       if (!res.ok) throw new Error("Request failed");
       return res.json();
