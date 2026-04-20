@@ -272,7 +272,10 @@ exports.paymentPostProduct = (req, res, next) => {
       });
 
       return order.save()
-        .then(() => user.clearCart())
+        .then((user) => {
+          // console.log(user._id)
+          req.user.deleteItemCard(user._id)
+    })
         .then(() => {
           console.log("ORDER SAVED"); 
           res.status(200).json({ success: true });
