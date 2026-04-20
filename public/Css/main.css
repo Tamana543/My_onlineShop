@@ -196,8 +196,15 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
-  color: #fff;
+  gap: 30px;
+  margin-top: 80px;
+  width: 100%;
+}
+.checkout-card,
+.checkout-form,
+.card-details {
+  width: 420px;
+  max-width: 90%;
 }
 
 .checkout-title {
@@ -217,8 +224,7 @@ footer a:hover {
   background: #0d0d0d;
   border: 1px solid #DDB321;
   border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 25px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -227,20 +233,25 @@ footer a:hover {
   font-size: 1.8rem;
 }
 .checkout-form {
+  background: #111;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(221, 179, 33, 0.15);
+
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .checkout-form input,
 .checkout-form select {
-  background: transparent !important;
+  background: #1a1a1a !important;
   border: 1px solid #DDB321;
   border-radius: 6px;
   padding: 10px;
   color: #fff;
   outline: none;
-  
+  font-size: 0.95rem;
 }
 
 
@@ -251,13 +262,14 @@ footer a:hover {
     fill: none;
 }
 .checkout-form button {
-  margin-top: 10px;
+  margin-top: 15px;
   background: #DDB321;
   color: #000;
   border: none;
   padding: 12px;
   border-radius: 6px;
   font-weight: bold;
+  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -265,9 +277,15 @@ footer a:hover {
   box-shadow: 0 0 12px rgba(221, 179, 33, 0.6);
   transform: translateY(-2px);
 }
+
+.checkout-form button:hover {
+  box-shadow: 0 0 12px rgba(221, 179, 33, 0.6);
+  transform: translateY(-2px);
+}
 .checkout-form label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #aaa;
+  margin-top: 5px;
 }
 .card-details {
   margin-top: 15px;
@@ -304,6 +322,20 @@ footer a:hover {
 }
 
 /* success animation*/
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
 .success-box {
   background: #111;
   padding: 25px;
@@ -346,6 +378,24 @@ footer a:hover {
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
+}
+  .btn {
+  font: inherit;
+  border: none;
+  color: #000;
+  background: linear-gradient(135deg, #f0d77e, #c99c38);
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none !important;
+  padding: 6px 12px;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  margin-top: 8%;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #c99c38, #f0d77e);
+  transform: scale(1.05);
 }
 
 /* animation */
