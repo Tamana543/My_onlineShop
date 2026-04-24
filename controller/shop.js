@@ -300,4 +300,22 @@ exports.deletePostProduct = (req,res,next)=>{
 
 };
 
-exports.searchProducts = (req, res, next) => { }
+exports.searchProducts = (req, res, next) => { 
+      const searchTerm = req.query.q;
+
+  if (!searchTerm) {
+    return res.redirect("/products");
+  }
+
+  Products.find({
+    title: { $regex: searchTerm, $options: "i" } // case insensitive search
+  })
+    .then(products => {
+      res.render("shop/product_list", {
+        prods: products,
+        pageTitle: "Search Results",
+        path: "/products"
+      });
+    })
+    .catch(err => console.log(err));
+}
