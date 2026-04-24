@@ -9,10 +9,10 @@
 </head>
 
 <body>
-     <div class="Container">
-          <%- include('../layouts/navigation.ejs') %>
-           <main class="flex_1" style="flex-direction: column;">
-           <% if(prods.length > 0) { %>
+  <div class="Container">
+     <%- include('../layouts/navigation.ejs') %>
+     <main class="flex_1" style="flex-direction: column;">
+     <% if(prods.length > 0) { %>
                <ul class="card_continer">
 
                     <% prods.forEach(prod=> { %>
@@ -29,12 +29,12 @@
                                              You have <%= prod.quantity %> in your cart
                                         </p>
 
-                                        <div class="flex">
+                                        <div class="flex gap-1">
                                              <form action="/cart-delete-item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                             <button 
-                                             class="btn custom-btn delete-btn m-1" 
+                                             class="btn custom-btn delete-btn mr-1" 
                                              type="button"
                                              onclick="handleCartDelete(this)">
                                              <span class="btn-text">Delete</span>
@@ -48,7 +48,7 @@
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                              <button class="btn custom-btn order-btn" type="submit">
                                              <span class="btn-text">Order</span>
-                                             <span class="spinner hidden"></span>
+                                            
                                              </button>
                                              </form>
                                         </div>

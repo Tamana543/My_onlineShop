@@ -26,4 +26,6 @@ router.post("/create-order",rootAuth,shopController.paymentPostProduct)
 
 router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
 
+router.get("/search", shopController.searchProducts);
+
 module.exports = router

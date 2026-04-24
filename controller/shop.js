@@ -300,3 +300,4 @@ exports.deletePostProduct = (req,res,next)=>{
 
 };
 
+exports.searchProducts = (req, res, next) => { }
