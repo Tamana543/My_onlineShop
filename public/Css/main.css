@@ -33,7 +33,7 @@ list-style-type: none;
 width: 100%;
 /* font-size: 28; */
 font-family: "Lato", serif;
-margin: 5%;
+margin: 5% 0;
 }
 .link {
 width: 25%;
@@ -51,7 +51,7 @@ width: 25%;
 .logout_btn:hover {
 
 color: #DDB321;
-letter-spacing: 0.5px;
+
 }
  .link a::before,
  .logout_btn::before {
@@ -80,26 +80,34 @@ border: none ;
 }
 .search-form {
   display: flex;
-  gap: 8px;
+  flex-direction: row;
   align-items: center;
+  background: #111;
+  border: 1px solid #DDB321;
+  border-radius: 20px;
+  padding: 3px 8px;
 }
 
 .search-form input {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #DDB321;
-  background: #1a1a1a;
+  border: none;
+  background: transparent;
   color: #fff;
   outline: none;
+  padding: 5px;
+  width: 140px;
+  font-size: 0.9rem;
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  height: 100%;
 }
 
 .search-form button {
-  padding: 8px 12px;
-  border-radius: 6px;
+   background: transparent;
   border: none;
-  background: #DDB321;
-  color: #000;
   cursor: pointer;
+  color: #DDB321;
+  font-size: 18px;
 }
 
 .search-form button:hover {
