@@ -78,7 +78,39 @@ background: none;
 border: none ;
 
 }
+.search-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #DDB321;
+  background: #1a1a1a;
+  color: #fff;
+  outline: none;
+}
+
+.search-form button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #DDB321;
+  color: #000;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  box-shadow: 0 0 8px rgba(221, 179, 33, 0.6);
+}
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .card-img {
 filter: opacity(0.2);   
 }

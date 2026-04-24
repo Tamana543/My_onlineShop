@@ -14,6 +14,7 @@
           </div>
       </div>
 <nav class="navbar flex">
+     <div class="nav-wrapper flex">
 <ul class="links_bar flex">
      <li class="link flex">
 
@@ -24,6 +25,7 @@
           
           <a href="/products" class="<%= path === '/products' ? 'active' : ''%>">Products</a>
      </li>
+   
      <% if (isAuthCorrect) { %> 
      <li class="link flex">
 
@@ -61,7 +63,13 @@
      </li>
       
 <% } %>
+
 </ul>
+        <form action="/search" method="GET" class="search-form">
+  <input type="text" name="q" placeholder="Search products..." required>
+  <button type="submit">Search</button>
+</form>
+</div>
 </nav>
 </header>
 
