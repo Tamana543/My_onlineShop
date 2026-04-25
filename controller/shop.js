@@ -313,7 +313,6 @@ exports.searchProducts = (req, res, next) => {
   )
     .sort({ score: { $meta: "textScore" } }) 
     .then(products => {
-      console.log("FOUND:", products);
 
       res.render("shop/product_list", {
         prods: products,
