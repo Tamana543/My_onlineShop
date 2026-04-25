@@ -23,8 +23,12 @@ const SchemaFirstProduct = new Scheme({
           ref : 'User',
           require : true
      }
+     
 });
-
+SchemaFirstProduct.index({
+  title: "text",
+  description: "text"
+});
 module.exports = mongoose.model('Product',SchemaFirstProduct)
      
      
