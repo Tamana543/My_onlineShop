@@ -300,22 +300,28 @@ exports.deletePostProduct = (req,res,next)=>{
 
 };
 
-exports.searchProducts = (req, res, next) => { 
-      const searchTerm = req.query.q;
+exports.searchProducts = (req, res, next) => {
+  const searchTerm = req.query.q.trim();
 
   if (!searchTerm) {
     return res.redirect("/products");
   }
 
-  Products.find({
-    title: { $regex: searchTerm, $options: "i" } // case insensitive search
-  })
+  Products.find(
+    { $text: { $search: searchTerm } },
+    { score: { $meta: "textScore" } } 
+  )
+    .sort({ score: { $meta: "textScore" } }) 
     .then(products => {
+      console.log("FOUND:", products);
+
       res.render("shop/product_list", {
         prods: products,
         pageTitle: "Search Results",
-        path: "/products"
+        path: "/search",
+        isSearch: true,
+        searchTerm: searchTerm
       });
     })
     .catch(err => console.log(err));
-}
+};
