@@ -1,6 +1,4 @@
-console.log("JS LOADED");
-
-const hamburger = document.querySelector('#hamburger-6');
+const hamburger = document.querySelector('#hamburger');
 const navbar = document.querySelector('.navbar');
 const modal = document.getElementById("confirmModal");
 

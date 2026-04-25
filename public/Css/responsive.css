@@ -27,6 +27,7 @@
 header {
   justify-content: space-between !important;
   padding: 10px 20px;
+  z-index: 2001;
 }
 
 .hamburger {
@@ -34,17 +35,17 @@ header {
 }
 .navbar {
   position: fixed;
-  top: 70px;
-  left: 0;
-  width: 100%;
+          top: 30px;
+       left: 8px;
+  width: 100% !important;
   height: calc(100vh - 70px);
 
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
 
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 
   transform: translateY(-100%);
   opacity: 0;
@@ -52,11 +53,15 @@ header {
 
   padding: 30px 20px;
   z-index: 1000;
+  padding: 0;
 }
 
 .navbar.open {
-  transform: translateY(0);
+  transform: translateX(0);
   opacity: 1;
+}
+.nav-wrapper {
+  flex-direction: column;
 }
 .links_bar {
   flex-direction: column;
@@ -91,10 +96,36 @@ header {
   .form-control label {
         margin: 0 auto !important;
   }
+  .search-form {
+    width: 80%; 
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
-/* html {
-  border: 3px solid red !important;
-} */
+
+.search-form input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #f0d77e;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+}
+
+.search-form button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #f0d77e;
+    cursor: pointer;
+}
+}
+
 .cf:before,
 .cf:after {
     content: " ";
