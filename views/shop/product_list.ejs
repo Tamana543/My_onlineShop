@@ -11,6 +11,21 @@
         <%- include('../layouts/navigation.ejs') %>
      
      <main style="flex-direction: column;">
+          <form action="/products" method="GET" class="filter-form">
+
+  <input type="number" name="min" placeholder="Min Price">
+  <input type="number" name="max" placeholder="Max Price">
+
+  <select name="category">
+    <option value="">All</option>
+    <option value="sports">Sports</option>
+    <option value="suv">SUV</option>
+    <option value="luxury">Luxury</option>
+  </select>
+
+  <button type="submit">Filter</button>
+
+</form>
           <div class="body_head flex">
                <% if (prods.length > 0) { %>
                <div class="flex_able">

@@ -22,6 +22,10 @@ const SchemaFirstProduct = new Scheme({
           type : Scheme.Types.ObjectId,
           ref : 'User',
           require : true
+     },
+     category :{
+          type : String, 
+          required : true
      }
      
 });
