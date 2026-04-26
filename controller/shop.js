@@ -4,14 +4,31 @@ const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 const User = require('../module/user')
 exports.productsShop = (req,res,next)=> {
-     
-Products.find().then(respond=>{
-res.render("shop/product_list",{
-pageTitle : "All Products List",
-path:"/products",
-prods : respond
+const min = req.query.min;
+const max = req.query.max;
+const category = req.query.category;
 
-})
+let filter ={};
+
+// Filtering 
+/// Price 
+if(min || max){
+     filter.price = {}
+     if(min) filter.price.$gte = +min;
+     if(max) filter.price.$lte = +max;
+}
+
+/// Category Filter 
+if(category) {
+     filter.category = category
+}
+
+Products.find(filter).then(respond=>{
+     res.render("shop/product_list",{
+          pageTitle : "All Products List",
+          path:"/products",
+          prods : respond
+     })
 }).catch(err=>{
      console.error(err)
 })
