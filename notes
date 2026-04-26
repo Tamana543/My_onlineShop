@@ -57,7 +57,7 @@ csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the s
 
 to do : 
 
-* Filter (price range / category) (before starting fix the Products page style)
+* Filter (price range / category)
 * Wishlist / Favorites
 * Order history improvements (price, date, status)
 * Reorder button
