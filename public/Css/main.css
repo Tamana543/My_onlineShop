@@ -90,7 +90,7 @@ border: none ;
 
 .search-form input {
   border: none;
-  background: transparent;
+  background: transparent !important;
   color: #fff;
   outline: none;
   padding: 5px;
@@ -102,8 +102,10 @@ border: none ;
   height: 100%;
 }
 
+
 .search-form button {
-   background: transparent;
+   background: transparent !important;
+
   border: none;
   cursor: pointer;
   color: #DDB321;
@@ -112,6 +114,11 @@ border: none ;
 
 .search-form button:hover {
   box-shadow: 0 0 8px rgba(221, 179, 33, 0.6);
+}
+.search-form input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 1000px #1A2226 inset !important;
+  -webkit-text-fill-color: #f4d569e2 !important;
+  transition: background-color 9999s ease-in-out 0s;
 }
 .nav-wrapper {
   width: 100%;
