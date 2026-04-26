@@ -6,6 +6,20 @@
 .sub_head {
      margin: 5% 0%;
 }
+.filter-form {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+}
+
+.filter-form input,
+.filter-form select {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #DDB321;
+  background: transparent;
+  color: rgb(103, 99, 99);
+}
 .product-form {
      width: 20rem;
      max-width: 90%;
