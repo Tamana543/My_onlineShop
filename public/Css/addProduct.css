@@ -36,9 +36,12 @@ input,textarea {
   width: 350px;
   height: 30px;
 }
+
 input:focus,
-textarea:focus {
-  border-color: #ffeb3b;
+textarea:focus,
+select:focus-visible {
+  border-color: #ffeb3b !important;
+  outline: #ffeb3b !important;
   box-shadow: 0 0 8px rgba(221, 179, 33, 0.4);
 }
 input:-webkit-autofill,
@@ -47,8 +50,62 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #f4d569e2 !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*  For fire fox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 textarea {
      height: 90px !important;
+}
+select{
+
+  -webkit-appearance: none; /*Safari and Chrome */
+  -moz-appearance: none;    /*Firefox */
+  appearance: none;         /* Standard property */
+  background: transparent;  /* Removes the main white background */
+}
+.category {
+  display: flex;
+  gap: 10px;
+align-items: center;
+}
+
+
+.category input {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #DDB321;
+  background: transparent;
+  color: rgb(103, 99, 99);
+
+        width: 364px;
+    height: 39px;
+}
+
+.category select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #111 !important; 
+    color: #f4d569e2 !important;       
+    padding: 8px 15px;
+    border: 1px solid #DDB321;
+    border-radius: 5px;
+    width: 364px;
+    height: 45px; 
+    cursor: pointer;
+}
+
+select option {
+    background-color: #111 !important; 
+    color: #f4d569e2 !important;       
+    padding: 10px;
 }
 .add_product-btn {
      width: 300px;

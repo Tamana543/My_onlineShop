@@ -6,20 +6,48 @@
 .sub_head {
      margin: 5% 0%;
 }
-.filter-form {
+.filter-form{
   display: flex;
   gap: 10px;
   margin: 20px;
 }
 
-.filter-form input,
-.filter-form select {
+.filter-form input{
   padding: 6px;
   border-radius: 5px;
   border: 1px solid #DDB321;
   background: transparent;
   color: rgb(103, 99, 99);
 }
+.filter-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #111 !important; 
+    color: #f4d569e2 !important;       
+    padding: 8px 15px;
+    border: 1px solid #DDB321;
+    border-radius: 5px;
+    width: 364px;
+    height: 45px; 
+    cursor: pointer;
+}
+
+.filter-form select option {
+    background-color: #111 !important; 
+    color: #f4d569e2 !important;       
+    padding: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*  For fire fox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .product-form {
      width: 20rem;
      max-width: 90%;

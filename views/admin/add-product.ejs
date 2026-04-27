@@ -23,12 +23,7 @@
                     <label for="price">Price</label>
                     <input type="number" name="price" step="0.01" class="add_inputs">
                </div>
-               <div class="form-control flex">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" rows="5" class="add_inputs"></textarea>
-                   
-               </div>
-               <div class="form-control">
+                <div class="form-control category">
                <label for="category">Category</label>
                     <select name="category" id="category" required>
                          <option value="">Select Category</option>
@@ -38,6 +33,12 @@
                          <option value="limited">Limited Edition</option>
                     </select>
                </div>
+               <div class="form-control flex">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" rows="5" class="add_inputs"></textarea>
+                   
+               </div>
+              
                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                <button type="submit" class="add_product-btn">Add Product</button>
           </form>
