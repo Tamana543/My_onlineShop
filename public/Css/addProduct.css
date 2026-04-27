@@ -51,12 +51,13 @@ textarea:-webkit-autofill {
   transition: background-color 9999s ease-in-out 0s;
 }
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-inner-spin-button,
+textarea::-webkit-scrollbar {
   -webkit-appearance: none;
   margin: 0;
 }
 /*  For fire fox */
-input[type=number] {
+input[type=number],textarea::-webkit-scrollbar {
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -64,6 +65,15 @@ input[type=number] {
 textarea {
      height: 90px !important;
 }
+textarea::-webkit-scrollbar-thumb {
+    background: #c99c38; /* Gold scrollbar thumb */
+    border-radius: 2px;
+}
+textarea::-webkit-scrollbar {
+    width: 5px;
+}
+
+
 select{
 
   -webkit-appearance: none; /*Safari and Chrome */
