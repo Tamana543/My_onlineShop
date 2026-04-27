@@ -22,14 +22,16 @@ exports.postproducts = (req,res,next)=> {
      const imageUrl = req.body.imageUrl;
      const price = req.body.price;
      const description = req.body.description;
+     const category = req.body.category
 
   const productData = new Products(
     { title :  title,
      imageUrl : imageUrl,
      description : description,
      price : price,
-csrfToken : req.csrfToken(),
-userId: req.user._id
+     category : category,
+     csrfToken : req.csrfToken(),
+     userId: req.user._id
    
      }
 )
