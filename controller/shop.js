@@ -258,8 +258,6 @@ exports.checkoutPostProducts = (req,res,next)=>{
           res.redirect("/orders")
      }).catch(err =>console.log(err))
 }
-
-
 exports.paymentPostProduct = (req, res, next) => {
      console.log(req.body)
   const { name, address, payment } = req.body;
@@ -303,7 +301,6 @@ exports.paymentPostProduct = (req, res, next) => {
       res.status(500).json({ success: false });
     });
 };
-
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId.trim();
 
@@ -316,7 +313,6 @@ exports.deletePostProduct = (req,res,next)=>{
   });
 
 };
-
 exports.searchProducts = (req, res, next) => {
   const searchTerm = req.query.q.trim();
 
@@ -337,6 +333,31 @@ exports.searchProducts = (req, res, next) => {
         path: "/search",
         isSearch: true,
         searchTerm: searchTerm
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+exports.postWishlist = (req,res,next) =>{
+      const prodId = req.body.productId;
+
+  req.user.removeFromWishlist(prodId)
+    .then(() => {
+      res.redirect('/wishlist');
+    })
+    .catch(err => console.log(err)); 
+}
+
+exports.getWishlist = (req, res, next) => {
+  req.user
+    .populate('wishlist.items.productId')
+    .then(user => {
+      const products = user.wishlist.items;
+
+      res.render('shop/wishlist', {
+        prods: products,
+        pageTitle: 'Your Wishlist',
+        path: '/wishlist'
       });
     })
     .catch(err => console.log(err));
