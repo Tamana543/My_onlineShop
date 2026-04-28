@@ -86,4 +86,22 @@ userMainSchema.methods.deleteItemCard = function(prod_id){
 
 
 }
+userMainSchema.methods.addToWishList = function(product){
+     const exists = this.wishlist.items.find(item=>{
+          return item.productId.toString() === product._id.toString()
+     })
+
+     if(exists) {
+          return Promise.resolve(this)
+     }
+this.wishlist.items.push({productId : product._id})
+return this.save()
+}
+userMainSchema.methods.removeFromWishlist = function(prodId) {
+  this.wishlist.items = this.wishlist.items.filter(item => {
+    return item.productId.toString() !== prodId.toString();
+  });
+
+  return this.save();
+};
 module.exports = mongoose.model('User',userMainSchema)
