@@ -29,6 +29,17 @@ const userMainSchema = new Schema({
                }
           ]
      },
+     wishlist: {
+  items: [
+    {
+      productId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+      }
+    }
+  ]
+}
      
 })
 userMainSchema.methods.addToCart = function(product){
