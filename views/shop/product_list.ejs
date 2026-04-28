@@ -47,6 +47,14 @@
                                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                               <button class="btn " >Add to Cart</button>
                          </form>
+                         <form action="/wishlist" method="POST" class="wishlist-form">
+                              <input type="hidden" name="productId" value="<%= product._id %>">
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                              <button type="submit" class="wishlist-btn">
+                              <i class="ri-heart-line"></i>
+                              </button>
+                         </form>
                          </div>
                     </article>
                     <% }%>

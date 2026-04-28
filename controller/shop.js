@@ -338,15 +338,18 @@ exports.searchProducts = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.postWishlist = (req,res,next) =>{
-      const prodId = req.body.productId;
+exports.postWishlist = (req, res, next) => {
+  const prodId = req.body.productId;
 
-  req.user.removeFromWishlist(prodId)
+  Products.findById(prodId)
+    .then(product => {
+      return req.user.addToWishlist(product); 
+    })
     .then(() => {
       res.redirect('/wishlist');
     })
-    .catch(err => console.log(err)); 
-}
+    .catch(err => console.log(err));
+};
 
 exports.getWishlist = (req, res, next) => {
   req.user
@@ -359,6 +362,15 @@ exports.getWishlist = (req, res, next) => {
         pageTitle: 'Your Wishlist',
         path: '/wishlist'
       });
+    })
+    .catch(err => console.log(err));
+};
+exports.postRemoveWishlist = (req, res, next) => {
+  const prodId = req.body.productId;
+
+  req.user.removeFromWishlist(prodId)
+    .then(() => {
+      res.redirect('/wishlist');
     })
     .catch(err => console.log(err));
 };

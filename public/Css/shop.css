@@ -101,6 +101,32 @@ input[type=number] {
    width: 100%;
    gap: 1.1%;
  }
+ /* Wishlist  */
+ .wishlist-btn {
+  background: transparent;
+  border: 1px solid #f0d77e;
+  color: #f0d77e;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn i {
+  font-size: 1.2rem;
+}
+
+.wishlist-btn:hover {
+  background: linear-gradient(135deg, #f0d77e, #c99c38);
+  color: #000;
+  transform: scale(1.1);
+}
  .spinner {
   width: 16px;
   height: 16px;
