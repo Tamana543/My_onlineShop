@@ -28,4 +28,8 @@ router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
 
 router.get("/search", shopController.searchProducts);
 
+router.get('/wishlist', rootAuth, shopController.getWishlist);
+router.post('/wishlist', rootAuth, shopController.postWishlist);
+router.post('/wishlist-delete', rootAuth, shopController.postRemoveWishlist);
+
 module.exports = router
