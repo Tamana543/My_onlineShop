@@ -17,7 +17,13 @@
   border-radius: 5px;
   border: 1px solid #DDB321;
   background: transparent;
-  color: rgb(103, 99, 99);
+  color: rgb(170 168 168);
+}
+.filter-form input:focus,
+.filter-form select:focus {
+      border-color: #ffeb3b !important;
+    outline: #ffeb3b !important;
+    box-shadow: 0 0 8px rgba(221, 179, 33, 0.4);
 }
 .filter-form select {
     appearance: none;
