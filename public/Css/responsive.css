@@ -11,6 +11,9 @@
       margin: 0 auto;
     width: 58%;
 }
+.card {
+  margin-bottom: 5%;
+}
 .home_main {
   min-width: 48vh;
 }
@@ -123,6 +126,14 @@ header {
     border: none;
     color: #f0d77e;
     cursor: pointer;
+}
+.filter-form {
+  flex-direction: column !important;
+          width: 80%;
+}
+.filter-form select,
+.filter-form select option{
+  width: 100%;
 }
 }
 
