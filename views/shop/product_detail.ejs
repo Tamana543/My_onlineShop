@@ -11,13 +11,13 @@
 
 <div class="container product-detail-container">
 
-  <div class="product-detail-card">
+  <div class="product-detail-card flex">
 
     <div class="product-detail-image">
       <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
     </div>
 
-    <div class="product-detail-content">
+    <div class="product-detail-content flex">
 
       <h1 class="product-title"><%= product.title %></h1>
 
@@ -25,12 +25,12 @@
 
       <p class="product-desc"><%= product.description %></p>
 
-      <div class="product-actions">
+      <div class="product-actions flex">
 
         <form action="/add-to-cart" method="post">
           <input type="hidden" name="productId" value="<%= product._id %>">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <button class="btn">Add to Cart</button>
+          <button class="btn details_btn">Add to Cart</button>
         </form>
 
         <form action="/wishlist" method="POST">
