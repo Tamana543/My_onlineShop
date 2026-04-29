@@ -1,0 +1,61 @@
+<%- include('../layouts/start.ejs') %>
+<link rel="stylesheet" href="/Css/shop.css">
+<link rel="stylesheet" href="/Css/responsive.css">
+<script src="/js/main.js" defer></script>
+
+</head>
+<body>
+<div class="container">
+  <%- include('../layouts/navigation.ejs') %>
+
+  <main style="flex-direction: column;">
+
+    <% if (prods.length > 0) { %>
+      <div class="flex_able">
+
+        <% prods.forEach(item => { %>
+          <% if (item.productId) { %>
+
+            <article class="card product-item">
+              <header class="card__header">
+                <h1 class="product__title"><%= item.productId.title %></h1>
+              </header>
+
+              <div class="card__image">
+                <img src="<%= item.productId.imageUrl %>" alt="">
+              </div>
+
+              <div class="card__content">
+                <p class="product__description"><%= item.productId.description %></p>
+                <h2 class="product__price">$<%= item.productId.price %></h2>
+              </div>
+
+              <div class="card__actions flex">
+
+             
+                <form action="/wishlist-delete" method="POST">
+                  <input type="hidden" name="productId" value="<%= item.productId._id %>">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button class="btn delete">Remove</button>
+                </form>
+
+                <form action="/add-to-cart" method="POST">
+                  <input type="hidden" name="productId" value="<%= item.productId._id %>">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button class="btn">Add to Cart</button>
+                </form>
+
+              </div>
+            </article>
+
+          <% } %>
+        <% }) %>
+
+      </div>
+    <% } else { %>
+      <h1>No items in wishlist..</h1>
+    <% } %>
+
+  </main>
+
+<%- include('../layouts/end.ejs') %>
