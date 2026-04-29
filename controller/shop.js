@@ -360,7 +360,8 @@ exports.getWishlist = (req, res, next) => {
       res.render('shop/wishlist', {
         prods: products,
         pageTitle: 'Your Wishlist',
-        path: '/wishlist'
+        path: '/wishlist',
+        csrfToken: req.csrfToken()
       });
     })
     .catch(err => console.log(err));

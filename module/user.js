@@ -86,7 +86,7 @@ userMainSchema.methods.deleteItemCard = function(prod_id){
 
 
 }
-userMainSchema.methods.addToWishList = function(product){
+userMainSchema.methods.addToWishlist = function(product){
      const exists = this.wishlist.items.find(item=>{
           return item.productId.toString() === product._id.toString()
      })
@@ -94,8 +94,9 @@ userMainSchema.methods.addToWishList = function(product){
      if(exists) {
           return Promise.resolve(this)
      }
-this.wishlist.items.push({productId : product._id})
-return this.save()
+
+     this.wishlist.items.push({productId : product._id})
+     return this.save()
 }
 userMainSchema.methods.removeFromWishlist = function(prodId) {
   this.wishlist.items = this.wishlist.items.filter(item => {
