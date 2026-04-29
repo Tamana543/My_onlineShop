@@ -189,7 +189,6 @@ exports.invoiceFunction = (req,res,next)=>{
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
-     console.log(prodId);
      Products.findById(prodId).then(product => {
           res.render("shop/product_detail",{
                product : product,
