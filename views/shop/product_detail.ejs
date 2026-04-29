@@ -1,43 +1,52 @@
 <%- include('../layouts/start.ejs') %>
-     <!-- <link rel="stylesheet" href="/Css/addProduct.css"> -->
-      <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <script defer src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-      <link rel="stylesheet" href="/Css/responsive.css">
+
+<link rel="stylesheet" href="/Css/shop.css">
+<link rel="stylesheet" href="/Css/responsive.css">
 <script src="/js/main.js" defer></script>
+
 </head>
-
 <body>
-     <%- include('../layouts/navigation.ejs') %>
-     <div class="container">
-     <main class="flex flex-column">
-            <div class="flex">
-                <img src="<%=product.imageUrl%>" alt="<%= product.title %>" class="z-1 img-fluid rounded w-50 border-bottom border-top border-light-subtle p-1">
-            </div>
-               <div class="col-md-7 flex m-3">
-                    <div class="main-description px-10 border-bottom border-light-subtle  text-center">
-                    
-                         <div class="fs-3 text-bold my-3 z-3">
-                         <%= product.title %>
-                         </div>
 
+<%- include('../layouts/navigation.ejs') %>
 
-                         <div class="price-area my-4">
-                              <p class="old-price mb-1 fs-5"><%= product.price %></p>
-                              <p class="text-secondary mb-1 mt-2 fs-6"><%= product.description %></p>
+<div class="container product-detail-container">
 
-                         </div>
+  <div class="product-detail-card">
 
+    <div class="product-detail-image">
+      <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+    </div>
 
-                         <div class="buttons d-flex my-5 flex">
-                              <form action="/add-to-cart" method="post">
-                                   <input type="hidden" name="productId" value="<%= product._id%>">
-                                   <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                                   <button class="btn btn-dark" >Add to Cart</button>
-                              </form>
-                         </div>
+    <div class="product-detail-content">
 
+      <h1 class="product-title"><%= product.title %></h1>
 
+      <p class="product-price">$<%= product.price %></p>
 
+      <p class="product-desc"><%= product.description %></p>
 
-                </div>
-          <%- include('../layouts/end.ejs') %>
+      <div class="product-actions">
+
+        <form action="/add-to-cart" method="post">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="btn">Add to Cart</button>
+        </form>
+
+        <form action="/wishlist" method="POST">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="btn wishlist-btn">
+            <i class="ri-heart-line"></i>
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- include('../layouts/end.ejs') %>
