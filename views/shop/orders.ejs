@@ -9,49 +9,42 @@
   <div class="container">
     <%- include('../layouts/navigation.ejs') %>
 
-    <main class="flex_1  products-fade" style="flex-direction: column;">
+    <main class="flex_1  products-fade">
       <div class="body_head flex">
 
         <% if (order.length > 0) { %>
           <div class="flex_able  products-fade" style="flex-direction: column;">
 
-            <% for (let singleOrder of order) { %>
-              <% for (let item of singleOrder.products) { %>
+          
+             <% for (let singleOrder of order) { %>
+  <% for (let item of singleOrder.products) { %>
 
-                <article class="card product-item">
-                  <header class="card__header">
-                    <h1 class="product__title">
-                      <%= item.product.title %>
-                    </h1>
-                  </header>
+    <article class="card product-item">
 
-                  <div class="card__image">
-                    <img
-                      src="<%= item.product.imageUrl %>"
-                      alt="<%= item.product.title %>">
-                  </div>
+      <header class="card__header">
+        <h1 class="product__title"><%= item.product.title %></h1>
+      </header>
 
-                  <div class="card__content">
-                    <p class="product__description">
-                      <%= item.product.description %>
-                    </p>
-                    <h2 class="product__price">
-                      $<%= item.product.price %>
-                    </h2>
-                    <div class="flex order_invoice-container">
-                    <p>Quantity: <%= item.quantity %></p>
-                    <a href="/order/<%=singleOrder._id%>" class="btn">View Invoice</a>
-                    <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download Invoice</a>
-                    </div>
-                    
+      <div class="card__image">
+        <img src="<%= item.product.imageUrl %>">
+      </div>
 
-                  </div>
+      <div class="card__content">
+        <p class="product__description"><%= item.product.description %></p>
+        <h2 class="product__price">$<%= item.product.price %></h2>
 
-                </article>
+        <p>Quantity: <%= item.quantity %></p>
 
-              <% } %>
-            <% } %>
+        <div class="flex gap-1">
+          <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
+          <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download</a>
+        </div>
+      </div>
 
+    </article>
+
+  <% } %>
+<% } %>
           </div>
         <% } else { %>
           <h1>No Product Yet!</h1>
