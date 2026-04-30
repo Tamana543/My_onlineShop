@@ -3,7 +3,11 @@ const Order = require('../module/order')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 const User = require('../module/user')
+const itemPerPage = 4;
+
 exports.productsShop = (req,res,next)=> {
+const page = +req.query.page || 1;
+
 const min = req.query.min;
 const max = req.query.max;
 const category = req.query.category;
@@ -23,11 +27,28 @@ if(category) {
      filter.category = category
 }
 
-Products.find(filter).then(respond=>{
+// Pagination
+let totalItem ;
+
+Products.find(filter)
+.countDocuments()
+.then(num=>{
+     totalItem = num;
+
+     return Products.find(filter).skip((page - 1 ) * itemPerPage).limit(itemPerPage)
+
+})
+.then(respond=>{
      res.render("shop/product_list",{
           pageTitle : "All Products List",
           path:"/products",
-          prods : respond
+          prods : respond,
+          currentPage : page,
+          hasNextPage : itemPerPage * page < totalItem,
+          hasPreviousPage : page > 1 ,
+          nextPage : page + 1,
+          previousPage : page -1 ,
+          lastPage : Math.ceil(totalItem / itemPerPage)
      })
 }).catch(err=>{
      console.error(err)
