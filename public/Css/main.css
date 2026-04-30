@@ -3,7 +3,6 @@
 * {
      padding: 0;
      margin: 0;
-     transition: all 0.2s ease-in-out;
 }
 .flex,.flex_1 {
      display:flex;
@@ -445,7 +444,23 @@ footer a:hover {
   transform: scale(1.05);
 }
 
+.products-fade {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn_cards 0.4s ease forwards;
+}
+
 /* animation */
+@keyframes fadeIn_cards {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @keyframes bounce {
   50% {
     transform: translateY(-6px);

@@ -9,11 +9,11 @@
   <div class="container">
     <%- include('../layouts/navigation.ejs') %>
 
-    <main class="flex" style="flex-direction: column;">
+    <main class="flex_1  products-fade" style="flex-direction: column;">
       <div class="body_head flex">
 
         <% if (order.length > 0) { %>
-          <div class="flex_able">
+          <div class="flex_able  products-fade" style="flex-direction: column;">
 
             <% for (let singleOrder of order) { %>
               <% for (let item of singleOrder.products) { %>

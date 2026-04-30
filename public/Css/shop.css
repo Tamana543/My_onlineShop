@@ -75,7 +75,7 @@ input[type=number] {
  }
  
  .product-item {
-  width: 15rem;
+  width: 19rem;
      max-width: 95%;
   
   display: flex;
@@ -113,7 +113,7 @@ input[type=number] {
    justify-content:center;
    align-items: stretch;
    width: 100%;
-   gap: 1.1%;
+   gap: 3%;
  }
  /* Wishlist  */
  .wishlist-btn {
@@ -164,6 +164,7 @@ input[type=number] {
   background: #111;
   justify-content: space-between !important;
   height: 100%;
+  margin-bottom: 2%;
 }
 
 .card:hover {
@@ -189,7 +190,7 @@ input[type=number] {
     display: flex;
     justify-content: center;
     align-items: center;
-        gap: 2%;
+    gap: 3%;
   }
 
    .card__image img {
@@ -317,6 +318,7 @@ footer {
     margin-top: 40px;
     text-align: center;
 }
+
 
 
 @keyframes spin {
