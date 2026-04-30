@@ -1,3 +1,13 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*  For fire fox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
 .body_head {
      flex-direction: column;
      justify-content: space-between;
@@ -43,15 +53,19 @@
     color: #f4d569e2 !important;       
     padding: 10px;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+/* Pagination  */
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
-/*  For fire fox */
-input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
+
+.page-info {
+  color: #bbb;
 }
 
 .product-form {
