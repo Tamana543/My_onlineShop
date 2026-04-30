@@ -64,4 +64,17 @@
                      <span style="font-size:0.9rem;">Start by adding your first product</span>
                <% }%>
           </div>
+          <div class="pagination">
+
+               <% if (hasPreviousPage) { %>
+                    <a href="/products?page=<%= previousPage %>&min=<%= min || '' %>&max=<%= max || '' %>&category=<%= category || '' %>" class="btn">Prev</a>
+               <% } %>
+
+               <span class="page-info">Page <%= currentPage %> of <%= lastPage %></span>
+
+               <% if (hasNextPage) { %>
+                    <a href="/products?page=<%= nextPage %>&min=<%= min || '' %>&max=<%= max || '' %>&category=<%= category || '' %>" class="btn">Next</a>
+               <% } %>
+
+          </div>
          <%- include('../layouts/end.ejs') %>

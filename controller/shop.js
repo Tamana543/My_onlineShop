@@ -48,7 +48,10 @@ Products.find(filter)
           hasPreviousPage : page > 1 ,
           nextPage : page + 1,
           previousPage : page -1 ,
-          lastPage : Math.ceil(totalItem / itemPerPage)
+          lastPage : Math.ceil(totalItem / itemPerPage),
+          min,
+          max,
+          category,
      })
 }).catch(err=>{
      console.error(err)
