@@ -30,24 +30,33 @@
       </div>
 
       <div class="card__content">
-        <p class="product__description"><%= item.product.description %></p>
-        <h2 class="product__price">$<%= item.product.price %></h2>
 
-        <p style="text-align: center;">Quantity: <%= item.quantity %></p>
-        <p class="order-date">
-        Ordered on: <%= new Date(singleOrder.createdAt).toLocaleDateString() %>
-        </p>
-        <p class="order-status <%= (singleOrder.status || 'processing').toLowerCase() %>">
-        <%= singleOrder.status || 'Processing' %>
-        </p>
-        <%= singleOrder.status %>
-        </p>
+  <p class="product__description">
+    <%= item.product.description %>
+  </p>
 
-        <div class="flex" style="margin-top: 6%; gap: 3%;">
-          <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
-          <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download</a>
-        </div>
-      </div>
+  <h2 class="product__price">
+    $<%= item.product.price %>
+  </h2>
+
+  <p class="order-qty">Qty: <%= item.quantity %></p>
+
+  <div class="order-meta">
+    <span class="order-date">
+      <%= orderDate %>
+    </span>
+
+    <span class="order-status <%= (singleOrder.status || 'processing').toLowerCase() %>">
+      <%= singleOrder.status || 'Processing' %>
+    </span>
+  </div>
+
+  <div class="order-actions">
+    <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
+    <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download</a>
+  </div>
+
+</div>
 
     </article>
 

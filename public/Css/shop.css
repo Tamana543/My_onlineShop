@@ -219,43 +219,59 @@ input[type=number] {
   transform: scale(1.05);
 }
 /* order page */
-.order-box {
-  width: 100%;
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid rgba(240, 215, 126, 0.2);
-  border-radius: 12px;
+.card {
   background: #0d0d0d;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(221, 179, 33, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.order-title {
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(221, 179, 33, 0.35);
+}
+
+.card__content {
+  margin-top: 15px;
+  text-align: center;
+}
+
+
+.product__description {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+
+.product__price {
+  font-size: 1.5rem;
   color: #f0d77e;
-  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-.order-actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+
+.order-qty {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 5px;
 }
-.order_invoice-container {
-    flex-direction: column !important;
-    margin: 1%;
-    
-  }
-.order_invoice-container a {
-    margin-top: 5% !important ;
-  }
-  .p-1 {
-     padding: 0.5% 1.5% !important;
-  }
+
+.order-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
 .order-status {
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  margin-top: 8px;
-  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 
 .order-status.processing {
@@ -263,13 +279,16 @@ input[type=number] {
   color: #000;
 }
 
-.order-status.paid {
-  background: #2ecc71;
-  color: #000;
+.order-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.order-status.pending {
-  background: #e67e22;
+.order-actions .btn {
+  font-size: 0.8rem;
+  padding: 6px 12px;
 }
   
 /* Product details style  */
