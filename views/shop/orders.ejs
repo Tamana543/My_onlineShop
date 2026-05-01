@@ -34,7 +34,12 @@
         <h2 class="product__price">$<%= item.product.price %></h2>
 
         <p style="text-align: center;">Quantity: <%= item.quantity %></p>
-        
+        <p class="order-date">
+        Ordered on: <%= new Date(singleOrder.createdAt).toLocaleDateString() %>
+        </p>
+        <p class="order-status <%= singleOrder.status.toLowerCase() %>">
+        <%= singleOrder.status %>
+        </p>
 
         <div class="flex" style="margin-top: 6%; gap: 3%;">
           <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>

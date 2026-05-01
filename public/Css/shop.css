@@ -250,7 +250,27 @@ input[type=number] {
   .p-1 {
      padding: 0.5% 1.5% !important;
   }
+.order-status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  display: inline-block;
+}
 
+.order-status.processing {
+  background: #f0d77e;
+  color: #000;
+}
+
+.order-status.paid {
+  background: #2ecc71;
+  color: #000;
+}
+
+.order-status.pending {
+  background: #e67e22;
+}
   
 /* Product details style  */
 
