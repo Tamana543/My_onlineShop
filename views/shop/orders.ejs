@@ -13,7 +13,7 @@
       <div class="body_head flex">
 
         <% if (order.length > 0) { %>
-          <div class="flex_able  products-fade" style="flex-direction: column;">
+          <div class="flex_able  products-fade" >
 
           
              <% for (let singleOrder of order) { %>
@@ -33,9 +33,10 @@
         <p class="product__description"><%= item.product.description %></p>
         <h2 class="product__price">$<%= item.product.price %></h2>
 
-        <p>Quantity: <%= item.quantity %></p>
+        <p style="text-align: center;">Quantity: <%= item.quantity %></p>
+        
 
-        <div class="flex gap-1">
+        <div class="flex" style="margin-top: 6%; gap: 3%;">
           <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
           <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download</a>
         </div>
