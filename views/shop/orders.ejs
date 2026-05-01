@@ -37,7 +37,9 @@
         <p class="order-date">
         Ordered on: <%= new Date(singleOrder.createdAt).toLocaleDateString() %>
         </p>
-        <p class="order-status <%= singleOrder.status.toLowerCase() %>">
+        <p class="order-status <%= (singleOrder.status || 'processing').toLowerCase() %>">
+        <%= singleOrder.status || 'Processing' %>
+        </p>
         <%= singleOrder.status %>
         </p>
 

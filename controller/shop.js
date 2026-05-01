@@ -128,9 +128,11 @@ return res.redirect('/cart')
                     userId : req.user._id
                },
               products: [{
-          quantity: product.quantity,
-          product: { ...product.productId._doc }
-        }]
+                    quantity: product.quantity,
+                    product: { ...product.productId._doc }
+               }],
+                status: "Processing",
+                createdAt: new Date()
           })
 
           return order.save().then(() => {
