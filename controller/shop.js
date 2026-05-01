@@ -121,7 +121,7 @@ exports.orderPostProducts = (req,res,next)=>{
         if(!product){
 return res.redirect('/cart')
         }
-// console.log("DDDDDDDDD",req.user);
+
           const order = new Order({
                user : {
                     name : req.user.email,
@@ -131,8 +131,7 @@ return res.redirect('/cart')
                     quantity: product.quantity,
                     product: { ...product.productId._doc }
                }],
-                status: "Processing",
-                createdAt: new Date()
+                status: "Processing"
           })
 
           return order.save().then(() => {

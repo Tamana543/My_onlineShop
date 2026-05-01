@@ -27,6 +27,10 @@ const mainOrderSchema = new Schema({
           paymentMethod: String,
           status : String,
           createdAt: Date
+     },
+     createdAt: {
+          type: Date,
+          default: Date.now
      }
 })
 

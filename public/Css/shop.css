@@ -9,10 +9,11 @@ input[type=number] {
   appearance: textfield;
 }
 .body_head {
-     flex-direction: row;
+     flex-direction: column;
      justify-content: space-between;
      min-height: 100%;
      width: 100%;
+         text-align: center;
 }
 .sub_head {
      margin: 5% 0%;

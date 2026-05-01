@@ -10,13 +10,18 @@
     <%- include('../layouts/navigation.ejs') %>
 
     <main class="flex_1  products-fade">
-      <div class="body_head flex">
+      <div class="body_head flex" style="flex-direction: row !important;">
 
         <% if (order.length > 0) { %>
           <div class="flex_able  products-fade" >
 
           
              <% for (let singleOrder of order) { %>
+               
+              <% const orderDate = singleOrder.createdAt 
+                ? new Date(singleOrder.createdAt).toLocaleDateString() 
+                : "N/A"; %>
+
   <% for (let item of singleOrder.products) { %>
 
     <article class="card product-item">
@@ -64,8 +69,8 @@
 <% } %>
           </div>
         <% } else { %>
-          <h1>No Product Yet!</h1>
-           <span style="font-size:0.9rem;">Start by adding your first product</span>
+          <h1 style=" width: 100%;">No Product Yet!</h1>
+           
         <% } %>
 
       </div>
