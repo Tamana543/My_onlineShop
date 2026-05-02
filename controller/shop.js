@@ -102,7 +102,8 @@ exports.orderProducts = (req,res,next)=>{
                {
                     order : products,
                      pageTitle : "Your Orders",
-                     path:"/orders"
+                     path:"/orders",
+                     csrfToken : req.csrfToken()
                     
                }) 
      })
@@ -147,19 +148,21 @@ return res.redirect('/cart')
 
 
 }
-exports.postReorder = (req,res,next)=>{
-     const orderId = req.body.orderId;
-     Order.findById(orderId)
-     .then(order=>{
-     if(!order) {
-          return res.redirect('/orders')
-     }
-     const promises = order.products.map(item => {
+exports.postReorder = (req, res, next) => {
+  const orderId = req.body.orderId;
+
+  Order.findById(orderId)
+    .then(order => {
+      if (!order) {
+        return res.redirect('/orders');
+      }
+
+      const promises = order.products.map(item => {
         return Products.findById(item.product._id)
           .then(product => {
             if (!product) return;
-     })  
-     let chain = Promise.resolve();
+
+            let chain = Promise.resolve();
 
             for (let i = 0; i < item.quantity; i++) {
               chain = chain.then(() => req.user.addToCart(product));
@@ -167,12 +170,15 @@ exports.postReorder = (req,res,next)=>{
 
             return chain;
           });
-           return Promise.all(promises);
-      })
-      .then(
-          res.redirect('/cart')
-      ).catch(err=>console.log(err))
-}
+      });
+
+      return Promise.all(promises);
+    })
+    .then(() => {
+      res.redirect('/cart'); 
+    })
+    .catch(err => console.log(err));
+};
 
 exports.invoiceFunction = (req,res,next)=>{
      const shouldDownload = req.query.download === "true";
