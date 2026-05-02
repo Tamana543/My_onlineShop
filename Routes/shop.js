@@ -25,6 +25,7 @@ router.get("/checkout",rootAuth,shopController.checkoutProducts)
 router.post("/create-order",rootAuth,shopController.paymentPostProduct)
 
 router.get("/order/:orderId", rootAuth,shopController.invoiceFunction)
+router.post('/reorder', rootAuth, shopController.postReorder);
 
 router.get("/search", shopController.searchProducts);
 
