@@ -59,6 +59,11 @@
   <div class="order-actions">
     <a href="/order/<%=singleOrder._id%>" class="btn">Invoice</a>
     <a href="/order/<%=singleOrder._id%>?download=true" class="btn">Download</a>
+    <form action="/reorder" method="POST">
+  <input type="hidden" name="orderId" value="<%= singleOrder._id %>">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <button class="btn">Reorder</button>
+</form>
   </div>
 
 </div>
