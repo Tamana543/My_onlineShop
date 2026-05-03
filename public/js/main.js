@@ -103,7 +103,7 @@ if (checkoutForm) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "csrf-token": csrfToken
+        "x-csrf-token": csrfToken
       },
       body: JSON.stringify({
         name: checkoutForm.name.value,
