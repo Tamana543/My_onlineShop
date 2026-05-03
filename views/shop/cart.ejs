@@ -42,12 +42,14 @@
                                         
                                              </form>
 
-                                             <form action="/order_Item" method="POST" class="flex_1">
+                                             <!-- <form action="/order_Item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                              <button class="btn custom-btn order-btn" type="submit">
-                                             <span class="btn-text">Order</span>
-                                            
+                                             <span class="btn-text">Order</span> -->
+                                            <div class="flex justify-center mt-4">
+                                                  <a href="/checkout" class="btn custom-btn order-btn">Proceed Checkout</a>
+                                             </div>
                                              </button>
                                              </form>
                                         </div>

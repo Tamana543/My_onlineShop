@@ -96,23 +96,21 @@ if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    console.log("SUBMIT WORKING");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Processing...";
 
-    // const formData = new FormData(checkoutForm);
-    // formData.append('_csrf', csrfToken);
-
-   fetch("/create-order", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "csrf-token": csrfToken
-  },
-  body: JSON.stringify({
-    name: checkoutForm.name.value,
-    address: checkoutForm.address.value,
-    payment: checkoutForm.payment.value
-  })
-})
+    fetch("/create-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "csrf-token": csrfToken
+      },
+      body: JSON.stringify({
+        name: checkoutForm.name.value,
+        address: checkoutForm.address.value,
+        payment: checkoutForm.payment.value
+      })
+    })
     .then(res => {
       if (!res.ok) throw new Error("Request failed");
       return res.json();
@@ -120,14 +118,22 @@ if (checkoutForm) {
     .then(data => {
       if (data.success) {
         successModal.classList.remove("hidden");
+        successModal.classList.add("fade-in");
+        setTimeout(() => {
+          window.location.href = "/orders";
+        }, 2000);
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Try Again";
+    });
   });
 }
 
 successBtn?.addEventListener("click", () => {
-  window.location.href = "/";
+    window.location.href = "/orders";
   submitBtn.disabled = true;
 submitBtn.innerText = "Processing...";
 });
