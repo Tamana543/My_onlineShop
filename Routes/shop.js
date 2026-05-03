@@ -17,7 +17,7 @@ router.post("/add-to-cart",rootAuth,shopController.postCardShop)
 router.post('/cart-delete-item',rootAuth,shopController.deletePostProduct)
 
 router.get("/orders",rootAuth,shopController.orderProducts)
-router.post("/order_Item",rootAuth,shopController.orderPostProducts)
+// router.post("/order_Item",rootAuth,shopController.orderPostProducts) the flow (note js)
 
 router.get("/checkout",rootAuth,shopController.checkoutProducts)
 

@@ -108,46 +108,6 @@ exports.orderProducts = (req,res,next)=>{
                }) 
      })
 }
-exports.orderPostProducts = (req,res,next)=>{
-     const prodId =req.body.productId.trim();
-   if(!req.user){
-     return res.redirect('/login')
-  }
-
-     req.user.populate('cart.items.productId').then(user=>{
-          const product = user.cart.items.find(item =>{
-               // return {quantity : i.quantity, product : {...i.productId._doc}}
-               return  item.productId._id.toString() === prodId.toString()
-               })
-        if(!product){
-return res.redirect('/cart')
-        }
-
-          const order = new Order({
-               user : {
-                    name : req.user.email,
-                    userId : req.user._id
-               },
-              products: [{
-                    quantity: product.quantity,
-                    product: { ...product.productId._doc }
-               }],
-                status: "Processing"
-          })
-
-          return order.save().then(() => {
-               console.log("Here", req.user);
-               return  user.deleteItemCard(prodId);
-          });
-     }).then((result)=>{
-           res.redirect("/orders")
-     })
-     .catch(err=>{
-          console.log(err)
-     })
-
-
-}
 exports.postReorder = (req, res, next) => {
   const orderId = req.body.orderId;
 
@@ -433,3 +393,44 @@ exports.postRemoveWishlist = (req, res, next) => {
     })
     .catch(err => console.log(err));
 };
+
+// exports.orderPostProducts = (req,res,next)=>{
+//      const prodId =req.body.productId.trim();
+//    if(!req.user){
+//      return res.redirect('/login')
+//   }
+
+//      req.user.populate('cart.items.productId').then(user=>{
+//           const product = user.cart.items.find(item =>{
+//                // return {quantity : i.quantity, product : {...i.productId._doc}}
+//                return  item.productId._id.toString() === prodId.toString()
+//                })
+//         if(!product){
+// return res.redirect('/cart')
+//         }
+
+//           const order = new Order({
+//                user : {
+//                     name : req.user.email,
+//                     userId : req.user._id
+//                },
+//               products: [{
+//                     quantity: product.quantity,
+//                     product: { ...product.productId._doc }
+//                }],
+//                 status: "Processing"
+//           })
+
+//           return order.save().then(() => {
+//                console.log("Here", req.user);
+//                return  user.deleteItemCard(prodId);
+//           });
+//      }).then((result)=>{
+//            res.redirect("/orders")
+//      })
+//      .catch(err=>{
+//           console.log(err)
+//      })
+
+
+// }
