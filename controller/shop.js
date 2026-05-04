@@ -292,7 +292,7 @@ exports.checkoutPostProducts = (req,res,next)=>{
      }).catch(err =>console.log(err))
 }
 exports.paymentPostProduct = (req, res, next) => {
-     console.log(req.body)
+    //  console.log(req.body)
   const { name, address, payment } = req.body;
 
 
@@ -302,10 +302,16 @@ exports.paymentPostProduct = (req, res, next) => {
 
   req.user.populate('cart.items.productId')
     .then(user => {
-      const products = user.cart.items.map(item => ({
-        quantity: item.quantity,
-        product: { ...item.productId._doc }
-      }));
+      // const products = user.cart.items.map(item => ({
+      //   quantity: item.quantity,
+      //   product: { ...item.productId._doc }
+      // }));
+      const item = user.cart.items.find(ind=>{
+        return ind.productId._id.toString() === productId.toString()
+      });
+      if(!item){
+        return res.status(404).json({success: false})
+      }
 
       const order = new Order({
         user: {
@@ -313,7 +319,10 @@ exports.paymentPostProduct = (req, res, next) => {
           address,
           userId: req.user._id
         },
-        products: products,
+        products: [{
+          quantity : item.quantity,
+          product:{...item.productId._doc}
+        }],
         paymentMethod: payment,
         status: payment === "card" ? "Paid" : "Pending",
         createdAt: new Date()
@@ -322,7 +331,7 @@ exports.paymentPostProduct = (req, res, next) => {
       return order.save()
         .then((user) => {
           // console.log(user._id)
-          req.user.deleteItemCard(user._id)
+          req.user.deleteItemCard(productId)
     })
         .then(() => {
           console.log("ORDER SAVED"); 
