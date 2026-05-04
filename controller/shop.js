@@ -236,14 +236,30 @@ exports.indexProducts = (req,res,next)=>{
 exports.checkoutProducts = (req,res,next)=>{
   req.user.populate('cart.items.productId')
   .then(user => {
-    const cart = user.cart.items.filter(item => item.productId !== null);
+    // const cart = user.cart.items.filter(item => item.productId !== null);
+    const productId = req.query.productId;
 
-    res.render("shop/checkout", {
-      prods: cart,
-      pageTitle: "Checkout",
-      path: "/checkout",
-      csrfToken: req.csrfToken()
-    });
+    req.user.populate('cart.items.productId')
+    .then(user=>{
+      let selectedItems; 
+      if(productId) {
+        selectedItems = user.cart.items.filter(
+          item=> item.productId._id.toString()=== productId.toString()
+        );
+      }else {
+        selectedItems = user.cart.items;
+      }
+
+      res.render("shop/checkout", {
+        prods: selectedItems,
+        pageTitle: "Checkout",
+        path: "/checkout",
+        csrfToken: req.csrfToken()
+      });
+
+    })
+    .catch(err=>console.log(err))
+
   })
   .catch(err => console.log(err));
 };
