@@ -176,9 +176,6 @@ footer a:hover {
   z-index: 999;
 }
 
-.hidden {
-  display: none;
-}
 
 
 .confirm-box {
@@ -364,7 +361,7 @@ footer a:hover {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* success animation*/
@@ -436,7 +433,7 @@ footer a:hover {
   padding: 6px 12px;
   transition: all 0.25s ease;
   font-weight: 500;
-  margin-top: 8%;
+  margin-top: 3%;
 }
 
 .btn:hover {

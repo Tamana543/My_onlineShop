@@ -292,8 +292,7 @@ exports.checkoutPostProducts = (req,res,next)=>{
      }).catch(err =>console.log(err))
 }
 exports.paymentPostProduct = (req, res, next) => {
-    //  console.log(req.body)
-  const { name, address, payment } = req.body;
+  const { name, address, payment, productId } = req.body;
 
 
   if (!req.user) {
@@ -302,10 +301,6 @@ exports.paymentPostProduct = (req, res, next) => {
 
   req.user.populate('cart.items.productId')
     .then(user => {
-      // const products = user.cart.items.map(item => ({
-      //   quantity: item.quantity,
-      //   product: { ...item.productId._doc }
-      // }));
       const item = user.cart.items.find(ind=>{
         return ind.productId._id.toString() === productId.toString()
       });

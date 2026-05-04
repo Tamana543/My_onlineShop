@@ -108,7 +108,8 @@ if (checkoutForm) {
       body: JSON.stringify({
         name: checkoutForm.name.value,
         address: checkoutForm.address.value,
-        payment: checkoutForm.payment.value
+        payment: checkoutForm.payment.value,
+         productId: checkoutForm.productId.value
       })
     })
     .then(res => {

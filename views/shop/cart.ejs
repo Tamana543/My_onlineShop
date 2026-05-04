@@ -8,28 +8,25 @@
 </head>
 
 <body>
-  <div class="Container">
+<div class="Container">
      <%- include('../layouts/navigation.ejs') %>
      <main class="flex_1" style="flex-direction: column;">
      <% if(prods.length > 0) { %>
-               <ul class="card_continer">
-
-                    <% prods.forEach(prod=> { %>
-                           <% if (prod.productId) { %>
-                         <li class="card_item">
-                       
-                              <div class="card custom-card">
-                                        <img src="<%= prod.productId.imageUrl %>" class="card-img-top" alt="<%= prod.productId.title %>">
-
-                                        <div class="card-body text-center">
-                                        <h5 class="card-title"><%= prod.productId.title %></h5>
-                                        <p class="card-text desc"><%= prod.productId.description %></p>
-                                        <p class="card-text small-text">
+          <ul class="card_continer">
+               <% prods.forEach(prod=> { %>
+               <% if (prod.productId) { %>
+                    <li class="card_item">
+                         <div class="card custom-card">
+                              <img src="<%= prod.productId.imageUrl %>" class="card-img-top" alt="<%= prod.productId.title %>">
+                              <div class="card-body text-center">
+                                   <h5 class="card-title"><%= prod.productId.title %></h5>
+                                   <p class="card-text desc"><%= prod.productId.description %></p>
+                                   <p class="card-text small-text">
                                              You have <%= prod.quantity %> in your cart
-                                        </p>
+                                   </p>
 
-                                        <div class="flex gap-1">
-                                             <form action="/cart-delete-item" method="POST" class="flex_1">
+                                   <div class="flex gap-1">
+                                        <form action="/cart-delete-item" method="POST" class="flex_1">
                                              <input type="hidden" value="<%= prod.productId._id %>" name="productId">
                                              <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                             <button 
@@ -40,17 +37,15 @@
                                              <span class="spinner hidden"></span>
                                              </button>
                                         
-                                             </form>
-                                            <div class="flex justify-center mt-4">
-                                                  <form action="/checkout" method="GET">
-                                                       <input type="hidden" name="productId" value="<%= prod.productId._id %>">
-                                                       <button class="btn custom-btn order-btn">Proceed Checkout</button>
-                                                  </form>
-                                             </div>
-                                             </button>
-                                             </form>
-                                        </div>
-                                        </div>
+                                        </form>
+                                        <form action="/checkout" method="GET" class="flex_1">
+                                                  <input type="hidden" name="productId" value="<%= prod.productId._id %>">
+                                                  <button class="btn custom-btn order-btn">Proceed Checkout</button>
+                                        </form>
+                                        </button>
+                                        </form>
+                                   </div>
+                                   </div>
                               </div>
                               </li>
                               <% } %>
