@@ -234,34 +234,29 @@ exports.indexProducts = (req,res,next)=>{
      // })  
 }
 exports.checkoutProducts = (req,res,next)=>{
+  const productId = req.query.productId;
+
   req.user.populate('cart.items.productId')
-  .then(user => {
-    // const cart = user.cart.items.filter(item => item.productId !== null);
-    const productId = req.query.productId;
+  .then(user=>{
+    let selectedItems; 
 
-    req.user.populate('cart.items.productId')
-    .then(user=>{
-      let selectedItems; 
-      if(productId) {
-        selectedItems = user.cart.items.filter(
-          item=> item.productId._id.toString()=== productId.toString()
-        );
-      }else {
-        selectedItems = user.cart.items;
-      }
+    if(productId) {
+      selectedItems = user.cart.items.filter(
+        item => item.productId._id.toString() === productId.toString()
+      );
+    } else {
+      selectedItems = user.cart.items;
+    }
 
-      res.render("shop/checkout", {
-        prods: selectedItems,
-        pageTitle: "Checkout",
-        path: "/checkout",
-        csrfToken: req.csrfToken()
-      });
-
-    })
-    .catch(err=>console.log(err))
+    res.render("shop/checkout", {
+      prods: selectedItems,
+      pageTitle: "Checkout",
+      path: "/checkout",
+      csrfToken: req.csrfToken()
+    });
 
   })
-  .catch(err => console.log(err));
+  .catch(err=>console.log(err))
 };
 exports.checkoutPostProducts = (req,res,next)=>{
      const { name, address, payment } = req.body;
@@ -324,9 +319,9 @@ exports.paymentPostProduct = (req, res, next) => {
       });
 
       return order.save()
-        .then((user) => {
+        .then(() => {
           // console.log(user._id)
-          req.user.deleteItemCard(productId)
+         return req.user.deleteItemCard(productId)
     })
         .then(() => {
           console.log("ORDER SAVED"); 

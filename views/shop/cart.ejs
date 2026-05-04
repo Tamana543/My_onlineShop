@@ -39,8 +39,10 @@
                                         
                                         </form>
                                         <form action="/checkout" method="GET" class="flex_1">
-                                                  <input type="hidden" name="productId" value="<%= prod.productId._id %>">
-                                                  <button class="btn custom-btn order-btn">Proceed Checkout</button>
+                                             <% if (prods.length > 0) { %>
+                                                  <input type="hidden" name="productId" value="<%= prods[0].productId._id %>">
+                                             <% } %>
+                                             <button class="btn custom-btn order-btn">Proceed Checkout</button>
                                         </form>
                                         </button>
                                         </form>
