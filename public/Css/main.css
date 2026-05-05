@@ -390,7 +390,8 @@ footer a:hover {
 }
 
 .toast.success {
-  background: #28a745;
+   color: #000;
+  background: linear-gradient(135deg, #f0d77e, #c99c38);
 }
 
 .toast.error {

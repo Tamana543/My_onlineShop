@@ -81,11 +81,27 @@ cardInput?.addEventListener("input", (e) => {
   e.target.value = value;
 });
 
+//  Toast Box
+function showToast(message, type = "success") {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.innerText = message;
+
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
 // Checkout Success (Backend) 
 
 const checkoutForm = document.getElementById("checkoutForm");
-const successModal = document.getElementById("successModal");
-const successBtn = document.getElementById("successBtn");
 const csrfToken = document.querySelector('input[name="_csrf"]').value;
 const submitBtn = document.getElementById("checkout_submit");
 
@@ -119,8 +135,7 @@ if (checkoutForm) {
     })
     .then(data => {
       if (data.success) {
-        successModal.classList.remove("hidden");
-        successModal.classList.add("fade-in");
+        showToast("Oreder placed successfully.")
         setTimeout(() => {
           window.location.href = "/orders";
         }, 2000);
@@ -128,17 +143,14 @@ if (checkoutForm) {
     })
     .catch(err => {
       console.log(err);
+      showToast("Something went wrong.","error")
       submitBtn.disabled = false;
       submitBtn.innerText = "Try Again";
     });
   });
 }
 
-successBtn?.addEventListener("click", () => {
-    window.location.href = "/orders";
-  submitBtn.disabled = true;
-submitBtn.innerText = "Processing...";
-});
+
 
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;
