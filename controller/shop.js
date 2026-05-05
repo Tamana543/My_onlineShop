@@ -287,7 +287,7 @@ exports.checkoutPostProducts = (req,res,next)=>{
      }).catch(err =>console.log(err))
 }
 exports.paymentPostProduct = (req, res, next) => {
-  const { name, address, payment, productId } = req.body;
+  const { name, address, payment, productId,quantity } = req.body;
 
 
   if (!req.user) {
@@ -302,7 +302,9 @@ exports.paymentPostProduct = (req, res, next) => {
       if(!item){
         return res.status(404).json({success: false})
       }
-
+      if (quantity < 1) {
+        return res.status(400).json({ success: false });
+      }
       const order = new Order({
         user: {
           name,
@@ -310,7 +312,7 @@ exports.paymentPostProduct = (req, res, next) => {
           userId: req.user._id
         },
         products: [{
-          quantity : item.quantity,
+          quantity: Number(quantity),
           product:{...item.productId._doc}
         }],
         paymentMethod: payment,
