@@ -109,7 +109,8 @@ if (checkoutForm) {
         name: checkoutForm.name.value,
         address: checkoutForm.address.value,
         payment: checkoutForm.payment.value,
-         productId: checkoutForm.productId.value
+         productId: checkoutForm.productId.value,
+         quantity: checkoutForm.quantity.value
       })
     })
     .then(res => {
