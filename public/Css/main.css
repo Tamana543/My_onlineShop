@@ -364,63 +364,37 @@ footer a:hover {
   display: none !important;
 }
 
-/* success animation*/
-.success-modal {
+/*  Toast animation*/
+#toast-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  top: 20px;
+  right: 20px;
   z-index: 9999;
 }
-.success-box {
-  background: #111;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 0 25px rgba(221, 179, 33, 0.3);
-}
-.face-happy {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 15px;
-  background: linear-gradient(to bottom, #fff3a0, #fff);
-  border-radius: 50%;
-  animation: bounce 1.5s infinite;
+
+.toast {
+  background: #222;
+  color: #fff;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
 }
 
-.face-happy .eye {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #333;
-  border-radius: 50%;
-  top: 30px;
-  left: 18px;
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.face-happy .eye.right {
-  left: 52px;
+.toast.success {
+  background: #28a745;
 }
 
-.face-happy .mouth.happy {
-  position: absolute;
-  width: 25px;
-  height: 15px;
-  border: 3px solid #333;
-  border-color: transparent transparent #333 transparent;
-  border-radius: 50%;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+.toast.error {
+  background: #dc3545;
 }
   .btn {
   font: inherit;
