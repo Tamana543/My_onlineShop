@@ -11,6 +11,8 @@ const page = +req.query.page || 1;
 const min = req.query.min;
 const max = req.query.max;
 const category = req.query.category;
+const toast = req.session.toast;
+req.session.toast = null;
 
 let filter ={};
 
@@ -52,9 +54,9 @@ Products.find(filter)
           min,
           max,
           category,
-          toast: req.session.toast
+          toast: toast
      })
-     req.session.toast = null;
+  
 }).catch(err=>{
      console.error(err)
 })
