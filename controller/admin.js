@@ -30,21 +30,32 @@ exports.postproducts = (req,res,next)=> {
      description : description,
      price : price,
      category : category,
-     csrfToken : req.csrfToken(),
      userId: req.user._id
    
      }
 )
 
-console.log(productData);
+// console.log(productData);
 
-productData.save().then(reult=>{
-     console.log('Done');
+productData.save()
+.then(() => {
+     req.session.toast = {
+          message: "Product added successfully ",
+          type: "success"
+     };
 
-     res.redirect('/shop/product_list')
-}).catch(err=>{
-     console.log(err);
+     res.redirect('/shop/product_list');
 })
+.catch(err => {
+     console.log(err);
+
+     req.session.toast = {
+          message: "Failed to add product ",
+          type: "error"
+     };
+
+     res.redirect('/admin/add-product');
+});
     
 }
 

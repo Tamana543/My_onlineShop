@@ -52,7 +52,9 @@ Products.find(filter)
           min,
           max,
           category,
+          toast: req.session.toast
      })
+     req.session.toast = null;
 }).catch(err=>{
      console.error(err)
 })

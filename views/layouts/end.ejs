@@ -13,5 +13,12 @@
   </div>
 </div>
 <div id="toast-container"></div>
+<script>
+  const toast =  JSON.stringify(typeof toast !== 'undefined' ? toast : null) 
+
+  if (toast) {
+    showToast(toast.message, toast.type);
+  }
+</script>
 </body>
 </html>
