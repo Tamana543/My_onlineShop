@@ -135,6 +135,9 @@ header {
 .filter-form select option{
   width: 100%;
 }
+.card_item {
+    width: 100% !important;
+}
 }
 
 .cf:before,
@@ -160,6 +163,7 @@ header {
 .col:first-of-type {
   margin-left: 0;
 }
+
 /* HAMBURGER  */
 .hamburger {
   display: block;

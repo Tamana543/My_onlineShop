@@ -54,7 +54,27 @@ function handleCartDelete(button) {
   const form = button.closest("form");
 
   openConfirm(() => {
-    form.submit();
+    fetch("/cart-delete-item", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-csrf-token": document.querySelector('input[name="_csrf"]').value
+      },
+      body: JSON.stringify({
+        productId: form.querySelector('input[name="productId"]').value
+      })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error();
+      return res.json();
+    })
+    .then(() => {
+      showToast("Item removed. ", "success");
+      setTimeout(() => location.reload(), 800);
+    })
+    .catch(() => {
+      showToast("Delete failed ", "error");
+    });
   });
 }
 

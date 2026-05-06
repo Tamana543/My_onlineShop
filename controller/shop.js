@@ -336,16 +336,16 @@ exports.paymentPostProduct = (req, res, next) => {
     });
 };
 exports.deletePostProduct = (req,res,next)=>{
-  const prodId = req.body.productId.trim();
+  const prodId = req.body.productId;
 
   req.user.deleteItemCard(prodId)
   .then(() => {
-    res.redirect("/cart");
+    res.status(200).json({ success: true });
   })
   .catch(err => {
     console.log(err);
+    res.status(500).json({ success: false });
   });
-
 };
 exports.searchProducts = (req, res, next) => {
   const searchTerm = req.query.q.trim();
