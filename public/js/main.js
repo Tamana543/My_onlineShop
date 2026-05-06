@@ -36,7 +36,6 @@ cancelBtn?.addEventListener("click", () => {
 });
 
 function handleAdminDelete(productId, csrfToken) {
-  console.log("DELETE CLICKED");
   openConfirm(() => {
     fetch('/admin/delete-product/' + productId, {
       method: 'DELETE',
@@ -45,8 +44,13 @@ function handleAdminDelete(productId, csrfToken) {
       }
     })
     .then(res => res.json())
-    .then(() => location.reload())
-    .catch(err => console.log(err));
+    .then(() => {
+      showToast("Product deleted..", "success");
+      setTimeout(() => location.reload(), 800);
+    })
+    .catch(() => {
+      showToast("Delete failed", "error");
+    });
   });
 }
 
