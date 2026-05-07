@@ -86,7 +86,7 @@ exports.cartProducts = (req,res,next)=>{
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
      const productId =req.body.productId ;
-     console.log("Here",req.body)
+    //  console.log("Here",req.body)
      
      Products.findById(productId)
      .then((respond)=>{
@@ -148,7 +148,7 @@ exports.invoiceFunction = (req,res,next)=>{
      const orderId = req.params.orderId;
      // console.log(orderId);
      Order.findById(orderId).then(order=>{
-          console.log(order)
+          // console.log(order)
           if(!order){
                return next(new Error("No order Found"))
           }
@@ -414,43 +414,3 @@ exports.postRemoveWishlist = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-// exports.orderPostProducts = (req,res,next)=>{
-//      const prodId =req.body.productId.trim();
-//    if(!req.user){
-//      return res.redirect('/login')
-//   }
-
-//      req.user.populate('cart.items.productId').then(user=>{
-//           const product = user.cart.items.find(item =>{
-//                // return {quantity : i.quantity, product : {...i.productId._doc}}
-//                return  item.productId._id.toString() === prodId.toString()
-//                })
-//         if(!product){
-// return res.redirect('/cart')
-//         }
-
-//           const order = new Order({
-//                user : {
-//                     name : req.user.email,
-//                     userId : req.user._id
-//                },
-//               products: [{
-//                     quantity: product.quantity,
-//                     product: { ...product.productId._doc }
-//                }],
-//                 status: "Processing"
-//           })
-
-//           return order.save().then(() => {
-//                console.log("Here", req.user);
-//                return  user.deleteItemCard(prodId);
-//           });
-//      }).then((result)=>{
-//            res.redirect("/orders")
-//      })
-//      .catch(err=>{
-//           console.log(err)
-//      })
-
-
-// }
