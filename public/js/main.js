@@ -1,17 +1,24 @@
 const hamburger = document.querySelector('#hamburger');
 const navbar = document.querySelector('.navbar');
 const modal = document.getElementById("confirmModal");
+const paymentSelect = document.getElementById("paymentMethod");
+const cardDetails = document.getElementById("cardDetails");
+const cardInput = document.querySelector('#cardDetails input');
+const confirmBtn = document.getElementById("confirmBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const checkoutForm = document.getElementById("checkoutForm");
+const csrfToken = document.querySelector('input[name="_csrf"]').value;
+const submitBtn = document.getElementById("checkout_submit");
+
+
 
 let selectedAction = null;
-
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   navbar.classList.toggle("open");
 });
 
 
-const confirmBtn = document.getElementById("confirmBtn");
-const cancelBtn = document.getElementById("cancelBtn");
 
 function openConfirm(action) {
   selectedAction = action;
@@ -85,9 +92,7 @@ function handleCartDelete(button) {
 
 // Checkout UI
 
-const paymentSelect = document.getElementById("paymentMethod");
-const cardDetails = document.getElementById("cardDetails");
-const cardInput = document.querySelector('#cardDetails input');
+
 
 if (paymentSelect) {
   paymentSelect.addEventListener("change", () => {
@@ -124,14 +129,6 @@ function showToast(message, type = "success") {
   }, 3000);
 }
 // Checkout Success (Backend) 
-
-const checkoutForm = document.getElementById("checkoutForm");
-const csrfToken = document.querySelector('input[name="_csrf"]').value;
-const submitBtn = document.getElementById("checkout_submit");
-
-
-
-
 if (checkoutForm) {
   checkoutForm.addEventListener("submit", function (e) {
     e.preventDefault();
