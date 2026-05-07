@@ -44,7 +44,7 @@ productData.save()
           type: "success"
      };
 
-     res.redirect('/shop/product_list');
+     res.redirect('/admin/products')
 })
 .catch(err => {
      console.log(err);
@@ -60,6 +60,8 @@ productData.save()
 }
 
 exports.adminProducts = (req,res,next)=>{
+     const toast = req.session.toast;
+     req.session.toast = null;
      Products.find({ userId: req.user._id }) .then((products)=> {
 
           res.render("admin/products",{
@@ -67,7 +69,8 @@ exports.adminProducts = (req,res,next)=>{
                pageTitle : "Admins Products",
                path:"/admin/products",
                hasProducts:products.length > 0,
-               csrfToken: req.csrfToken() 
+               csrfToken: req.csrfToken() ,
+               toast: toast
 }) // express for more information 
      })  
 }

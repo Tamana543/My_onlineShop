@@ -9,7 +9,7 @@ const cancelBtn = document.getElementById("cancelBtn");
 const checkoutForm = document.getElementById("checkoutForm");
 const csrfToken = document.querySelector('input[name="_csrf"]').value;
 const submitBtn = document.getElementById("checkout_submit");
-
+const serverToast = document.getElementById("server-toast");
 
 
 let selectedAction = null;
@@ -171,6 +171,16 @@ if (checkoutForm) {
   });
 }
 
+
+
+if (serverToast) {
+  const message = serverToast.dataset.message;
+  const type = serverToast.dataset.type;
+
+  if (message) {
+    showToast(message, type);
+  }
+}
 
 
 window.handleAdminDelete = handleAdminDelete;
