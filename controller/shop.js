@@ -11,8 +11,8 @@ const page = +req.query.page || 1;
 const min = req.query.min;
 const max = req.query.max;
 const category = req.query.category;
-const toast = req.session.toast;
-req.session.toast = null;
+
+
 
 let filter ={};
 
@@ -53,8 +53,7 @@ Products.find(filter)
           lastPage : Math.ceil(totalItem / itemPerPage),
           min,
           max,
-          category,
-          toast: toast
+          category
      })
   
 }).catch(err=>{
