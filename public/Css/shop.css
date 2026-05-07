@@ -1,13 +1,4 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/*  For fire fox */
-input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
+
 .body_head {
      flex-direction: column;
      justify-content: space-between;
