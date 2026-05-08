@@ -56,7 +56,6 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* fix the invoice description style. (wrapped it)
 * Image preview on add product
 * Form validation
 * Dark mode toggle
@@ -67,6 +66,7 @@ to do :
 * Save cart (persistent cart)
 * Donot forget to fix the server base code (render the APP js env)
 
+* fix the invoice description style. (wrapped it)✔️
 * Toast notifications (success / error)✔️
 * fix the flow from card -> order -> reorder to Wishlist -> card -> checkout -> order -> reorder or addCart -> cart directly ✔️
 * Reorder button ✔️
