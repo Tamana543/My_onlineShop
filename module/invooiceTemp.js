@@ -67,26 +67,30 @@ function generateCustomerInformation(doc, invoice) {
 function generateInvoiceTable(doc, invoice) {
   let i;
   const invoiceTableTop = 330;
+  let currentY = invoiceTableTop; // position tracked
 
   doc.font("Helvetica-Bold");
   generateTableRow(
     doc,
-    invoiceTableTop,
+    currentY,
     "Item",
     "Description",
     "Unit Cost",
     "Quantity",
     "Line Total"
   );
-  generateHr(doc, invoiceTableTop + 20);
+  
+  generateHr(doc, currentY + 20);
+  currentY += 30; // Move down after header
   doc.font("Helvetica");
 
   for (i = 0; i < invoice.items.length; i++) {
     const item = invoice.items[i];
-    const position = invoiceTableTop + (i + 1) * 30;
-    generateTableRow(
+    
+    // height calculator 
+    const rowHeight = generateTableRow(
       doc,
-      position,
+      currentY,
       item.item,
       item.description,
       formatCurrency(item.amount / item.quantity),
@@ -94,54 +98,18 @@ function generateInvoiceTable(doc, invoice) {
       formatCurrency(item.amount)
     );
 
-    generateHr(doc, position + 20);
+    generateHr(doc, currentY + rowHeight + 5);
+    currentY += rowHeight + 15; 
   }
 
-  const subtotalPosition = invoiceTableTop + (i + 1) * 30;
-  generateTableRow(
-    doc,
-    subtotalPosition,
-    "",
-    "",
-    "Subtotal",
-    "",
-    formatCurrency(invoice.subtotal)
-  );
+  const totalsTop = currentY;
 
-  const paidToDatePosition = subtotalPosition + 20;
-  generateTableRow(
-    doc,
-    paidToDatePosition,
-    "",
-    "",
-    "Paid To Date",
-    "",
-    formatCurrency(invoice.paid)
-  );
-
-  const duePosition = paidToDatePosition + 25;
+  generateTableRow(doc, totalsTop, "", "", "Subtotal", "", formatCurrency(invoice.subtotal));
+  generateTableRow(doc, totalsTop + 20, "", "", "Paid To Date", "", formatCurrency(invoice.paid));
+  
   doc.font("Helvetica-Bold");
-  generateTableRow(
-    doc,
-    duePosition,
-    "",
-    "",
-    "Balance Due",
-    "",
-    formatCurrency(invoice.subtotal - invoice.paid)
-  );
+  generateTableRow(doc, totalsTop + 45, "", "", "Balance Due", "", formatCurrency(invoice.subtotal - invoice.paid));
   doc.font("Helvetica");
-}
-
-function generateFooter(doc) {
-  doc
-    .fontSize(10)
-    .text(
-      "Payment is due within 15 days. Thank you for your Choice.",
-      50,
-      780,
-      { align: "center", width: 500 }
-    );
 }
 
 function generateTableRow(
@@ -153,15 +121,20 @@ function generateTableRow(
   quantity,
   lineTotal
 ) {
+  // Define a width for the description to force wrapping
+  const descriptionWidth = 180; 
+
   doc
     .fontSize(10)
     .text(item, 50, y)
-    .text(description, 150, y)
+    .text(description, 150, y, { width: descriptionWidth, align: "left" }) // Wrapped description
     .text(unitCost, 280, y, { width: 90, align: "right" })
     .text(quantity, 370, y, { width: 90, align: "right" })
     .text(lineTotal, 0, y, { align: "right" });
-}
 
+  // height of the description
+  return doc.heightOfString(description, { width: descriptionWidth });
+}
 function generateHr(doc, y) {
   doc
     .strokeColor("#aaaaaa")
@@ -182,7 +155,16 @@ function formatDate(date) {
 
   return year + "/" + month + "/" + day;
 }
-
+function generateFooter(doc) {
+  doc
+    .fontSize(10)
+    .text(
+      "Payment is due within 15 days. Thank you for your Choice.",
+      50,
+      780,
+      { align: "center", width: 500 }
+    );
+}
 
 module.exports = {
   generateHeader,
