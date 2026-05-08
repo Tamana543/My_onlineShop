@@ -10,6 +10,9 @@ const checkoutForm = document.getElementById("checkoutForm");
 const csrfToken = document.querySelector('input[name="_csrf"]').value;
 const submitBtn = document.getElementById("checkout_submit");
 const serverToast = document.getElementById("server-toast");
+const imageUrlInput = document.getElementById("imageUrl");
+const imagePreview = document.getElementById("imagePreview");
+const previewText = document.getElementById("previewText");
 
 
 let selectedAction = null;
@@ -182,6 +185,32 @@ if (serverToast) {
   }
 }
 
+// Image preview in add-prodcut ejs 
+if (imageUrlInput) {
+  imageUrlInput.addEventListener("input", () => {
+
+    const url = imageUrlInput.value.trim();
+
+    if (!url) {
+      imagePreview.classList.add("hidden");
+      previewText.classList.remove("hidden");
+      return;
+    }
+
+    imagePreview.src = url;
+
+    imagePreview.onload = () => {
+      imagePreview.classList.remove("hidden");
+      previewText.classList.add("hidden");
+    };
+
+    imagePreview.onerror = () => {
+      imagePreview.classList.add("hidden");
+      previewText.classList.remove("hidden");
+      previewText.innerText = "Invalid image URL";
+    };
+  });
+}
 
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;
