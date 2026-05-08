@@ -110,3 +110,30 @@ select option {
      cursor: pointer;
      box-shadow: 1px 1px 13px 1px #DDB321;
 }
+
+/* Image preview */
+.image-preview-container {
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.image-preview {
+  width: 100%;
+  max-width: 350px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #333;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#previewText {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
