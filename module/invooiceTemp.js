@@ -67,8 +67,7 @@ function generateCustomerInformation(doc, invoice) {
 function generateInvoiceTable(doc, invoice) {
   let i;
   const invoiceTableTop = 330;
-  let currentY = invoiceTableTop; // position tracked
-
+  let currentY = invoiceTableTop; // y-width 
   doc.font("Helvetica-Bold");
   generateTableRow(
     doc,
@@ -87,7 +86,7 @@ function generateInvoiceTable(doc, invoice) {
   for (i = 0; i < invoice.items.length; i++) {
     const item = invoice.items[i];
     
-    // height calculator 
+    // Capture the height of the row based on the wrapped description
     const rowHeight = generateTableRow(
       doc,
       currentY,
@@ -99,6 +98,8 @@ function generateInvoiceTable(doc, invoice) {
     );
 
     generateHr(doc, currentY + rowHeight + 5);
+    
+    // Move currentY down 
     currentY += rowHeight + 15; 
   }
 
@@ -121,18 +122,17 @@ function generateTableRow(
   quantity,
   lineTotal
 ) {
-  // Define a width for the description to force wrapping
   const descriptionWidth = 180; 
 
   doc
     .fontSize(10)
-    .text(item, 50, y)
-    .text(description, 150, y, { width: descriptionWidth, align: "left" }) // Wrapped description
+    .text(item, 50, y, { width: 90 }) 
+    .text(description, 150, y, { width: descriptionWidth, align: "left" }) 
     .text(unitCost, 280, y, { width: 90, align: "right" })
     .text(quantity, 370, y, { width: 90, align: "right" })
     .text(lineTotal, 0, y, { align: "right" });
 
-  // height of the description
+  // Important: Return the height so the table knows where the next row starts
   return doc.heightOfString(description, { width: descriptionWidth });
 }
 function generateHr(doc, y) {
