@@ -65,9 +65,9 @@ function generateCustomerInformation(doc, invoice) {
 }
 
 function generateInvoiceTable(doc, invoice) {
-  let i;
   const invoiceTableTop = 330;
-  let currentY = invoiceTableTop; // y-width 
+  let currentY = invoiceTableTop;
+
   doc.font("Helvetica-Bold");
   generateTableRow(
     doc,
@@ -80,13 +80,13 @@ function generateInvoiceTable(doc, invoice) {
   );
   
   generateHr(doc, currentY + 20);
-  currentY += 30; // Move down after header
+  currentY += 30;
   doc.font("Helvetica");
 
-  for (i = 0; i < invoice.items.length; i++) {
+  for (let i = 0; i < invoice.items.length; i++) {
     const item = invoice.items[i];
     
-    // Capture the height of the row based on the wrapped description
+    // Calculate the height of this specific row
     const rowHeight = generateTableRow(
       doc,
       currentY,
@@ -98,42 +98,39 @@ function generateInvoiceTable(doc, invoice) {
     );
 
     generateHr(doc, currentY + rowHeight + 5);
-    
-    // Move currentY down 
     currentY += rowHeight + 15; 
   }
 
-  const totalsTop = currentY;
 
+  const totalsTop = currentY;
   generateTableRow(doc, totalsTop, "", "", "Subtotal", "", formatCurrency(invoice.subtotal));
   generateTableRow(doc, totalsTop + 20, "", "", "Paid To Date", "", formatCurrency(invoice.paid));
   
   doc.font("Helvetica-Bold");
   generateTableRow(doc, totalsTop + 45, "", "", "Balance Due", "", formatCurrency(invoice.subtotal - invoice.paid));
-  doc.font("Helvetica");
 }
 
-function generateTableRow(
-  doc,
-  y,
-  item,
-  description,
-  unitCost,
-  quantity,
-  lineTotal
-) {
-  const descriptionWidth = 180; 
+function generateTableRow(doc, y, item, description, unitCost, quantity, lineTotal) {
+  const itemWidth = 90;
+  const descWidth = 170;
+  const costWidth = 100; // Widened for those large Lamborghini numbers
+  const qtyWidth = 40;
+  const totalWidth = 80;
 
+  // Draw the text
   doc
     .fontSize(10)
-    .text(item, 50, y, { width: 90 }) 
-    .text(description, 150, y, { width: descriptionWidth, align: "left" }) 
-    .text(unitCost, 280, y, { width: 90, align: "right" })
-    .text(quantity, 370, y, { width: 90, align: "right" })
-    .text(lineTotal, 0, y, { align: "right" });
+    .text(item, 50, y, { width: itemWidth })
+    .text(description, 150, y, { width: descWidth, align: "left" })
+    .text(unitCost, 330, y, { width: costWidth, align: "right" }) // Shifted x to 330
+    .text(quantity, 435, y, { width: qtyWidth, align: "right" })
+    .text(lineTotal, 480, y, { width: totalWidth, align: "right" });
 
-  // Important: Return the height so the table knows where the next row starts
-  return doc.heightOfString(description, { width: descriptionWidth });
+  // Determine which column is the tallest to prevent overlapping the next row
+  const itemHeight = doc.heightOfString(item, { width: itemWidth });
+  const descHeight = doc.heightOfString(description, { width: descWidth });
+  
+  return Math.max(itemHeight, descHeight);
 }
 function generateHr(doc, y) {
   doc
