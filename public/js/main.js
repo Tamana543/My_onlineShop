@@ -11,8 +11,9 @@ const csrfToken = document.querySelector('input[name="_csrf"]').value;
 const submitBtn = document.getElementById("checkout_submit");
 const serverToast = document.getElementById("server-toast");
 const imageUrlInput = document.getElementById("imageUrl");
-const imagePreview = document.getElementById("imagePreview");
-const previewText = document.getElementById("previewText");
+const floatingPreview = document.getElementById("floatingPreview");
+const previewImage = document.getElementById("previewImage");
+
 
 
 let selectedAction = null;
@@ -186,28 +187,39 @@ if (serverToast) {
 }
 
 // Image preview in add-prodcut ejs 
+let previewTimeout;
+
 if (imageUrlInput) {
-  imageUrlInput.addEventListener("input", () => {
+  imageUrlInput.addEventListener("change", () => {
 
     const url = imageUrlInput.value.trim();
 
-    if (!url) {
-      imagePreview.classList.add("hidden");
-      previewText.classList.remove("hidden");
-      return;
-    }
+    if (!url) return;
 
-    imagePreview.src = url;
+    previewImage.src = url;
 
-    imagePreview.onload = () => {
-      imagePreview.classList.remove("hidden");
-      previewText.classList.add("hidden");
+    previewImage.onload = () => {
+
+      floatingPreview.classList.remove("hidden");
+
+      setTimeout(() => {
+        floatingPreview.classList.add("show");
+      }, 50);
+
+      clearTimeout(previewTimeout);
+
+      previewTimeout = setTimeout(() => {
+        floatingPreview.classList.remove("show");
+
+        setTimeout(() => {
+          floatingPreview.classList.add("hidden");
+        }, 400);
+
+      }, 4000);
     };
 
-    imagePreview.onerror = () => {
-      imagePreview.classList.add("hidden");
-      previewText.classList.remove("hidden");
-      previewText.innerText = "Invalid image URL";
+    previewImage.onerror = () => {
+      showToast("Invalid image URL", "error");
     };
   });
 }
