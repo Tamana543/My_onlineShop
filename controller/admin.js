@@ -1,5 +1,6 @@
-
 const Products = require("../module/product")
+const { validationResult } = require("express-validator");
+
 exports.getAddProducts = (req,res,next)=> {
      try {
           res.render("admin/add-product",{
@@ -23,6 +24,25 @@ exports.postproducts = (req,res,next)=> {
      const price = req.body.price;
      const description = req.body.description;
      const category = req.body.category
+     const errors = validationResult(req);
+
+     if (!errors.isEmpty()) {
+          return res.status(422).render("admin/add-product", {
+          pageTitle: "Add Product",
+          path: "/admin/add-product",
+          csrfToken: req.csrfToken(),
+
+          errorMessage: errors.array()[0].msg,
+
+          oldInput: {
+               title: req.body.title,
+               imageUrl: req.body.imageUrl,
+               price: req.body.price,
+               description: req.body.description,
+               category: req.body.category
+          }
+          });
+     }
 
   const productData = new Products(
     { title :  title,
