@@ -10,8 +10,8 @@
      <main class="flex add_product-main">
           <form method="post" action="/admin/add-product" class="form flex ">
                  <% if (errorMessage) { %>
-                    <div class="validation-error">
-                    <%= errorMessage %>
+                    <div class="oaerror warning">
+                         <strong>Error</strong> - <%=errorMessage %>
                     </div>
                <% } %>
                <div class="form-control flex">
