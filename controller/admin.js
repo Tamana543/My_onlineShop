@@ -6,9 +6,16 @@ exports.getAddProducts = (req,res,next)=> {
           res.render("admin/add-product",{
                pageTitle: "Add Product",
                path: '/admin/add-product',
-                    csrfToken : req.csrfToken()
-                     
-                    }) 
+                    csrfToken : req.csrfToken(),
+                     errorMessage: null,
+                    oldInput: {
+                         title: "",
+                         imageUrl: "",
+                         price: "",
+                         description: "",
+                         category: ""
+                    }
+               }) 
                     
           
      } catch (error) {
