@@ -56,7 +56,7 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* Form validation 
+* Form validation (everything good, but change the style of add product and apply the common style of login style :) ) 
 * Dark mode toggle
 * Product sorting (price, newest, etc.)
 * Product rating / reviews
