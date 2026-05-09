@@ -138,6 +138,13 @@ header {
 .card_item {
     width: 100% !important;
 }
+.category select {
+  width: 330px;
+}
+.floating-preview {
+    position: fixed;
+    left: 78px;
+    top: 30%; }
 }
 
 .cf:before,
