@@ -151,3 +151,18 @@ select option {
 .hidden {
   display: none;
 }
+
+/* Form validation  */
+.validation-error {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ffb3b3;
+  border: 1px solid #ff4d4d;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  margin-bottom: 20px;
+  width: 350px;
+
+  font-size: 14px;
+}
