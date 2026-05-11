@@ -23,8 +23,41 @@
 
       <p class="product-price">$<%= product.price %></p>
 
+      <div class="product-rating">
+        ⭐ <%= avgRating %> / 5
+      </div>
       <p class="product-desc"><%= product.description %></p>
+  <div class="reviews-section">
 
+  <h2>Customer Reviews</h2>
+
+  <% if(reviews.length > 0){ %>
+
+    <% reviews.forEach(review => { %>
+
+      <div class="review-box">
+
+        <h4><%= review.username %></h4>
+
+        <p>
+          <% for(let i = 0; i < review.rating; i++){ %>
+             ⭐
+          <% } %>
+        </p>
+
+        <p><%= review.reviewText %></p>
+
+      </div>
+
+    <% }) %>
+
+  <% } else { %>
+
+     <p>No reviews yet.</p>
+
+  <% } %>
+
+</div>
       <div class="product-actions flex">
 
         <form action="/add-to-cart" method="post">
