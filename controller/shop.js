@@ -3,7 +3,7 @@ const Order = require('../module/order')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 const User = require('../module/user')
-const Review = require("../module/review");
+const Review = require("../module/reviews");
 
 const itemPerPage = 4;
 exports.productsShop = (req,res,next)=> {
