@@ -211,17 +211,34 @@ exports.invoiceFunction = (req,res,next)=>{
 }
 exports.getidProduct = (req,res,next)=> {
      const prodId = req.params.productId;
-     Products.findById(prodId).then(product => {
-          res.render("shop/product_detail",{
-               product : product,
-               pageTitle : "Product detail",
-               path : "/products",
-               
-          })
-          
-     }).catch(err=>{
-          console.error(err)
+     Products.findById(prodId)
+     .then(product => {
+
+          return Review.find({ productId: prodId })
+          .then(reviews => {
+
+               let avgRating = 0;
+
+               if(reviews.length > 0){
+                    avgRating =
+                      reviews.reduce((sum, r) => sum + r.rating, 0)
+                      / reviews.length;
+               }
+
+               res.render("shop/product_detail",{
+                    product : product,
+                    pageTitle : "Product detail",
+                    path : "/products",
+                    reviews: reviews,
+                    avgRating: avgRating.toFixed(1)
+               });
+
+          });
+
      })
+     .catch(err=>{
+          console.error(err);
+     });
 }
 exports.indexProducts = (req,res,next)=>{
      Products.find().then(result=>{
