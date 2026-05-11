@@ -444,7 +444,24 @@ const productId = req.body.productId;
         rating: rating,
         reviewText: reviewText
     });
+      Review.findOne({
+   productId: productId,
+   userId: req.user._id
+})
+.then(existingReview => {
 
+   if(existingReview){
+
+      req.session.toast = {
+         message: "You already reviewed this product",
+         type: "error"
+      };
+
+      return res.redirect("/orders");
+   }
+
+   // save review here
+})
     review.save()
     .then(() => {
 
