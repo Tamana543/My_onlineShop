@@ -66,6 +66,32 @@
 </form>
   </div>
 
+  <form action="/add-review" method="POST" class="review-form">
+
+  <input type="hidden" name="productId" value="<%= item.product._id %>">
+
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <select name="rating" required>
+    <option value="">Rating</option>
+    <option value="5">★★★★★</option>
+    <option value="4">★★★★</option>
+    <option value="3">★★★</option>
+    <option value="2">★★</option>
+    <option value="1">★</option>
+  </select>
+
+  <textarea 
+    name="reviewText"
+    placeholder="Write your review..."
+    required
+  ></textarea>
+
+  <button class="btn">
+    Submit Review
+  </button>
+
+</form>
 </div>
 
     </article>

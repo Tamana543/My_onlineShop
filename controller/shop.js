@@ -414,3 +414,6 @@ exports.postRemoveWishlist = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+exports.postReview = (req,res,next)=>{
+
+}

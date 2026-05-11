@@ -36,4 +36,6 @@ router.get('/wishlist', rootAuth, shopController.getWishlist);
 router.post('/wishlist', rootAuth, shopController.postWishlist);
 router.post('/wishlist-delete', rootAuth, shopController.postRemoveWishlist);
 
+
+router.post('/add-review',rootAuth,shopController.postReview)
 module.exports = router
