@@ -13,7 +13,10 @@ const serverToast = document.getElementById("server-toast");
 const imageUrlInput = document.getElementById("imageUrl");
 const floatingPreview = document.getElementById("floatingPreview");
 const previewImage = document.getElementById("previewImage");
-
+const reviewModal = document.getElementById("reviewModal");
+const reviewProductInput = document.getElementById("reviewProductId");
+const selectedRating = document.getElementById("selectedRating");
+const stars = document.querySelectorAll(".star");
 
 
 let selectedAction = null;
@@ -224,5 +227,35 @@ if (imageUrlInput) {
   });
 }
 
+// Review 
+
+
+function openReviewModal(productId){
+    reviewProductInput.value = productId;
+    reviewModal.classList.remove("hidden");
+}
+
+function closeReviewModal(){
+  reviewModal.classList.add("hidden");
+}
+
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+        const value = star.dataset.value;
+        selectedRating.value = value;
+        stars.forEach(s => {
+            if(s.dataset.value <= value){
+                s.classList.remove("ri-star-line");
+                s.classList.add("ri-star-fill");
+            } else {
+                s.classList.remove("ri-star-fill");
+                s.classList.add("ri-star-line");
+            }
+        });
+    });
+
+});
+window.openReviewModal = openReviewModal;
+window.closeReviewModal = closeReviewModal;
 window.handleAdminDelete = handleAdminDelete;
 window.handleCartDelete = handleCartDelete;

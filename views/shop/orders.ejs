@@ -66,13 +66,13 @@
 </form>
   </div>
 
-  <button 
-  class="btn rating-btn"
-  onclick="openReviewModal('<%= item.product._id %>')"
->
-   <i class="ri-star-line"></i>
-</button>
 </div>
+<button 
+class="btn rating-btn"
+onclick="openReviewModal('<%= item.product._id %>')"
+>
+ <i class="ri-star-line"></i>
+</button>
 
     </article>
 
@@ -98,7 +98,7 @@
 
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-      <!-- Interactive Stars -->
+      <!-- Stars -->
       <div class="stars">
 
         <i class="ri-star-line star" data-value="1"></i>
