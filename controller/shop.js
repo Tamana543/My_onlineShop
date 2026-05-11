@@ -3,8 +3,9 @@ const Order = require('../module/order')
 const invoice = require("../module/invooiceTemp")
 const PDFDocument = require('pdfkit')
 const User = require('../module/user')
-const itemPerPage = 4;
+const Review = require("../module/review");
 
+const itemPerPage = 4;
 exports.productsShop = (req,res,next)=> {
 const page = +req.query.page || 1;
 
@@ -415,5 +416,37 @@ exports.postRemoveWishlist = (req, res, next) => {
 };
 
 exports.postReview = (req,res,next)=>{
+const productId = req.body.productId;
+    const rating = req.body.rating;
+    const reviewText = req.body.reviewText;
 
+    const review = new Review({
+        productId: productId,
+        userId: req.user._id,
+        username: req.user.email,
+        rating: rating,
+        reviewText: reviewText
+    });
+
+    review.save()
+    .then(() => {
+
+        req.session.toast = {
+            message: "Review added successfully",
+            type: "success"
+        };
+
+        res.redirect("/orders");
+
+    })
+    .catch(err => {
+        console.log(err);
+
+        req.session.toast = {
+            message: "Failed to add review",
+            type: "error"
+        };
+
+        res.redirect("/orders");
+    });
 }
