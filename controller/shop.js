@@ -432,38 +432,45 @@ exports.postRemoveWishlist = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.postReview = (req,res,next)=>{
-const productId = req.body.productId;
-    const rating = req.body.rating;
+exports.postReview = (req, res, next) => {
+
+    const productId = req.body.productId;
+    const rating = +req.body.rating;
     const reviewText = req.body.reviewText;
 
-    const review = new Review({
+    Review.findOne({
         productId: productId,
-        userId: req.user._id,
-        username: req.user.email,
-        rating: rating,
-        reviewText: reviewText
-    });
-      Review.findOne({
-   productId: productId,
-   userId: req.user._id
-})
-.then(existingReview => {
+        userId: req.user._id
+    })
+    .then(existingReview => {
 
-   if(existingReview){
+        // Prevent duplicate review
+        if (existingReview) {
 
-      req.session.toast = {
-         message: "You already reviewed this product",
-         type: "error"
-      };
+            req.session.toast = {
+                message: "You already reviewed this product",
+                type: "error"
+            };
 
-      return res.redirect("/orders");
-   }
+            return res.redirect("/orders");
+        }
 
-   // save review here
-})
-    review.save()
-    .then(() => {
+        // Create new review
+        const review = new Review({
+            productId: productId,
+            userId: req.user._id,
+            username: req.user.email,
+            rating: rating,
+            reviewText: reviewText
+        });
+
+        return review.save();
+
+    })
+    .then(result => {
+        if (!result) {
+            return;
+        }
 
         req.session.toast = {
             message: "Review added successfully",
@@ -474,6 +481,7 @@ const productId = req.body.productId;
 
     })
     .catch(err => {
+
         console.log(err);
 
         req.session.toast = {
@@ -483,4 +491,4 @@ const productId = req.body.productId;
 
         res.redirect("/orders");
     });
-}
+};
