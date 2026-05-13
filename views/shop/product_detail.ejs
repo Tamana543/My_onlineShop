@@ -39,11 +39,19 @@
 
         <h4><%= review.username %></h4>
 
-        <p>
-          <% for(let i = 0; i < review.rating; i++){ %>
-             ⭐
-          <% } %>
-        </p>
+        <div class="product-rating">
+
+       <% if(reviews.length > 0){ %>
+
+      ⭐ <%= avgRating %> / 5
+
+      <% } else { %>
+
+      No ratings yet
+
+  <% } %>
+
+</div>
 
         <p><%= review.reviewText %></p>
 

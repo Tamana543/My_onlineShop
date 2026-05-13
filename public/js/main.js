@@ -229,7 +229,7 @@ if (imageUrlInput) {
 
 // Review 
 
-
+if(reviewModal){
 function openReviewModal(productId){
     reviewProductInput.value = productId;
     reviewModal.classList.remove("hidden");
@@ -255,6 +255,7 @@ stars.forEach(star => {
     });
 
 });
+}
 window.openReviewModal = openReviewModal;
 window.closeReviewModal = closeReviewModal;
 window.handleAdminDelete = handleAdminDelete;
