@@ -4,43 +4,6 @@
      padding: 0;
      margin: 0;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/*  For fire fox */
-input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-select {
-
-  -webkit-appearance: none; /*Safari and Chrome */
-  -moz-appearance: none;    /*Firefox */
-  appearance: none;         /* Standard property */
-  background: transparent;  /* Removes the main white background */
-}
-input:-webkit-autofill,
-textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #1A2226 inset !important;
-  -webkit-text-fill-color: #f4d569e2 !important;
-  transition: background-color 9999s ease-in-out 0s;
-}
-
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button,
-textarea::-webkit-scrollbar {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/*  For fire fox */
-input[type=number],textarea::-webkit-scrollbar {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
 
 .flex,.flex_1 {
      display:flex;
