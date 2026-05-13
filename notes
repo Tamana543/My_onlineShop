@@ -56,14 +56,14 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* Product rating / reviews (fix the bug not is alble to be added, fix the style for textarea box )
-* Dark mode toggle
-* Product sorting (price, newest, etc.)
+* Product sorting (price, newest, etc.) (before starting fix the add product select stlyle bug)
 * Stock / availability system
 * Recently viewed products
 * Save cart (persistent cart)
 * Donot forget to fix the server base code (render the APP js env)
+* Dark mode toggle
 
+* Product rating / reviews✔️
 * Form validation ✔️
 * Image preview on add product ✔️
 * fix the invoice description style. (wrapped it)✔️
