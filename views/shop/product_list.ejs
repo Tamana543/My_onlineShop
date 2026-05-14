@@ -11,56 +11,55 @@
         <%- include('../layouts/navigation.ejs') %>
      
      <main style="flex-direction: column;">
-        <form method="GET" action="/products" class="sort-form">
-
-  <!-- keep existing filters -->
-  <input type="hidden" name="min" value="<%= min || '' %>">
-  <input type="hidden" name="max" value="<%= max || '' %>">
-  <input type="hidden" name="category" value="<%= category || '' %>">
-
-  <select name="sort" onchange="this.form.submit()">
-
-    <option value="">Sort By</option>
-
-    <option 
-      value="newest"
-      <%= sort === 'newest' ? 'selected' : '' %>
-    >
-      Newest
-    </option>
-
-    <option 
-      value="low-high"
-      <%= sort === 'low-high' ? 'selected' : '' %>
-    >
-      Price: Low to High
-    </option>
-
-    <option 
-      value="high-low"
-      <%= sort === 'high-low' ? 'selected' : '' %>
-    >
-      Price: High to Low
-    </option>
-
-    <option 
-      value="a-z"
-      <%= sort === 'a-z' ? 'selected' : '' %>
-    >
-      Name: A-Z
-    </option>
-
-    <option 
-      value="z-a"
-      <%= sort === 'z-a' ? 'selected' : '' %>
-    >
-      Name: Z-A
-    </option>
-
-  </select>
-
-</form>
           <div class="body_head flex">
+               <form method="GET" action="/products" class="sort-form">
+       
+         <input type="hidden" name="min" value="<%= min || '' %>">
+         <input type="hidden" name="max" value="<%= max || '' %>">
+         <input type="hidden" name="category" value="<%= category || '' %>">
+       
+         <select name="sort" onchange="this.form.submit()">
+       
+           <option value="">Sort By</option>
+       
+           <option 
+             value="newest"
+             <%= sort === 'newest' ? 'selected' : '' %>
+           >
+             Newest
+           </option>
+       
+           <option 
+             value="low-high"
+             <%= sort === 'low-high' ? 'selected' : '' %>
+           >
+             Price: Low to High
+           </option>
+       
+           <option 
+             value="high-low"
+             <%= sort === 'high-low' ? 'selected' : '' %>
+           >
+             Price: High to Low
+           </option>
+       
+           <option 
+             value="a-z"
+             <%= sort === 'a-z' ? 'selected' : '' %>
+           >
+             Name: A-Z
+           </option>
+       
+           <option 
+             value="z-a"
+             <%= sort === 'z-a' ? 'selected' : '' %>
+           >
+             Name: Z-A
+           </option>
+       
+         </select>
+       
+       </form>
      <form action="/products" method="GET" class="filter-form">
 
           <input type="number" name="min" placeholder="Min Price">
