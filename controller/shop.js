@@ -7,59 +7,81 @@ const Review = require("../module/reviews");
 
 const itemPerPage = 4;
 exports.productsShop = (req,res,next)=> {
-const page = +req.query.page || 1;
+  const page = +req.query.page || 1;
 
-const min = req.query.min;
-const max = req.query.max;
-const category = req.query.category;
+  const min = req.query.min;
+  const max = req.query.max;
+  const category = req.query.category;
+  const sort = req.query.sort;
 
 
+  let filter ={};
 
-let filter ={};
+  // Filtering 
+  /// Price 
+  if(min || max){
+      filter.price = {}
+      if(min) filter.price.$gte = +min;
+      if(max) filter.price.$lte = +max;
+  }
 
-// Filtering 
-/// Price 
-if(min || max){
-     filter.price = {}
-     if(min) filter.price.$gte = +min;
-     if(max) filter.price.$lte = +max;
+  /// Category Filter 
+  if(category) {
+      filter.category = category
+  }
+  // sort 
+
+  let sortOption = {};
+  if(sort === "low-high"){
+    sortOption.price = 1;
 }
 
-/// Category Filter 
-if(category) {
-     filter.category = category
+if(sort === "high-low"){
+    sortOption.price = -1;
 }
 
-// Pagination
-let totalItem ;
+if(sort === "newest"){
+    sortOption.createdAt = -1;
+}
 
-Products.find(filter)
-.countDocuments()
-.then(num=>{
-     totalItem = num;
+if(sort === "a-z"){
+    sortOption.title = 1;
+}
 
-     return Products.find(filter).skip((page - 1 ) * itemPerPage).limit(itemPerPage)
+if(sort === "z-a"){
+    sortOption.title = -1;
+}
+  // Pagination
+  let totalItem ;
 
-})
-.then(respond=>{
-     res.render("shop/product_list",{
-          pageTitle : "All Products List",
-          path:"/products",
-          prods : respond,
-          currentPage : page,
-          hasNextPage : itemPerPage * page < totalItem,
-          hasPreviousPage : page > 1 ,
-          nextPage : page + 1,
-          previousPage : page -1 ,
-          lastPage : Math.ceil(totalItem / itemPerPage),
-          min,
-          max,
-          category
-     })
-  
-}).catch(err=>{
-     console.error(err)
-})
+  Products.find(filter)
+  .countDocuments()
+  .then(num=>{
+      totalItem = num;
+
+      return Products.find(filter).sort(sortOption).skip((page - 1 ) * itemPerPage).limit(itemPerPage)
+
+  })
+  .then(respond=>{
+      res.render("shop/product_list",{
+            pageTitle : "All Products List",
+            path:"/products",
+            prods : respond,
+            currentPage : page,
+            hasNextPage : itemPerPage * page < totalItem,
+            hasPreviousPage : page > 1 ,
+            nextPage : page + 1,
+            previousPage : page -1 ,
+            lastPage : Math.ceil(totalItem / itemPerPage),
+            min,
+            max,
+            category,
+            sort : sort
+      })
+    
+  }).catch(err=>{
+      console.error(err)
+  })
 }
 exports.cartProducts = (req,res,next)=>{
      // console.log(req);
