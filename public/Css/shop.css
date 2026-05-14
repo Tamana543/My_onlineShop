@@ -451,8 +451,16 @@ width: 54%;
 }
 
 /* Sort */
-.sort-form{
+.shop-toolbar{
     width: 100%;
+    display: flex;
+      justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.sort-form{
+    
     display: flex;
     justify-content: flex-end;
     align-items: center;

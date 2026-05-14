@@ -12,67 +12,70 @@
      
      <main style="flex-direction: column;">
           <div class="body_head flex">
-               <form method="GET" action="/products" class="sort-form">
-       
-         <input type="hidden" name="min" value="<%= min || '' %>">
-         <input type="hidden" name="max" value="<%= max || '' %>">
-         <input type="hidden" name="category" value="<%= category || '' %>">
-       
-         <select name="sort" onchange="this.form.submit()">
-       
-           <option value="">Sort By</option>
-       
-           <option 
-             value="newest"
-             <%= sort === 'newest' ? 'selected' : '' %>
-           >
-             Newest
-           </option>
-       
-           <option 
-             value="low-high"
-             <%= sort === 'low-high' ? 'selected' : '' %>
-           >
-             Price: Low to High
-           </option>
-       
-           <option 
-             value="high-low"
-             <%= sort === 'high-low' ? 'selected' : '' %>
-           >
-             Price: High to Low
-           </option>
-       
-           <option 
-             value="a-z"
-             <%= sort === 'a-z' ? 'selected' : '' %>
-           >
-             Name: A-Z
-           </option>
-       
-           <option 
-             value="z-a"
-             <%= sort === 'z-a' ? 'selected' : '' %>
-           >
-             Name: Z-A
-           </option>
-       
-         </select>
-       
-       </form>
-     <form action="/products" method="GET" class="filter-form">
+               <div class="shop-toolbar">
+                              <form method="GET" action="/products" class="sort-form">
+                    
+                    <input type="hidden" name="min" value="<%= min || '' %>">
+                    <input type="hidden" name="max" value="<%= max || '' %>">
+                    <input type="hidden" name="category" value="<%= category || '' %>">
+                    
+                    <select name="sort" onchange="this.form.submit()">
+                    
+                         <option value="">Sort By</option>
+                    
+                         <option 
+                         value="newest"
+                         <%= sort === 'newest' ? 'selected' : '' %>
+                         >
+                         Newest
+                         </option>
+                    
+                         <option 
+                         value="low-high"
+                         <%= sort === 'low-high' ? 'selected' : '' %>
+                         >
+                         Price: Low to High
+                         </option>
+                    
+                         <option 
+                         value="high-low"
+                         <%= sort === 'high-low' ? 'selected' : '' %>
+                         >
+                         Price: High to Low
+                         </option>
+                    
+                         <option 
+                         value="a-z"
+                         <%= sort === 'a-z' ? 'selected' : '' %>
+                         >
+                         Name: A-Z
+                         </option>
+                    
+                         <option 
+                         value="z-a"
+                         <%= sort === 'z-a' ? 'selected' : '' %>
+                         >
+                         Name: Z-A
+                         </option>
+                    
+                    </select>
+                    
+                    </form>
+                    <form action="/products" method="GET" class="filter-form">
 
-          <input type="number" name="min" placeholder="Min Price">
-          <input type="number" name="max" placeholder="Max Price">
+                         <input type="number" name="min" placeholder="Min Price">
+                         <input type="number" name="max" placeholder="Max Price">
 
-          <select name="category">
-               <option value="">All</option>
-               <option value="sports">Sports</option>
-               <option value="suv">SUV</option>
-               <option value="luxury">Luxury</option>
-          </select>
-          <button type="submit" class="btn">Filter</button>
-     </form>
+                         <select name="category">
+                              <option value="">All</option>
+                              <option value="sports">Sports</option>
+                              <option value="suv">SUV</option>
+                              <option value="luxury">Luxury</option>
+                         </select>
+                         <button type="submit" class="btn">Filter</button>
+                    </form>
+               </div>
+               
                <% if (prods.length > 0) { %>
                <div class="flex_able products-fade">
                     <% for(let product of prods){%>
