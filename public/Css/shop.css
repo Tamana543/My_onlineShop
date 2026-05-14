@@ -450,6 +450,22 @@ width: 54%;
     gap: 10px;
 }
 
+/* Sort */
+.sort-form{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.sort-form select{
+    padding: .7rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: .95rem;
+}
 .hidden{
     display: none;
 }
