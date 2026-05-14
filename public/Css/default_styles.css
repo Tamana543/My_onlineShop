@@ -16,6 +16,11 @@ select {
   appearance: none !important;         /* Standard property */
   background: transparent !important; 
 }
+select option {
+    background-color: #111 !important;
+    color: #f4d569e2 !important;
+    padding: 10px;
+}
 input:-webkit-autofill,
 textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #1A2226 inset !important;
