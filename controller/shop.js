@@ -304,55 +304,59 @@ exports.checkoutProducts = (req,res,next)=>{
   })
   .catch(err=>console.log(err))
 };
-exports.checkoutPostProducts = (req,res,next)=>{
-     const { name, address, payment } = req.body;
-     req.user.populate('cart.items.productId')
-     .then(user=>{
-          const products = user.cart.items.map(item=>{
-               return {
-                    quantity: item.quantity,
-                    product: {...item.productId._doc}
-               };
+exports.checkoutPostProducts = (req, res, next) => {
+  const { name, address, payment } = req.body;
+  req.user.populate('cart.items.productId')
+  .then(user => {
+    const products = user.cart.items.map(item => {
+      return {
+        quantity: item.quantity,
+        product: { ...item.productId._doc }
+      };
+    });
+    // STOCK CHECK
+    for (let item of user.cart.items) {
+      if (item.productId.stock < item.quantity) {
+        return res.status(400).send(
+          `Not enough stock for ${item.productId.title}`
+        );
+      }
+    }
+    const order = new Order({
+      user: {
+        name: name,
+        address: address,
+        userId: req.user._id
+      },
+      products: products,
+      paymentMethod: payment,
+      status: "Processing",
+      createdAt: new Date()
+    });
+    return order.save()
+    .then(() => {
+      // REDUCE STOCK
+      return Promise.all(
+        user.cart.items.map(item => {
+          return Products.findById(item.productId._id)
+          .then(prod => {
+            prod.stock -= item.quantity;
+            return prod.save();
           });
-          if(item.productId.stock < quantity){
-     return res.status(400).json({
-          success: false,
-          message: "Not enough stock"
-     });
-}
-
-          const order = new Order({
-               user :{
-                    name: name, 
-                    address: address,
-                    userId: req.user._id
-               },
-               products : products,
-               paymentMethod: payment,
-               status : "Processing",
-               createdAt: new Date()
-          });
-          return order.save().then(
-            () => {
-              return Promise.all(products.map(item => {
-
-     return Products.findById(item.product._id)
-     .then(prod => {
-
-          prod.stock -= item.quantity;
-
-          return prod.save();
-     });
-
-}));
-              user.clearCart()
-
-            });
-     
-     }).then(()=>{
-          res.redirect("/orders")
-     }).catch(err =>console.log(err))
-}
+        })
+      );
+    })
+    .then(() => {
+      return user.clearCart();
+    });
+  })
+  .then(() => {
+    res.redirect("/orders");
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
 exports.paymentPostProduct = (req, res, next) => {
   const { name, address, payment, productId,quantity } = req.body;
 
