@@ -115,6 +115,11 @@
                                    </button>
 
                               <% } %>
+                              <% if(product.stock > 0 && product.stock <= 3){ %>
+                              <p class="low-stock">
+                                   Only <%= product.stock %> left!
+                              </p>
+                              <% } %>
                          </form>
                          <form action="/wishlist" method="POST" class="wishlist-form">
                               <input type="hidden" name="productId" value="<%= product._id %>">
