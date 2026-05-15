@@ -13,6 +13,7 @@ exports.productsShop = (req,res,next)=> {
   const max = req.query.max;
   const category = req.query.category;
   const sort = req.query.sort;
+  const stock = req.body.stock;
 
 
   let filter ={};
@@ -76,7 +77,8 @@ if(sort === "z-a"){
             min,
             max,
             category,
-            sort : sort
+            sort : sort,
+            stock : stock
       })
     
   }).catch(err=>{
