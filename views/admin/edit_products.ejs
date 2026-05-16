@@ -26,8 +26,19 @@
                <div class="form-control flex">
                     <label for="description">Description</label>
                     <textarea name="description" rows="5"><%= product.description %></textarea>
-                   
+                    
                </div>
+               <div class="form-control  flex">
+                            <label for="stock">Stock</label>
+
+                            <input
+                                type="number"
+                                name="stock"
+                                id="stock"
+                                min="0"
+                                required
+                            >
+                        </div>
                   <input type="hidden" name="prodId"  value="<%= product._id %>">
                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                <button type="submit" class="add_product-btn">Edit Product</button>

@@ -31,6 +31,7 @@ exports.postproducts = (req,res,next)=> {
      const price = req.body.price;
      const description = req.body.description;
      const category = req.body.category
+     const stock = req.body.stock
      const errors = validationResult(req);
 
      if (!errors.isEmpty()) {
@@ -57,7 +58,8 @@ exports.postproducts = (req,res,next)=> {
      description : description,
      price : price,
      category : category,
-     userId: req.user._id
+     userId: req.user._id,
+     stock : stock
    
      }
 )
@@ -144,6 +146,7 @@ exports.editPostProduct = (req,res,next) =>{
     const updatedPrice = req.body.price;
     const updatedImage = req.body.imageUrl
     const updatedDescription = req.body.description;
+    const updatedStock = req.body.stock;
 
     Products.findOne({ _id: prodId, userId: req.user._id }) .then(product=>{
      //     console.log(product);
@@ -152,6 +155,7 @@ exports.editPostProduct = (req,res,next) =>{
      product.price = updatedPrice;
      product.description = updatedDescription;
      product.imageUrl = updatedImage;
+     product.stock = updatedStock;
      return product.save().then(result=>{
           res.redirect('/admin/products')
      }).catch(err=>console.log("Error here",err))
