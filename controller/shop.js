@@ -334,7 +334,6 @@ exports.checkoutPostProducts = (req, res, next) => {
     });
     return order.save()
     .then(() => {
-      // REDUCE STOCK
       return Promise.all(
         user.cart.items.map(item => {
           return Products.findById(item.productId._id)
@@ -374,6 +373,12 @@ exports.paymentPostProduct = (req, res, next) => {
                   }
                   if (quantity < 1) {
                     return res.status(400).json({ success: false });
+                  }
+                  if (item.productId.stock < quantity) {
+                    return res.status(400).json({
+                        success: false,
+                        message: "Not enough stock"
+                    });
                   }
                   const order = new Order({
                     user: {

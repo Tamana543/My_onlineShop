@@ -96,6 +96,11 @@
                                         Out of Stock
                                    <% } %>
                               </p>
+                              <% if(product.stock > 0 && product.stock <= 3){ %>
+                              <p class="low-stock">
+                                   Only <%= product.stock %> left!
+                              </p>
+                              <% } %>
                          </div>
                          <div class="card__actions flex">
                               <a href="/products/<%=product.id%>" class="btn"> Detail</a>
@@ -115,11 +120,7 @@
                                    </button>
 
                               <% } %>
-                              <% if(product.stock > 0 && product.stock <= 3){ %>
-                              <p class="low-stock">
-                                   Only <%= product.stock %> left!
-                              </p>
-                              <% } %>
+                              
                          </form>
                          <form action="/wishlist" method="POST" class="wishlist-form">
                               <input type="hidden" name="productId" value="<%= product._id %>">
