@@ -31,7 +31,7 @@ exports.postproducts = (req,res,next)=> {
      const price = req.body.price;
      const description = req.body.description;
      const category = req.body.category
-     const stock = req.body.stock
+     const stock = +req.body.stock
      const errors = validationResult(req);
 
      if (!errors.isEmpty()) {
@@ -146,7 +146,7 @@ exports.editPostProduct = (req,res,next) =>{
     const updatedPrice = req.body.price;
     const updatedImage = req.body.imageUrl
     const updatedDescription = req.body.description;
-    const updatedStock = req.body.stock;
+    const updatedStock = +req.body.stock;
 
     Products.findOne({ _id: prodId, userId: req.user._id }) .then(product=>{
      //     console.log(product);
