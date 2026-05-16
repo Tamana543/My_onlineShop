@@ -357,54 +357,58 @@ exports.checkoutPostProducts = (req, res, next) => {
   });
 };
 exports.paymentPostProduct = (req, res, next) => {
-  const { name, address, payment, productId,quantity } = req.body;
+          const { name, address, payment, productId,quantity } = req.body;
 
 
-  if (!req.user) {
-    return res.status(401).json({ success: false });
-  }
+          if (!req.user) {
+            return res.status(401).json({ success: false });
+          }
 
-  req.user.populate('cart.items.productId')
-    .then(user => {
-      const item = user.cart.items.find(ind=>{
-        return ind.productId._id.toString() === productId.toString()
-      });
-      if(!item){
-        return res.status(404).json({success: false})
-      }
-      if (quantity < 1) {
-        return res.status(400).json({ success: false });
-      }
-      const order = new Order({
-        user: {
-          name,
-          address,
-          userId: req.user._id
-        },
-        products: [{
-          quantity: Number(quantity),
-          product:{...item.productId._doc}
-        }],
-        paymentMethod: payment,
-        status: payment === "card" ? "Paid" : "Pending",
-        createdAt: new Date()
-      });
-
-      return order.save()
-        .then(() => {
-          // console.log(user._id)
-         return req.user.deleteItemCard(productId)
-    })
-        .then(() => {
-          console.log("ORDER SAVED"); 
-          res.status(200).json({ success: true });
+          req.user.populate('cart.items.productId')
+            .then(user => {
+                  const item = user.cart.items.find(ind=>{
+                    return ind.productId._id.toString() === productId.toString()
+                  });
+                  if(!item){
+                    return res.status(404).json({success: false})
+                  }
+                  if (quantity < 1) {
+                    return res.status(400).json({ success: false });
+                  }
+                  const order = new Order({
+                    user: {
+                      name,
+                      address,
+                      userId: req.user._id
+                    },
+                    products: [{
+                      quantity: Number(quantity),
+                      product:{...item.productId._doc}
+                    }],
+                    paymentMethod: payment,
+                    status: payment === "card" ? "Paid" : "Pending",
+                    createdAt: new Date()
+                  });
+            return order.save()
+            .then(() => {
+              return Products.findById(productId)
+              .then(product => {
+                  product.stock -= Number(quantity);
+                  return product.save();
+              });
+            })
+            .then(() => {
+              return req.user.deleteItemCard(productId);
+            })
+            .then(() => {
+              console.log("ORDER SAVED");
+              res.status(200).json({
+                  success: true
+              });
         });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ success: false });
-    });
-};
+      })
+
+}
 exports.deletePostProduct = (req,res,next)=>{
   const prodId = req.body.productId;
 
