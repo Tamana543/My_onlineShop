@@ -55,6 +55,7 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
+      margin-bottom: 1%;
 }
 
 .page-info {
