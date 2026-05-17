@@ -43,8 +43,8 @@ header {
   width: 100% !important;
   height: calc(100vh - 70px);
 
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
 
   display: flex;
   justify-content: center;
@@ -57,11 +57,13 @@ header {
   padding: 30px 20px;
   z-index: 1000;
   padding: 0;
+  z-index: 9999;
 }
 
 .navbar.open {
   transform: translateX(0);
   opacity: 1;
+  width: 100% !important;
 }
 .nav-wrapper {
   flex-direction: column;
@@ -74,7 +76,7 @@ header {
 }
 
 .link {
-  width: 100%;
+  width: 100% !important;
 }
 
 .links_bar a {
@@ -179,7 +181,7 @@ header {
   position: relative;
   display: none;
   cursor: pointer;
-  z-index: 2000;
+  z-index: 20000;
 }
 
 .hamburger span {
