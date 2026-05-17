@@ -248,14 +248,29 @@ exports.getidProduct = (req,res,next)=> {
                       reviews.reduce((sum, r) => sum + r.rating, 0)
                       / reviews.length;
                }
+                return Products.find({
+                      _id: { $in: req.session.recentlyViewed },
+                      _id: { $ne: prodId }
+                  })
+                  .then(recentProducts => {
 
-               res.render("shop/product_detail",{
-                    product : product,
-                    pageTitle : "Product detail",
-                    path : "/products",
-                    reviews: reviews,
-                    avgRating: avgRating.toFixed(1)
-               });
+                      res.render("shop/product_detail", {
+                          product: product,
+                          pageTitle: "Product detail",
+                          path: "/products",
+                          reviews: reviews,
+                          avgRating: avgRating.toFixed(1),
+                          recentProducts: recentProducts
+                      });
+
+                  });
+              //  res.render("shop/product_detail",{
+              //       product : product,
+              //       pageTitle : "Product detail",
+              //       path : "/products",
+              //       reviews: reviews,
+              //       avgRating: avgRating.toFixed(1)
+              //  });
 
           });
 
@@ -263,6 +278,22 @@ exports.getidProduct = (req,res,next)=> {
      .catch(err=>{
           console.error(err);
      });
+    //  Recent View 
+    if (!req.session.recentlyViewed) {
+    req.session.recentlyViewed = [];
+    }
+
+    const existingIndex = req.session.recentlyViewed.indexOf(prodId);
+
+    if (existingIndex !== -1) {
+        req.session.recentlyViewed.splice(existingIndex, 1);
+    }
+
+    req.session.recentlyViewed.unshift(prodId);
+
+    
+    req.session.recentlyViewed =
+        req.session.recentlyViewed.slice(0, 3);// 3 viewed products
 }
 exports.indexProducts = (req,res,next)=>{
      Products.find().then(result=>{
@@ -274,9 +305,7 @@ exports.indexProducts = (req,res,next)=>{
           console.error(err);
           
      })
-     // Products.fetchAll((products)=> {
-
-     // })  
+      
 }
 exports.checkoutProducts = (req,res,next)=>{
   const productId = req.query.productId;
