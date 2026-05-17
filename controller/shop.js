@@ -267,14 +267,6 @@ exports.getidProduct = (req,res,next)=> {
                       });
 
                   });
-              //  res.render("shop/product_detail",{
-              //       product : product,
-              //       pageTitle : "Product detail",
-              //       path : "/products",
-              //       reviews: reviews,
-              //       avgRating: avgRating.toFixed(1)
-              //  });
-
           });
 
      })

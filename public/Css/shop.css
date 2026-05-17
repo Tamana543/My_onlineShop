@@ -288,14 +288,13 @@
 /* Product details style  */
 
 .product-detail-container {
-  display: flex;
-  justify-content: center;
   margin-top: 40px;
   flex-direction: column;
 }
 
 .product-detail-card {
-
+ border-radius: 18px;
+    border: 1px solid rgba(221,179,33,0.2);
   flex-direction: column;
   gap: 40px;
   max-width: 1000px;
@@ -335,12 +334,12 @@ width: 54%;
 /* Recent viewed */
 
 .recent-products{
-    width: 100%;
+      width: 67%;
     margin-top: 5rem;
     padding: 2rem;
     background: #0d0d0d;
-    border-radius: 18px;
-    border: 1px solid rgba(221,179,33,0.2);
+   
+    text-align: center;
 }
 
 .recent-products h2{
