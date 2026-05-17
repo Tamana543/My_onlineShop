@@ -87,7 +87,37 @@
     </div>
 
   </div>
+<% if(recentProducts && recentProducts.length > 0){ %>
 
+<div class="recent-products">
+
+    <h2>Recently Viewed</h2>
+
+    <div class="recent-grid">
+
+        <% recentProducts.forEach(prod => { %>
+
+            <div class="recent-card">
+
+                <img src="<%= prod.imageUrl %>" alt="">
+
+                <h3><%= prod.title %></h3>
+
+                <p>$<%= prod.price %></p>
+
+                <a href="/products/<%= prod._id %>" class="btn">
+                    View
+                </a>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
+
+<% } %>
 </div>
 
 <%- include('../layouts/end.ejs') %>
