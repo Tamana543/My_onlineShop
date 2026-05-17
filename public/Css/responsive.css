@@ -83,6 +83,14 @@ header {
   font-size: 1.2rem;
   color: #fff;
 }
+/* Product details */
+.product-detail-content {
+    width: 80% !important;
+   
+}
+.product-detail-card {
+  flex-direction: column !important;
+}
   /* add product special */
   .add_product-main {
     flex-direction: row;
