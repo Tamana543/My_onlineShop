@@ -249,8 +249,11 @@ exports.getidProduct = (req,res,next)=> {
                       / reviews.length;
                }
                 return Products.find({
-                      _id: { $in: req.session.recentlyViewed },
-                      _id: { $ne: prodId }
+                      _id: {
+                          $in: req.session.recentlyViewed.filter(
+                              id => id !== prodId
+                          )
+                      }
                   })
                   .then(recentProducts => {
 
