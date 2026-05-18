@@ -450,11 +450,22 @@
 
     z-index: 9999;
 }
-.reviews-section {
-   
-    flex-direction: column;
+.reviews-section{
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 
-    gap: 10%;
+    gap: 20px;
+
+    width: 100%;
+
+    padding-bottom: 10px;
+
+    scrollbar-width: none;
+}
+
+.reviews-section::-webkit-scrollbar{
+    display: none;
 }
 .review-box{
     width: 420px;
@@ -541,7 +552,6 @@
 }
 
 .review-box{
-    min-width: 100%;
     scroll-snap-align: center;
 }
 

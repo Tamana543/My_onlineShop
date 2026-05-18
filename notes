@@ -56,7 +56,9 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* Save cart (persistent cart) (before starting fix the review to show many reviews)
+* fix the login and signup bug 
+* fix the review to show many reviews
+* Save cart (persistent cart) 
 * Dark mode toggle
 * Donot forget to fix the server base code (render the APP js env), (Clean the test.css)
 
