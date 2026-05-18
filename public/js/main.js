@@ -17,6 +17,8 @@ const reviewModal = document.getElementById("reviewModal");
 const reviewProductInput = document.getElementById("reviewProductId");
 const selectedRating = document.getElementById("selectedRating");
 const stars = document.querySelectorAll(".star");
+const reviewsSlider = document.getElementById("reviewsSlider");
+const dots = document.querySelectorAll(".dot");
 
 
 let selectedAction = null;
@@ -183,7 +185,6 @@ if (checkoutForm) {
 if (serverToast) {
   const message = serverToast.dataset.message;
   const type = serverToast.dataset.type;
-
   if (message) {
     showToast(message, type);
   }
@@ -194,33 +195,22 @@ let previewTimeout;
 
 if (imageUrlInput) {
   imageUrlInput.addEventListener("change", () => {
-
     const url = imageUrlInput.value.trim();
-
     if (!url) return;
-
     previewImage.src = url;
-
     previewImage.onload = () => {
-
       floatingPreview.classList.remove("hidden");
-
       setTimeout(() => {
         floatingPreview.classList.add("show");
       }, 50);
-
       clearTimeout(previewTimeout);
-
       previewTimeout = setTimeout(() => {
         floatingPreview.classList.remove("show");
-
         setTimeout(() => {
           floatingPreview.classList.add("hidden");
         }, 400);
-
       }, 4000);
     };
-
     previewImage.onerror = () => {
       showToast("Invalid image URL", "error");
     };
@@ -255,6 +245,19 @@ stars.forEach(star => {
     });
 
 });
+}
+if(reviewsSlider && dots.length > 0){// dots for review
+    dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            const index = dot.dataset.index;
+            reviewsSlider.scrollTo({
+                left: reviewsSlider.clientWidth * index,
+                behavior: "smooth"
+            });
+            dots.forEach(d => d.classList.remove("active-dot"));
+            dot.classList.add("active-dot");
+        });
+    });
 }
 window.openReviewModal = openReviewModal;
 window.closeReviewModal = closeReviewModal;
