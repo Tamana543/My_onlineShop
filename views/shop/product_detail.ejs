@@ -27,43 +27,48 @@
         ⭐ <%= avgRating %> / 5
       </div>
       <p class="product-desc"><%= product.description %></p>
-  <div class="reviews-section flex">
+  <div class="reviews-wrapper">
 
-  <h2 class="review_head">Customer Reviews</h2>
+    <h2 class="review_head">Customer Reviews</h2>
 
-  <% if(reviews.length > 0){ %>
+    <% if(reviews.length > 0){ %>
 
-    <% reviews.forEach(review => { %>
+    <div class="reviews-slider" id="reviewsSlider">
 
-      <div class="review-box">
+        <% reviews.forEach((review,index) => { %>
 
-        <!-- <h4><%= review.username %></h4> -->
+        <div class="review-box">
 
-        <div class="product-rating">
+            <div class="product-rating">
+                ⭐ <%= review.rating %> / 5
+            </div>
 
-       <% if(reviews.length > 0){ %>
+            <p><%= review.reviewText %></p>
 
-      ⭐ <%= avgRating %> / 5
+        </div>
 
-      <% } else { %>
+        <% }) %>
 
-      No ratings yet
+    </div>
 
-  <% } %>
+    <div class="review-dots">
 
-</div>
+        <% reviews.forEach((review,index) => { %>
 
-        <p><%= review.reviewText %></p>
+            <span 
+                class="dot <%= index === 0 ? 'active-dot' : '' %>"
+                data-index="<%= index %>"
+            ></span>
 
-      </div>
+        <% }) %>
 
-    <% }) %>
+    </div>
 
-  <% } else { %>
+    <% } else { %>
 
-     <p>No reviews yet.</p>
+        <p>No reviews yet.</p>
 
-  <% } %>
+    <% } %>
 
 </div>
       <div class="product-actions flex">
