@@ -519,6 +519,57 @@
 
     gap: 10px;
 }
+.reviews-wrapper{
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.reviews-slider{
+    display: flex;
+    gap: 20px;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+}
+
+.reviews-slider::-webkit-scrollbar{
+    display: none;
+}
+
+.review-box{
+    min-width: 100%;
+    scroll-snap-align: center;
+}
+
+.review-dots{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 1rem;
+}
+
+.dot{
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #555;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.active-dot{
+    background: #DDB321;
+    transform: scale(1.2);
+}
 
 /* Sort */
 .shop-toolbar{
