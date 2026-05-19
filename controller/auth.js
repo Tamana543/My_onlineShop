@@ -20,6 +20,8 @@ const transport = nodemailer.createTransport({
 })
 exports.getLogIn = (req,res,next)=>{
      let errorMessage = req.flash('userError')
+     const toast = req.session.toast;
+     req.session.toast = null;
      if(errorMessage.length > 0 ){
           errorMessage = errorMessage
      }else {
@@ -30,13 +32,15 @@ exports.getLogIn = (req,res,next)=>{
           path : '/login',
            isAuthCorrect: false,
            errorMessage : errorMessage,
-           ValidationError : []
+           ValidationError : [],
+           toast: toast
      })
 }
 
 exports.getSignUp = (req,res,next)=>{
      let errorMessage = req.flash('userError'); //store temporary messages  in the session and display them after a redirect.
-
+const toast = req.session.toast;
+req.session.toast = null;
      if(errorMessage.length > 0) {
           errorMessage = errorMessage
      }else {
@@ -48,13 +52,16 @@ exports.getSignUp = (req,res,next)=>{
           path : '/signup',
           isAuthCorrect : false,
           errorMessage : errorMessage,
-          ValidationError : []
+          ValidationError : [],
+          toast: toast
           
      })
 }
 
 exports.getReset = (req,res,next)=>{
      let errorMessage = req.flash('error')
+     const toast = req.session.toast;
+     req.session.toast = null;
      if(errorMessage.length > 0){
           errorMessage = errorMessage
      }else {
@@ -64,7 +71,8 @@ exports.getReset = (req,res,next)=>{
          res.render('auth/resetPassword',{
           pageTitle :"Reset Password page",
           path : '/login',
-          errorMessage : errorMessage
+          errorMessage : errorMessage,
+          toast: toast
                 })
 }
 
@@ -133,6 +141,7 @@ exports.postSignup = (req,res,next)=>{
                password : hashedPassword,
                cart : {items :[]}
           })
+          
           return newUser.save()
      }).then(result=>{
                     req.session.isLoggedin = true
@@ -154,7 +163,10 @@ exports.postSignup = (req,res,next)=>{
           .catch(err=>{
                next(new Error(err))
           })
-
+req.session.toast = {
+     message: "Reset email sent successfully ",
+     type: "success"
+};
       return req.session.save(err=>{
           if(err) console.log(err)
           res.redirect('/login') 
@@ -188,6 +200,10 @@ if(isMatching){
      req.session.isLoggedin = true
      req.session.user = {
   _id: user._id.toString()
+};
+req.session.toast = {
+     message: "Logged in successfully ",
+     type: "success"
 };
      return req.session.save((err)=>{
           res.redirect('/')
@@ -291,6 +307,10 @@ resetUser.resetExpiredToken = undefined;
 return resetUser.save()
 })
 .then(respond=>{
+     req.session.toast = {
+       message: "Password updated successfully ",
+     type: "success"
+};
      res.redirect('/login')
 }).catch(err=>{
      console.log(err);
