@@ -26,12 +26,37 @@
                          <div class="card__content">
                               <p class="product__description"><%=product.description%></p>
                               <h2 class="product__price">$<%=product.price%></h2>
+                               <p class="product-stock">
+                                   <% if(product.stock > 0){ %>
+                                        In Stock: <%= product.stock %>
+                                   <% } else { %>
+                                        Out of Stock
+                                   <% } %>
+                              </p>
+                              <% if(product.stock > 0 && product.stock <= 3){ %>
+                              <p class="low-stock">
+                                   Only <%= product.stock %> left!
+                              </p>
+                              <% } %>
                          </div>
                          <div class="card__actions">
                               <form action="/add-to-cart" method="post">
                                    <input type="hidden" name="productId" value="<%= product._id%>">
                                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                              <button class="btn" >Add to Cart</button>
+                             <% if(product.stock > 0){ %>
+
+                                   <button class="btn">
+                                   Add to Cart
+                                   </button>
+
+                                   <% } else { %>
+
+                                   <button class="btn" disabled>
+                                   Out of Stock
+                                   </button>
+
+                              <% } %>
+                              
                          </form>
                          </div>
                     </article>
