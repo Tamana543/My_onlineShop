@@ -62,6 +62,12 @@ app.use((req,res,next)=>{
      next()
 })
 
+// for toast
+app.use((req,res,next)=>{
+     res.locals.toast = req.session.toast;
+     req.session.toast = null;
+     next();
+});
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
