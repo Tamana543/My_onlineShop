@@ -237,55 +237,79 @@ req.session.destroy(err=>{
 }
 
 exports.postReset = (req,res,next)=>{
-       const email = req.body.email;
+     const email = req.body.email;
      crypto.randomBytes(32,(error,buffer)=>{
           if(error){
-               res.redirect('auth/resetPassword')
+               return res.redirect('/reset');
           }
-          const token = buffer.toString('hex')
-          user.findOne({email : email}).then(userFound=>{
+          const token = buffer.toString('hex');
+          user.findOne({email : email})
+          .then(userFound=>{
+
                if(!userFound){
-                    req.flash('error','Email Address not found !')
-                    res.redirect('auth/resetPassword')
+                    req.flash('error','Email Address not found !');
+                    return res.redirect('/reset');
                }
+
                userFound.resetToken = token;
-               userFound.resetExpiredToken = Date.now() + 3600000
-               return userFound.save()
-          })
-          .then(respond=>{
-// const resetLink = `http://localhost:3000/reset/${token}`;
-const resetLink = `${process.env.BASE_URL}/reset/${token}`; // to use env base (environment-based base URL)
+               userFound.resetExpiredToken = Date.now() + 3600000;
 
-const emailTemplate = emailTemplateEng(
-  'Password Reset',
-  'Click the button below to reset your password.',
-  'Reset your password securely',
-  email,
-  resetLink,
-  'Reset Password'
-);
-            const sender = {
-                                   address : "Tamanafarzami33@gmail.com",
-                                   name : "Tamana Farzami "
-                              }
-                         const recipients = email
-                         res.redirect('/login')
-                         transport.sendMail({
-                              from: sender,
-                              to:recipients,
-                              subject: "Reset Password",
-                              html : emailTemplate,
-                              category: "Integration Test",
-          
-                         })
-          }).catch(err=>{
+               return userFound.save();
+          })
+          .then(userSaved=>{
+
+               if(!userSaved){
+                    return;
+               }
+
+               const resetLink = `${process.env.BASE_URL}/reset/${token}`;
+
+               const emailTemplate = emailTemplateEng(
+                    'Password Reset',
+                    'Click the button below to reset your password.',
+                    'Reset your password securely',
+                    email,
+                    resetLink,
+                    'Reset Password'
+               );
+
+               const sender = {
+                    address : "Tamanafarzami33@gmail.com",
+                    name : "Tamana Farzami "
+               };
+
+               return transport.sendMail({
+                    from: sender,
+                    to: email,
+                    subject: "Reset Password",
+                    html : emailTemplate,
+                    category: "Integration Test",
+               });
+
+          })
+          .then(()=>{
+
+               req.session.toast = {
+                    message: "Reset email sent successfully",
+                    type: "success"
+               };
+
+               res.redirect('/login');
+
+          })
+          .catch(err=>{
                console.log(err);
-          })
 
-     })
- 
+               req.session.toast = {
+                    message: "Failed to send reset email",
+                    type: "error"
+               };
+
+               res.redirect('/reset');
+          });
+
+     });
 }
-
 exports.postNewPassword = (req,res,next)=>{
 const newPassword = req.body.password;
 const UserId = req.body.userId;

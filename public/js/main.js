@@ -126,6 +126,7 @@ function showToast(message, type = "success") {
 
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
+  toast.style.pointerEvents = "auto";
   toast.innerText = message;
 
   container.appendChild(toast);
