@@ -56,7 +56,7 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* fix the login and signup bug (fix the toast popup to show sign up completed fix the add cart functionality, show a toast while resetting pass so it tell them to check their emai, fix the email sending problem in reset password)
+* fix the login and signup bug ( fix the add cart functionality,fix the email sending problem in reset password)
 * fix the review to show many reviews( when you go to the admin page the popup showing the failed to add review fix it )
 * Save cart (persistent cart) 
 * Dark mode toggle
