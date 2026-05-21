@@ -163,10 +163,10 @@ exports.postSignup = (req,res,next)=>{
           .catch(err=>{
                next(new Error(err))
           })
-req.session.toast = {
-     message: "Reset email sent successfully ",
-     type: "success"
-};
+          req.session.toast = {
+               message: "Account created successfully",
+               type: "success"
+          };
       return req.session.save(err=>{
           if(err) console.log(err)
           res.redirect('/login') 
