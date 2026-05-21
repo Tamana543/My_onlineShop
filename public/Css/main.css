@@ -366,37 +366,66 @@ footer a:hover {
 }
 
 /*  Toast animation*/
+/* Toast Container */
 #toast-container {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  pointer-events: none;
 }
 
+/* Toast Box */
 .toast {
-  background: #222;
-  color: #fff;
-  padding: 12px 18px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  font-size: 14px;
+  min-width: 260px;
+  max-width: 420px;
+
+  padding: 14px 22px;
+  margin-top: 10px;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+
+  backdrop-filter: blur(10px);
+
   opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.3s ease;
+
+  transform: translateY(40px) scale(0.95);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* Active Animation */
 .toast.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .toast.success {
-   color: #000;
-  background: linear-gradient(135deg, #f0d77e, #c99c38);
+  color: #000;
+  background: linear-gradient(
+    135deg,
+    #f0d77e,
+    #c99c38
+  );
 }
 
 .toast.error {
   background: #dc3545;
+  color: white;
 }
   .btn {
   font: inherit;
