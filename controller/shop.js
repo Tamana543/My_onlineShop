@@ -84,28 +84,62 @@ if(sort === "z-a"){
       console.error(err)
   })
 }
-exports.cartProducts = (req,res,next)=>{
-     // console.log(req);
+exports.cartProducts = async (req,res,next)=>{
 
-  if(!req.user){
-     return res.redirect('/login')
-  }
-     // getting the card items to show 
-     req.user.populate('cart.items.productId').then(user=>{
-            const cart = user.cart.items.filter(item => item.productId !== null);
-          res.render("shop/cart",
-               {prods : cart,
-                pageTitle : "Your Cart",
-                path:"/cart",
-                hasProducts:cart.length > 0,
-                isAuthCorrect : req.session.isLoggedin,
-                csrfToken : req.csrfToken()
-}) 
-          
-     }).catch(err=>{
-          console.error(err)
-     })
-   
+     try {
+
+          // LOGGED USER
+          if(req.user){
+
+               await req.user.populate('cart.items.productId');
+
+               const cart = req.user.cart.items.filter(item => {
+                    return item.productId !== null;
+               });
+
+               return res.render("shop/cart",{
+                    prods : cart,
+                    pageTitle : "Your Cart",
+                    path:"/cart",
+                    hasProducts: cart.length > 0,
+                    isAuthCorrect : req.session.isLoggedin,
+                    csrfToken : req.csrfToken()
+               });
+          }
+
+          // GUEST USER
+          const sessionCart = req.session.cart || [];
+
+          const productIds = sessionCart.map(item => item.productId);
+
+          const products = await Products.find({
+               _id: { $in: productIds }
+          });
+
+          const cartItems = products.map(product => {
+
+               const sessionItem = sessionCart.find(item => {
+                    return item.productId.toString() === product._id.toString();
+               });
+
+               return {
+                    productId: product,
+                    quantity: sessionItem.quantity
+               };
+          });
+
+          res.render("shop/cart",{
+               prods : cartItems,
+               pageTitle : "Your Cart",
+               path:"/cart",
+               hasProducts: cartItems.length > 0,
+               isAuthCorrect : false,
+               csrfToken : req.csrfToken()
+          });
+
+     } catch(err){
+          console.log(err);
+     }
 }
 exports.postCardShop = (req,res,next)=>{
      // console.log(req.body.items.productId);
