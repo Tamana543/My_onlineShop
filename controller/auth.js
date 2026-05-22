@@ -201,6 +201,41 @@ if(isMatching){
      req.session.user = {
   _id: user._id.toString()
 };
+// Cart user and Guest 
+const sessionCart = req.session.cart || [];
+
+const cartPromises = sessionCart.map(item => {
+
+     return Products.findById(item.productId)
+     .then(product => {
+
+          if(!product) return;
+
+          let chain = Promise.resolve();
+
+          for(let i = 0; i < item.quantity; i++){
+               chain = chain.then(() => user.addToCart(product));
+          }
+
+          return chain;
+     });
+});
+
+return Promise.all(cartPromises)
+.then(() => {
+
+     req.session.cart = [];
+
+     req.session.toast = {
+          message: "Logged in successfully",
+          type: "success"
+     };
+
+     return req.session.save(err => {
+          res.redirect('/');
+     });
+});
+
 req.session.toast = {
      message: "Logged in successfully ",
      type: "success"
