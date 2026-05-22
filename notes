@@ -56,12 +56,12 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* fix the login and signup bug ( fix the add cart functionality,fix the email sending problem in reset password)
-* fix the review to show many reviews( when you go to the admin page the popup showing the failed to add review fix it )
 * Save cart (persistent cart) 
 * Dark mode toggle
+* fix the login and signup bug ( fix the add cart functionality,fix the email sending problem in reset password)
 * Donot forget to fix the server base code (render the APP js env), (Clean the test.css)
 
+* fix the review to show many reviews()✔️
 * Recently viewed products ✔️
 * Stock / availability system ✔️
 * Product sorting (price, newest, etc.)✔️
