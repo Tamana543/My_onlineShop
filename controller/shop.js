@@ -112,14 +112,34 @@ exports.postCardShop = (req,res,next)=>{
      const productId =req.body.productId ;
     //  console.log("Here",req.body)
      
-     Products.findById(productId)
-     .then((respond)=>{
-          return req.user.addToCart(respond)
-     }).then(ans=>{
-          res.redirect('/cart')
+    Products.findById(productId)
+.then(product => {
 
-     })
-     .catch(err=>console.error(err))
+     // USER 
+     if(req.user){
+          return req.user.addToCart(product);
+     }
+     // GUEST 
+     if(!req.session.cart){
+          req.session.cart = [];
+     }
+     const existingProduct = req.session.cart.find(item => {
+          return item.productId.toString() === productId.toString();
+     });
+     if(existingProduct){
+          existingProduct.quantity += 1;
+     }else{
+          req.session.cart.push({
+               productId: product._id,
+               quantity: 1
+          });
+     }
+     return req.session.save();
+})
+.then(()=>{
+     res.redirect('/cart');
+})
+.catch(err => console.log(err));
 }
 exports.orderProducts = (req,res,next)=>{
      Order.find({'user.userId': req.user._id})
