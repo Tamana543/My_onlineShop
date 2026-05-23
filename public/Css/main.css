@@ -114,7 +114,7 @@ border: none ;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #111;
+background: var(--bg-secondary);
   border: 1px solid var(--gold-primary);
   border-radius: 20px;
   padding: 3px 8px;
@@ -212,7 +212,7 @@ footer a:hover {
 
 
 .confirm-box {
-  background: #111;
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
@@ -240,7 +240,7 @@ footer a:hover {
 .cancel-btn {
   background: transparent;
   border: 1px solid #aaa;
-  color: #aaa;
+  color: var(--text-muted);
 }
 
 .danger-btn {
@@ -259,7 +259,7 @@ footer a:hover {
 .cancel-btn {
   background: transparent;
   border: 1px solid #aaa;
-  color: #aaa;
+  color: var(--text-muted);
 }
 
 .delete-btn {
@@ -290,7 +290,7 @@ footer a:hover {
 }
 
 .checkout-card {
-  background: #111;
+ background: var(--bg-secondary);
   padding: 30px;
   border-radius: 12px;
   width: 400px;
@@ -309,7 +309,7 @@ footer a:hover {
   font-size: 1.8rem;
 }
 .checkout-form {
-  background: #111;
+  background: var(--bg-secondary);
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(221, 179, 33, 0.15);
@@ -321,7 +321,7 @@ footer a:hover {
 
 .checkout-form input,
 .checkout-form select {
-  background: #1a1a1a !important;
+  background: var(--bg-card) !important;
   border: 1px solid var(--gold-primary);
   border-radius: 6px;
   padding: 10px;
@@ -360,7 +360,7 @@ footer a:hover {
 }
 .checkout-form label {
   font-size: 0.85rem;
-  color: #aaa;
+  color: var(--text-muted);
   margin-top: 5px;
 }
 .card-details {
@@ -438,7 +438,7 @@ footer a:hover {
   background: linear-gradient(
     135deg,
     var(--gold-light),
-    #c99c38
+  var(--gold-dark)
   );
 }
 
@@ -450,7 +450,7 @@ footer a:hover {
   font: inherit;
   border: none;
   color: #000;
-  background: linear-gradient(135deg, var(--gold-light), #c99c38);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none !important;
@@ -461,7 +461,7 @@ footer a:hover {
 }
 
 .btn:hover {
-  background: linear-gradient(135deg, #c99c38, var(--gold-light));
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
   transform: scale(1.05);
 }
 
@@ -471,7 +471,23 @@ footer a:hover {
   animation: fadeIn_cards 0.4s ease forwards;
 }
 
-/* animation */
+/* animation- transtioion  */
+body,
+.navbar,
+.card,
+.checkout-card,
+.checkout-form,
+.confirm-box,
+input,
+button,
+a,
+.toast {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
 @keyframes fadeIn_cards {
   from {
     opacity: 0;
