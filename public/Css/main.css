@@ -138,7 +138,7 @@ background: var(--bg-secondary);
 .search-form input {
   border: none;
   background: transparent !important;
-  color: #fff;
+  color: var(--text-main);
   outline: none;
   padding: 5px;
   width: 140px;
@@ -199,7 +199,7 @@ width: 25%;
 footer a {
      
      text-decoration: none;
-     color: #ffffffc4;
+   color: var(--text-main);
   padding: 3% 0%;
 font-size: 1.2rem;
 transform: scaleX(0);
@@ -279,7 +279,7 @@ footer a:hover {
 
 .delete-btn {
   background: linear-gradient(135deg, #ff6b6b, #c0392b);
-  color: #fff;
+ color: var(--text-main);
 }
 
 /* Checkout Style  */
@@ -340,7 +340,7 @@ footer a:hover {
   border: 1px solid var(--gold-primary);
   border-radius: 6px;
   padding: 10px;
-  color: #fff;
+color: var(--text-main);
   outline: none;
   font-size: 0.95rem;
 }
@@ -390,7 +390,7 @@ footer a:hover {
   border: 1px solid var(--gold-primary);
   border-radius: 6px;
   padding: 10px;
-  color: #fff;
+  color: var(--text-main);
   outline: none;
 }
 

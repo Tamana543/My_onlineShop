@@ -1,5 +1,5 @@
 body {
-    background: #000;
+    background: var(--bg-main);
     font-family: "Lato", sans-serif;
 }
 
@@ -20,7 +20,7 @@ ol, ul {
 
 .add-product-box {
     margin-top: 0;
-    background: #111;
+    background: var(--bg-secondary);
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(221,179,33,.45);
     padding: 40px;
@@ -46,7 +46,7 @@ ol, ul {
     background-color: transparent !important;
     border: 1px solid #DDB321 !important;
     border-radius: 6px;
-    color: #fff !important;
+    color: var(--text-main) !important;
     padding: 12px !important;
 }
 
@@ -63,7 +63,7 @@ textarea.form-control {
 
 select.form-control {
     background-color: #111 !important;
-    color: #fff !important;
+    color: var(--text-main) !important;
 }
 
 .custom-btn {

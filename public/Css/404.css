@@ -26,7 +26,7 @@ font-size: 1.9em;
 font-weight: 100;
 letter-spacing: 3px;
 padding-top: 5px;
-color: #ffffffb4;
+color: var(--text-main);
 padding-bottom: 5px;
 text-transform: uppercase;
 }
@@ -73,7 +73,7 @@ box-shadow: 5px 5px 20px rgba(203, 205, 211, 0.1);
 /* box-shadow: 5px 5px 20px var(--border-color); */
 }
 .error_message {
-  color: #ffffffb4;
+  color: var(--text-main);
   margin: 2% 0%;
 }
 .two {

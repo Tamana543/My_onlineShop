@@ -3,12 +3,12 @@
 }
 
 body {
-    background: #000;
+  background: var(--bg-main);
     font-family: "Lato", sans-serif;
 }
 .login-box {
       margin-top: 50px;
-    background: #111;
+    background: var(--bg-secondary);
     border-radius: 12px;
   box-shadow: 0 0 20px rgb(221 179 33 / 54%);
     padding: 20px;
@@ -44,7 +44,7 @@ input[type=password] {
    background-color: transparent !important;
     border: 1px solid #DDB321;
     border-radius: 6px;
-    color: #fff;
+   color: var(--text-main);
     padding: 10px;
     width: 100%;
 }
@@ -60,12 +60,12 @@ input[type=password] {
     background-color: transparent !important;
     border-color: #DDB321 !important;
     box-shadow: 0 0 8px rgba(221, 179, 33, 0.4) !important;
-    color: #fff !important;
+   color: var(--text-main) !important;
 }
 input,
 textarea {
     background-color: transparent !important;
-    color: #fff !important;
+    color: var(--text-main) !important;
 }
 
 input:focus,
@@ -148,6 +148,6 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #000 inset !important;
-  -webkit-text-fill-color: #fff !important;
+  -webkit-text-fill-color: var(--text-main) !important;
   transition: background-color 5000s ease-in-out 0s;
 }

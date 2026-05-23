@@ -59,7 +59,7 @@
 }
 
 .page-info {
-  color: #bbb;
+ color: var(--text-secondary);
 }
 
 .product-form {
@@ -79,7 +79,7 @@
   font-size: 1.1rem;
   text-align: center;
   font-weight: 600;
-  color: #fff;
+ color: var(--text-main);
 }
 
 .product__price {
@@ -92,8 +92,7 @@
 .product__description {
   text-align: center;
   font-size: 0.9rem;
-  color: #bbb;
-
+  color: var(--text-secondary);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -155,7 +154,7 @@
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: #111;
+  background: var(--bg-secondary);
   justify-content: space-between !important;
   height: 100%;
   margin-bottom: 2%;
@@ -353,7 +352,7 @@
 }
 
 .recent-card{
-    background: #111;
+    background: var(--bg-secondary);
     border-radius: 16px;
     overflow: hidden;
     transition: 0.35s ease;
@@ -374,7 +373,7 @@
 }
 
 .recent-card h3{
-    color: #fff;
+    color: var(--text-main);
     font-size: 1.1rem;
     margin: 1rem;
     min-height: 50px;
@@ -405,7 +404,7 @@
 
 .product-title {
   font-size: 1.8rem;
-  color: #fff;
+ color: var(--text-main);
   font-weight: 600;
 }
 
@@ -418,7 +417,7 @@
 }
 
 .product-desc {
-  color: #bbb;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -469,7 +468,7 @@
 }
 .review-box{
     width: 420px;
-    background: #111;
+    background: var(--bg-secondary);
     border-radius: 16px;
     padding: 30px;
     box-shadow: 0 0 2px rgba(221, 179, 33, 0.4);
@@ -602,7 +601,7 @@
     appearance: none;
     -webkit-appearance: none;
 
-    background: #111;
+ background: var(--bg-secondary);
     color: #f4d569e2;
 
     border: 1px solid #DDB321;
@@ -645,7 +644,7 @@
 }
 
 .sort-form option{
-    background: #111;
+   background: var(--bg-secondary);
     color: #f4d569e2;
 }
 .hidden{

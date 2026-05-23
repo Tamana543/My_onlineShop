@@ -31,7 +31,7 @@ main {
   max-width: 500px;
 }
 .details {
-  color: #bbb;
+  color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -79,7 +79,7 @@ main {
 .engine .data {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #fff;
+ color: var(--text-main);
 }
 
 .data_sub {
@@ -161,6 +161,6 @@ main {
 }
 
 .dev-link:hover {
-  color: #fff;
+color: var(--text-main);
   text-decoration: underline;
 }
