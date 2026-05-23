@@ -7,7 +7,7 @@ const cardInput = document.querySelector('#cardDetails input');
 const confirmBtn = document.getElementById("confirmBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const checkoutForm = document.getElementById("checkoutForm");
-const csrfToken = document.querySelector('input[name="_csrf"]').value;
+// const csrfToken = document.querySelector('input[name="_csrf"]').value;
 const submitBtn = document.getElementById("checkout_submit");
 const serverToast = document.getElementById("server-toast");
 const imageUrlInput = document.getElementById("imageUrl");
@@ -19,6 +19,9 @@ const selectedRating = document.getElementById("selectedRating");
 const stars = document.querySelectorAll(".star");
 const reviewsSlider = document.getElementById("reviewsSlider");
 const dots = document.querySelectorAll(".dot");
+const themeToggle = document.getElementById("themeToggle");
+const savedTheme = localStorage.getItem("theme");
+
 
 
 let selectedAction = null;
@@ -100,9 +103,6 @@ function handleCartDelete(button) {
 
 
 // Checkout UI
-
-
-
 if (paymentSelect) {
   paymentSelect.addEventListener("change", () => {
     if (paymentSelect.value === "card") {
@@ -260,6 +260,19 @@ if(reviewsSlider && dots.length > 0){// dots for review
         });
     });
 }
+// Theme toggle
+if(savedTheme === "light"){
+  document.body.classList.add("light-mode");
+}
+
+themeToggle?.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  if(document.body.classList.contains("light-mode")){
+      localStorage.setItem("theme", "light");
+  } else {
+      localStorage.setItem("theme", "dark");
+  }
+});
 window.openReviewModal = openReviewModal;
 window.closeReviewModal = closeReviewModal;
 window.handleAdminDelete = handleAdminDelete;
