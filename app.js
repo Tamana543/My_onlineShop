@@ -17,8 +17,8 @@ const app = express()
 
 // database : Mongoo : VpUGVuzoovqhnuRo
 // const MONGOD_URL  =  'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/?appName=Cluster0';
-// const MONGOD_URL = process.env.MONGO_URI;
-const MONGOD_URL = 'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/online_shop?retryWrites=true&w=majority'; // pick this up after fixing style
+const MONGOD_URL = process.env.MONGO_URI;
+// const MONGOD_URL = 'mongodb+srv://car_Online-Shop:VpUGVuzoovqhnuRo@cluster0.ufecoqb.mongodb.net/online_shop?retryWrites=true&w=majority'; // pick this up after fixing style
 
 
 
@@ -46,8 +46,7 @@ app.set('view engine' , 'ejs') // to tell the express go and ramder the pug dina
 // app.set('view engine' , 'hbs') // to tell the express go and ramder the handlebar (search about it) dinamic data ( compile it )
 
 app.use(session({
-  // secret : process.env.SESSION_SECRET,
-  secret : 'My first Car Online Shop',
+  secret : process.env.SESSION_SECRET,
   resave : false, 
   saveUninitialized : false,
   store : store

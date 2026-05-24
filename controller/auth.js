@@ -8,7 +8,8 @@ const { ValidationError } = require('sequelize')
 
 
 // gmail SMTP 
-
+console.log(process.env.EMAIL_USER);
+console.log(process.env.EMAIL_PASS);
 const transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
   port: 465, 
@@ -152,7 +153,7 @@ exports.postSignup = (req,res,next)=>{
                          address : "Tamanafarzami33@gmail.com",
                          name : "Tamana Farzami "
                     }
-               const recipients = email
+               const recipients = email;
                transport.sendMail({
                     from: sender,
                     to:recipients,
