@@ -17,41 +17,6 @@
   --error-red: #dc3545;
 }
 
-.light-mode {
---bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
-  
-  --bg-card: #F1F3F5;
-  --text-primary: #000000;     
-  --text-secondary: #212529;    
-  --text-muted: #6C757D;       
-  --text-dark: #000000;
-  --gold-primary: #C5A029;    
-  --gold-light: #DFBA43;       
-  --gold-dark: #917316;
-  --border-primary: #C5A029;
-  --border-secondary: #DEE2E6;
-  --shadow-gold: rgba(197, 160, 41, 0.15);
-  --shadow-dark: rgba(0, 0, 0, 0.05);
-  --error-red: #DC3545;
-}
-
-
-/* Theme toggle */
-.theme-toggle{
-  background: transparent;
-  border: 1px solid var(--gold-primary);
-  color: var(--gold-primary);
-  padding: 8px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  margin: 1%;
-}
-
-.theme-toggle:hover{
-  background: var(--gold-primary);
-  color: var(--text-dark);
-}
 * {
      padding: 0;
      margin: 0;
