@@ -19,8 +19,7 @@ const selectedRating = document.getElementById("selectedRating");
 const stars = document.querySelectorAll(".star");
 const reviewsSlider = document.getElementById("reviewsSlider");
 const dots = document.querySelectorAll(".dot");
-const themeToggle = document.getElementById("themeToggle");
-const savedTheme = localStorage.getItem("theme");
+
 
 
 
@@ -260,19 +259,7 @@ if(reviewsSlider && dots.length > 0){// dots for review
         });
     });
 }
-// Theme toggle
-if(savedTheme === "light"){
-  document.body.classList.add("light-mode");
-}
 
-themeToggle?.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  if(document.body.classList.contains("light-mode")){
-      localStorage.setItem("theme", "light");
-  } else {
-      localStorage.setItem("theme", "dark");
-  }
-});
 window.openReviewModal = openReviewModal;
 window.closeReviewModal = closeReviewModal;
 window.handleAdminDelete = handleAdminDelete;
