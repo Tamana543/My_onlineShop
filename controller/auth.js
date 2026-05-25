@@ -151,39 +151,43 @@ exports.postSignup = (req,res,next)=>{
           })
           
           return newUser.save()
-     }).then(result=>{
-                    req.session.isLoggedin = true
-                  req.session.user = {
-        _id: result._id.toString()
-      };
-                    const sender = {
-                         address : "Tamanafarzami33@gmail.com",
-                         name : "Tamana Farzami "
-                    }
-               const recipients = email;
-               transport.sendMail({
-                    from: sender,
-                    to:recipients,
-                    subject: "SIGN UP Completed Successfully :)",
-                    html : emailTemplate,
-                    category: "Integration Test",
-          }).then((respond)=>console.log(respond))
-          .catch(err=>{
-               next(new Error(err))
-          })
-          req.session.toast = {
-               message: "Account created successfully",
-               type: "success"
-          };
-      return req.session.save(err=>{
-          if(err) console.log(err)
-          res.redirect('/login') 
-     }) 
-     })
-     .catch(err=>{
-          console.log(err);
-          next(err)
-     })
+     }).then(result => {
+     req.session.isLoggedin = true;
+     req.session.user = {
+          _id: result._id.toString()
+     };
+     const sender = {
+          address: process.env.EMAIL_USER,
+          name: "Tamana Farzami"
+     };
+     return transport.sendMail({
+          from: sender,
+          to: email,
+          subject: "SIGN UP Completed Successfully :)",
+          html: emailTemplate
+     });
+})
+.then(response => {
+     console.log("EMAIL SENT:", response);
+     req.session.toast = {
+          message: "Account created successfully",
+          type: "success"
+     };
+     return req.session.save(err => {
+          if(err){
+               console.log(err);
+          }
+          res.redirect('/login');
+     });
+})
+.catch(err => {
+     console.log("FULL EMAIL ERROR:", err);
+     req.session.toast = {
+          message: "Email failed to send",
+          type: "error"
+     };
+     res.redirect('/signup');
+});
 }
 
 exports.postLogIn = (req,res,next)=>{
