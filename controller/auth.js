@@ -10,15 +10,22 @@ const { ValidationError } = require('sequelize')
 // gmail SMTP 
 console.log(process.env.EMAIL_USER);
 console.log(process.env.EMAIL_PASS);
+// port 465 in render makes problem so switched to this. 
 const transport = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-  port: 465, 
-  secure : true,
-  auth : {
-     user : process.env.EMAIL_USER,
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   }
-})
+});
+
+transport.verify((error, success) => {
+  if (error) {
+    console.log("SMTP ERROR:", error);
+  } else {
+    console.log("SMTP READY");
+  }
+});
 exports.getLogIn = (req,res,next)=>{
      let errorMessage = req.flash('userError')
      const toast = req.session.toast;
