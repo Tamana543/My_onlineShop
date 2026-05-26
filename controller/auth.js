@@ -116,85 +116,68 @@ user.findOne({resetToken : token , resetExpiredToken : {$gt : Date.now()}})
 })
 }
 
-exports.postSignup = (req,res,next)=>{
-     const email = req.body.email ;
-     const password = req.body.password;
-     const validated = validationResult(req)
+exports.postSignup = async (req,res,next) => {
+     try {
+          const email = req.body.email;
+          const password = req.body.password;
+          const validated = validationResult(req);
+          if(!validated.isEmpty()){
 
-     if(!validated.isEmpty()){
-     // hundle the validation error 
-     let error = validated.array()[0].msg
+               let error = validated.array()[0].msg;
 
-     console.log(error);
-
-     return res.status(422).render("auth/signup",{
-          path: '/signup',
-          pageTitle : "Signup",
-           isAuthCorrect : false,
-          errorMessage : error,
-          ValidationError : validated.array()
-
-     })
-     }
-     const homeLink = `${process.env.BASE_URL}/`;
-     
-     const emailTemplate = emailTemplateEng(' Welcome to Our Shop!', 'We are thrilled to have you join our community! Your account has been successfully created.','You can now start browsing our latest collections and enjoy exclusive member discounts.', email,homeLink,'Start Shopping'); 
-
-     bcreypt.hash(password,12).then((hashedPassword)=>{
- 
-          
+               return res.status(422).render("auth/signup",{
+                    path: '/signup',
+                    pageTitle : "Signup",
+                    isAuthCorrect : false,
+                    errorMessage : error,
+                    ValidationError : validated.array()
+               });
+          }
+          const hashedPassword = await bcreypt.hash(password,12);
           const newUser = new user({
                email : email,
                password : hashedPassword,
                cart : {items :[]}
-          })
-          
-          return newUser.save()
-     }).then(result => {
-     req.session.isLoggedin = true;
-     req.session.user = {
-          _id: result._id.toString()
-     };
-     const sender = {
-          address: process.env.EMAIL_USER,
-          name: "Tamana Farzami"
-     };
-     return transport.sendMail({
-          from: sender,
-          to: email,
-          subject: "SIGN UP Completed Successfully :)",
-          html: emailTemplate
-     });
-})
-.then(async result => {
-     req.session.isLoggedin = true;
-     req.session.user = {
-          _id: result._id.toString()
-     };
-     const sender = {
-          address: process.env.EMAIL_USER,
-          name: "Tamana Farzami"
-     };
-     await transport.sendMail({
-          from: sender,
-          to: email,
-          subject: "SIGN UP Completed Successfully :)",
-          html: emailTemplate
-     });
-
-     console.log("EMAIL SENT SUCCESSFULLY");
-
-     req.session.toast = {
-          message: "Account created successfully",
-          type: "success"
-     };
-     return req.session.save(err => {
-          if(err){
-               console.log(err);
-          }
-          res.redirect('/login');
-     });
-})
+          });
+          const savedUser = await newUser.save();
+          req.session.isLoggedin = true;
+          req.session.user = {
+               _id: savedUser._id.toString()
+          };
+          const homeLink = `${process.env.BASE_URL}/`;
+          const emailTemplate = emailTemplateEng(
+               'Welcome to Our Shop!',
+               'We are thrilled to have you join our community!',
+               'You can now start browsing our latest collections.',
+               email,
+               homeLink,
+               'Start Shopping'
+          );
+          await transport.sendMail({
+               from: `"Tamana Farzami" <${process.env.EMAIL_USER}>`,
+               to: email,
+               subject: "SIGN UP Completed Successfully :)",
+               html: emailTemplate
+          });
+          console.log("EMAIL SENT SUCCESSFULLY");
+          req.session.toast = {
+               message: "Account created successfully",
+               type: "success"
+          };
+          req.session.save(err => {
+               if(err){
+                    console.log(err);
+               }
+               res.redirect('/login');
+          });
+     } catch(err){
+          console.log("SIGNUP ERROR:", err);
+          req.session.toast = {
+               message: "Failed to create account",
+               type: "error"
+          };
+          res.redirect('/signup');
+     }
 }
 
 exports.postLogIn = (req,res,next)=>{
