@@ -11,7 +11,7 @@ const { ValidationError } = require('sequelize')
 // port 465 in render makes problem so switched to this. 
 const transport = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
-    port: 587,
+    port: 2525, // Be careful soon may this port will also blocked
     secure: false,
     auth: {
         user: process.env.EMAIL_USER,
