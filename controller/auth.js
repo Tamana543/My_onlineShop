@@ -8,15 +8,18 @@ const { ValidationError } = require('sequelize')
 
 
 // gmail SMTP 
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
 // port 465 in render makes problem so switched to this. 
 const transport = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
 });
 
 transport.verify((error, success) => {
@@ -86,10 +89,8 @@ exports.getReset = (req,res,next)=>{
 
 exports.getNewPassword = (req,res,next)=>{
 const token = req.params.token;
-console.log(token);
 user.findOne({resetToken : token , resetExpiredToken : {$gt : Date.now()}})
 .then(user =>{
-     console.log(user);
      let errorMessage = req.flash('passwordRepeated')
      if(errorMessage.length > 0){
           errorMessage = errorMessage
@@ -118,8 +119,6 @@ user.findOne({resetToken : token , resetExpiredToken : {$gt : Date.now()}})
 exports.postSignup = (req,res,next)=>{
      const email = req.body.email ;
      const password = req.body.password;
-     // console.log("Password : ",password);
-     // console.log("Email : ",email);
      const validated = validationResult(req)
 
      if(!validated.isEmpty()){
@@ -167,8 +166,24 @@ exports.postSignup = (req,res,next)=>{
           html: emailTemplate
      });
 })
-.then(response => {
-     console.log("EMAIL SENT:", response);
+.then(async result => {
+     req.session.isLoggedin = true;
+     req.session.user = {
+          _id: result._id.toString()
+     };
+     const sender = {
+          address: process.env.EMAIL_USER,
+          name: "Tamana Farzami"
+     };
+     await transport.sendMail({
+          from: sender,
+          to: email,
+          subject: "SIGN UP Completed Successfully :)",
+          html: emailTemplate
+     });
+
+     console.log("EMAIL SENT SUCCESSFULLY");
+
      req.session.toast = {
           message: "Account created successfully",
           type: "success"
@@ -180,14 +195,6 @@ exports.postSignup = (req,res,next)=>{
           res.redirect('/login');
      });
 })
-.catch(err => {
-     console.log("FULL EMAIL ERROR:", err);
-     req.session.toast = {
-          message: "Email failed to send",
-          type: "error"
-     };
-     res.redirect('/signup');
-});
 }
 
 exports.postLogIn = (req,res,next)=>{
@@ -274,7 +281,6 @@ req.session.toast = {
     })
 }
 exports.postLogOut = (req,res,next)=>{
-     console.log(req.session);
 req.session.destroy(err=>{
      if(err) console.log(err);
      
