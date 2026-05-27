@@ -3,29 +3,13 @@ const emailTemplateEng = require('../module/emailTemp')
 const {validationResult} = require("express-validator")
 const crypto = require('crypto')
 const bcreypt= require('bcrypt')
-const nodemailer = require("nodemailer")
+const axios = require("axios");
 const { ValidationError } = require('sequelize')
 
 
 // gmail SMTP 
 // port 465 in render makes problem so switched to this. 
-const transport = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 2525, // Be careful soon may this port will also blocked
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
 
-transport.verify((error, success) => {
-  if (error) {
-    console.log("SMTP ERROR:", error);
-  } else {
-    console.log("SMTP READY");
-  }
-});
 exports.getLogIn = (req,res,next)=>{
      let errorMessage = req.flash('userError')
      const toast = req.session.toast;
