@@ -7,9 +7,39 @@ const axios = require("axios");
 const { ValidationError } = require('sequelize')
 
 
-// gmail SMTP 
-// port 465 in render makes problem so switched to this. 
+// gmail Email API
 
+// port 465 in render makes problem so switched to this. 
+const sendEmail = async (to, subject, htmlContent) => {
+     try {
+          const response = await axios.post(
+               "https://api.brevo.com/v3/smtp/email",
+               {
+                    sender: {
+                         name: "Tamana Farzami",
+                         email: "tamanafarzami33@gmail.com"
+                    },
+                    to: [
+                         {
+                              email: to
+                         }
+                    ],
+                    subject: subject,
+                    htmlContent: htmlContent
+               },
+               {
+                    headers: {
+                         "api-key": process.env.BREVO_API_KEY,
+                         "Content-Type": "application/json"
+                    }
+               }
+          );
+          console.log("EMAIL SENT:", response.data);
+     } catch(err) {
+          console.log("BREVO API ERROR:", err.response?.data || err.message);
+          throw err;
+     }
+}
 exports.getLogIn = (req,res,next)=>{
      let errorMessage = req.flash('userError')
      const toast = req.session.toast;
