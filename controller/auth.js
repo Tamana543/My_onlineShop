@@ -164,12 +164,11 @@ exports.postSignup = async (req,res,next) => {
                homeLink,
                'Start Shopping'
           );
-          await transport.sendMail({
-               from: `"Tamana Farzami" <${process.env.EMAIL_USER}>`,
-               to: email,
-               subject: "SIGN UP Completed Successfully :)",
-               html: emailTemplate
-          });
+          await await sendEmail(
+               email,
+               "SIGN UP Completed Successfully :)",
+               emailTemplate
+          );
           console.log("EMAIL SENT SUCCESSFULLY");
           req.session.toast = {
                message: "Account created successfully",
@@ -324,14 +323,11 @@ exports.postReset = (req,res,next)=>{
                     address : "Tamanafarzami33@gmail.com",
                     name : "Tamana Farzami "
                };
-
-               return transport.sendMail({
-                    from: sender,
-                    to: email,
-                    subject: "Reset Password",
-                    html : emailTemplate,
-                    category: "Integration Test",
-               });
+               return sendEmail(
+                    email,
+                    "Reset Password",
+                    emailTemplate
+               );
 
           })
           .then(()=>{
