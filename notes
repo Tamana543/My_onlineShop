@@ -56,9 +56,9 @@ Signout : destroy the session (bugg in creating the session from login again fix
 csrf token: app.js use csrf,fix UI, than controllers (bug ? take a look to the sighn up : ignore )
 
 to do : 
-* fix the login and signup bug (fix the email sending problem Brevo Access denied)
-* Donot forget to fix the server base code (render the APP js env), (Clean the test.css)
+*  (fix the checkout in render)
 
+* fix the login and signup bug (fix the email sending problem Brevo Access denied) ✔️
 * Save cart (persistent cart) ✔️
 * fix the review to show many reviews()✔️
 * Recently viewed products ✔️

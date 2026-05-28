@@ -142,9 +142,9 @@ exports.cartProducts = async (req,res,next)=>{
      }
 }
 exports.postCardShop = (req,res,next)=>{
-     // console.log(req.body.items.productId);
+     
      const productId =req.body.productId ;
-    //  console.log("Here",req.body)
+
      
     Products.findById(productId)
 .then(product => {
@@ -224,9 +224,9 @@ exports.postReorder = (req, res, next) => {
 exports.invoiceFunction = (req,res,next)=>{
      const shouldDownload = req.query.download === "true";
      const orderId = req.params.orderId;
-     // console.log(orderId);
+     
      Order.findById(orderId).then(order=>{
-          // console.log(order)
+    
           if(!order){
                return next(new Error("No order Found"))
           }
@@ -484,7 +484,7 @@ exports.paymentPostProduct = (req, res, next) => {
               return req.user.deleteItemCard(productId);
             })
             .then(() => {
-              console.log("ORDER SAVED");
+          
               res.status(200).json({
                   success: true
               });

@@ -34,9 +34,7 @@ const sendEmail = async (to, subject, htmlContent) => {
                     }
                }
           );
-          console.log("EMAIL SENT:", response.data);
      } catch(err) {
-          console.log("BREVO API ERROR:", err.response?.data || err.message);
           throw err;
      }
 }
