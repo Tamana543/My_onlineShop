@@ -19,9 +19,15 @@ function emailCreator(message1, message2,message3,emailAddress,address,btnText )
      
              <p style="font-size: 16px;">${message3}</p>
              
+            
              <div style="text-align: center; margin-top: 30px;">
-                 <a href=${address} style="background-color: #af8931; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">${btnText}</a>
-             </div>
+                <a href="${address}" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="background-color: #af8931; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+                    ${btnText}
+                </a>
+            </div>
          </div>
      
          <div style="background-color: #f4f4f4; padding: 15px; text-align: center; font-size: 12px; color: #777;">

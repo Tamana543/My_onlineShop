@@ -155,7 +155,7 @@ exports.postSignup = async (req,res,next) => {
           req.session.user = {
                _id: savedUser._id.toString()
           };
-          const homeLink = `${process.env.BASE_URL}/`;
+          const homeLink = process.env.BASE_URL;
           const emailTemplate = emailTemplateEng(
                'Welcome to Our Shop!',
                'We are thrilled to have you join our community!',
