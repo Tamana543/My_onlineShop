@@ -8,7 +8,7 @@ const { ValidationError } = require('sequelize')
 
 
 // gmail Email API
-console.log(process.env.BREVO_API_KEY);
+
 // port 465 in render makes problem so switched to this. 
 const sendEmail = async (to, subject, htmlContent) => {
      try {
