@@ -121,3 +121,76 @@ body {
 
   animation: shadowMove 3s ease-in-out infinite;
 }
+/* Button */
+
+.button-box {
+  margin-top: 25px;
+  border: none;
+  background: transparent;
+}
+
+.button-box a {
+  text-decoration: none;
+}
+
+/* Animations */
+
+@keyframes floatFace {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes shadowMove {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0.15;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  #error-box {
+    padding: 40px 20px;
+  }
+
+  .alert {
+    font-size: 1.7rem;
+  }
+
+  .error_message {
+    font-size: 0.9rem;
+  }
+
+  .face2 {
+    width: 90px;
+    height: 90px;
+  }
+
+  .eye.right {
+    left: 60px;
+  }
+
+  .mouth.sad {
+    left: 33px;
+  }
+}
