@@ -64,8 +64,6 @@ exports.postproducts = (req,res,next)=> {
      }
 )
 
-// console.log(productData);
-
 productData.save()
 .then(() => {
      req.session.toast = {
@@ -122,7 +120,6 @@ exports.deleteProduct = (req,res,next)=>{
 
 exports.editGitProduct = (req,res,next)=>{
      const prodID = req.params.productID;
-     // console.log(prodID);
 Products.findOne({ _id: prodID, userId: req.user._id }) .then(product=>{
           if(!product){
                return res.redirect('/admin/products')
@@ -149,8 +146,7 @@ exports.editPostProduct = (req,res,next) =>{
     const updatedStock = +req.body.stock;
 
     Products.findOne({ _id: prodId, userId: req.user._id }) .then(product=>{
-     //     console.log(product);
-     
+    
      product.title = updatedTitle;
      product.price = updatedPrice;
      product.description = updatedDescription;
