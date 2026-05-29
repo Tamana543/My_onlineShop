@@ -81,7 +81,7 @@ header {
 
 .links_bar a {
   font-size: 1.2rem;
- color: var(--text-main);
+ color: var(--text-secondary);
 }
 /* Product details */
 .product-detail-content {
@@ -248,7 +248,7 @@ header {
 }
 
 .card-title {
- color: var(--text-main);
+ color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -272,7 +272,7 @@ color: var(--text-secondary);
  background: var(--bg-secondary) !important;
 }
 .custom-card .card-title {
- color: var(--text-main);
+ color: var(--text-secondary);
 }
 
 .custom-card .card-text {
@@ -310,7 +310,7 @@ color: var(--text-secondary);
 }
 .custom-btn.delete {
      background: linear-gradient(135deg, #c19c9c, #1f1a19);
-  color: var(--text-main);
+  color: var(--text-secondary);
 }
 
 .custom-btn.delete:hover {
