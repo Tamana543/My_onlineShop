@@ -1,4 +1,4 @@
-﻿# 🚗 CarHub – Full Stack Car Marketplace
+﻿# 🚗 CarHub – Full Stack E-Commerce Platform
 
 🌍 **Live Demo:**  
 [Live](https://carhubmain.onrender.com/)
@@ -17,47 +17,72 @@ This project demonstrates backend security, session handling, and full CRUD func
 ## ✨ Features
 
 ### 🔐 Authentication & Security
-- User Signup & Login
-- Password hashing with bcrypt
-- Session-based authentication
-- CSRF protection (csurf middleware)
-- Secure Logout
-- Password reset via token (email-based)
-- Protected routes for authenticated users
 
-### 🚘 Car Marketplace
-- Browse all cars
-- View detailed car information
-- Add cars to cart
-- Remove items from cart
-- Place orders
-- View order history
-- payment / checkout system
-
-### 🛠 Admin Dashboard
-- Add new cars
-- Edit existing cars
-- Delete cars
-- Manage product listings
+* User Signup & Login
+* Password hashing with bcrypt
+* Session-based authentication
+* CSRF protection
+* Secure logout
+* Password reset via email token
+* Protected routes & middleware
+* Role-based access control (Admin/User)
 
 ---
 
-## 🏗 Tech Stack
+### 🚘 Product & Shopping System
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Express-Session
-- CSRF (csurf)
-- bcrypt
-- Nodemailer
+* Browse all cars
+* Product detail pages
+* Recently viewed products
+* Wishlist / Favorites system
+* Persistent shopping cart
+* Quantity increase / decrease
+* Product stock availability system
+* Product search functionality
+* Filtering by category & price
+* Product sorting (newest, price, A-Z)
+* Pagination system
 
-### Frontend
-- EJS (Embedded JavaScript Templates)
-- Bootstrap
-- Custom CSS
+---
+
+### ⭐ Reviews & Ratings
+
+* Product review system
+* Star rating functionality
+* Average product ratings
+* Duplicate review prevention
+
+---
+
+### 🧾 Orders & Checkout
+
+* Checkout & payment flow
+* Cash on Delivery / Card UI
+* Order history
+* Reorder functionality
+* PDF invoice generation
+* Toast notifications for actions
+
+---
+
+### 🛠 Admin Dashboard
+
+* Add products
+* Edit products
+* Delete products
+* Image preview before upload
+* Product management system
+
+---
+
+### 🎨 UI / UX
+
+* Responsive design
+* Animated toast notifications
+* Modern dark-themed UI
+* Mobile navigation menu
+* Improved 404 page
+
 
 ---
 
@@ -79,7 +104,7 @@ This project demonstrates backend security, session handling, and full CRUD func
 │   └── admin.js
 │   └── auth.js
 │
-│── models/
+│── module/
 │   ├── product.js
 │   ├── user.js
 │   ├── emailTemp.js
@@ -112,16 +137,48 @@ This project demonstrates backend security, session handling, and full CRUD func
 git clone https://github.com/Tamana543/My_onlineShop.git
 cd carhub
 npm install
-npm start
+npm run start
+
 
 ```
+
+#### Developers :) 
+## 🔑 Environment Variables
+
+Create a `.env` file in the root directory and add:
+
+```env
+MONGODB_URI=your_mongodb_connection
+SESSION_SECRET=your_secret
+BREVO_API_KEY=your_brevo_key
+BASE_URL=http://localhost:3000
+```
+
 ---
 ## Status
 
-✔️👩‍💻 New Idea Added, Redeveloping started :) (Open for any further features :) 
+ 👩‍💻✨Active development in progress.
+
+
 
 ---
+##  What I Learned
 
+Through building CarHub, I practiced:
+
+* MVC architecture
+* Authentication & authorization
+* Session handling
+* CSRF protection
+* RESTful routing
+* MongoDB relationships
+* Full CRUD operations
+* Async backend workflows
+* Email API integration
+* Production deployment with Render
+* Frontend & backend integration
+
+---
 ## Author
 **Tamana&lt;ReginaJS/&gt;** 
 
