@@ -489,7 +489,14 @@ exports.paymentPostProduct = (req, res, next) => {
                   success: true
               });
         });
-      })
+      }).catch(err => {
+    console.log(err);
+    res.status(500).json({
+        success: false,
+        message: "Server error"
+    });
+
+});
 
 }
 exports.deletePostProduct = (req,res,next)=>{

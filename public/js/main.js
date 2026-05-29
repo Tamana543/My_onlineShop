@@ -7,7 +7,7 @@ const cardInput = document.querySelector('#cardDetails input');
 const confirmBtn = document.getElementById("confirmBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const checkoutForm = document.getElementById("checkoutForm");
-// const csrfToken = document.querySelector('input[name="_csrf"]').value;
+const csrfToken = document.querySelector('input[name="_csrf"]')?.value;
 const submitBtn = document.getElementById("checkout_submit");
 const serverToast = document.getElementById("server-toast");
 const imageUrlInput = document.getElementById("imageUrl");
@@ -85,11 +85,13 @@ function handleCartDelete(button) {
       body: JSON.stringify({
         productId: form.querySelector('input[name="productId"]').value
       })
-    })
-    .then(res => {
-      if (!res.ok) throw new Error();
-      return res.json();
-    })
+    }).then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Request failed");
+        }
+        return data;
+      })
     .then(() => {
       showToast("Item removed. ", "success");
       setTimeout(() => location.reload(), 800);
