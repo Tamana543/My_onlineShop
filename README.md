@@ -186,17 +186,6 @@ Website Developer
 
 ---
 
-```html
-## 📸 Screenshots
 
-<div align="center">
-
-<img src="project_overview/Home.png" width="45%" />
-<img src="project_overview/Products.png" width="45%" />
-
-<img src="project_overview/Login.png" width="45%" />
-<img src="project_overview/signup.png" width="45%" />
-
-</div>
-```
-
+![Home page](project_overview/Home.png)![Projects page](project_overview/Products.png)
+![Signup](project_overview/signup.png)![Login page](project_overview/Login.png)
